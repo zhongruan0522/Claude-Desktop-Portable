@@ -1,0 +1,102 @@
+[
+  {
+    "before": "\"Appearance\"",
+    "after": "\"外观\""
+  },
+  {
+    "before": "\"Organization banner\"",
+    "after": "\"组织横幅\""
+  },
+  {
+    "before": "\"A persistent banner across the top of the app window after sign-in.\"",
+    "after": "\"登录后在应用窗口顶部持续显示的横幅。\""
+  },
+  {
+    "before": "\"Show banner\"",
+    "after": "\"显示横幅\""
+  },
+  {
+    "before": "\"Banner text\"",
+    "after": "\"横幅文本\""
+  },
+  {
+    "before": "\"Internal use only\"",
+    "after": "\"仅供内部使用\""
+  },
+  {
+    "before": "\"Single line, truncated on overflow. Maximum 200 characters.\"",
+    "after": "\"单行，溢出时截断。最多 200 个字符。\""
+  },
+  {
+    "before": "\"Background color\"",
+    "after": "\"背景颜色\""
+  },
+  {
+    "before": "\"Six-digit hex (#RRGGBB). Applied exactly as configured; not theme-adapted.\"",
+    "after": "\"六位十六进制颜色（#RRGGBB）。将完全按配置应用；不会随主题调整。\""
+  },
+  {
+    "before": "\"Text color\"",
+    "after": "\"文本颜色\""
+  },
+  {
+    "before": "\"Link URL\"",
+    "after": "\"链接 URL\""
+  },
+  {
+    "before": "\"Optional HTTPS URL. The banner text becomes a link when set.\"",
+    "after": "\"可选 HTTPS URL。设置后，横幅文本会变为链接。\""
+  },
+  {
+    "before": "\"Shown in the model picker. Leave blank to auto-format from the ID.\"",
+    "after": "\"显示在模型选择器中。留空则根据 ID 自动格式化。\""
+  },
+  {
+    "before": "\"expected a gateway model route referencing an Anthropic model (e.g. claude-sonnet-4-5, anthropic/claude-*). Name routes to match the underlying model.\"",
+    "after": "\"需要一个引用 Anthropic 模型的网关模型路由（例如 claude-sonnet-4-5、anthropic/claude-*）。路由名称应与底层模型一致。\""
+  },
+  {
+    "before": "\"expected a Foundry deployment name referencing an Anthropic model (e.g. claude-sonnet-4-5). Name deployments to match the underlying model.\"",
+    "after": "\"需要一个引用 Anthropic 模型的 Foundry 部署名称（例如 claude-sonnet-4-5）。部署名称应与底层模型一致。\""
+  },
+  {
+    "before": "defaultMessage:\"Active\",id:\"3a5wL8wo40\"",
+    "after": "defaultMessage:\"活跃\",id:\"3a5wL8wo40\""
+  },
+  {
+    "before": "defaultMessage:\"Archived\",id:\"0HT+IbyW6O\"",
+    "after": "defaultMessage:\"已归档\",id:\"0HT+IbyW6O\""
+  },
+  {
+    "before": "defaultMessage:\"All\",id:\"zQvVDJ+j59\"",
+    "after": "defaultMessage:\"全部\",id:\"zQvVDJ+j59\""
+  },
+  {
+    "before": "defaultMessage:\"Status\",id:\"tzMNF3jWoU\"",
+    "after": "defaultMessage:\"状态\",id:\"tzMNF3jWoU\""
+  },
+  {
+    "before": "defaultMessage:\"Environment\",id:\"K7kuIZkkhY\"",
+    "after": "defaultMessage:\"环境\",id:\"K7kuIZkkhY\""
+  },
+  {
+    "before": "defaultMessage:\"Cloud\",id:\"fiPvwYljok\"",
+    "after": "defaultMessage:\"云端\",id:\"fiPvwYljok\""
+  },
+  {
+    "before": "defaultMessage:\"Remote Control\",id:\"4mv6Z9Tv+V\"",
+    "after": "defaultMessage:\"远程控制\",id:\"4mv6Z9Tv+V\""
+  },
+  {
+    "before": "defaultMessage:\"Untitled task\",id:\"RuyWs2JrH9\"",
+    "after": "defaultMessage:\"未命名任务\",id:\"RuyWs2JrH9\""
+  },
+  {
+    "before": "e.title??\"Local task\"",
+    "after": "e.title??\"本地任务\""
+  },
+  {
+    "before": "case\"id-ID\":return[\"language\",\"id\"];",
+    "after": "case\"id-ID\":return[\"language\",\"id\"];case\"zh-CN\":return[\"language\",\"zh\"];"
+  }
+]

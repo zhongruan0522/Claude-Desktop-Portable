@@ -1,0 +1,767 @@
+{
+  "appVersion": "2.19675.1.0",
+  "sourceRepository": "https://github.com/CyrusNee/claude-desktop-zh-cn",
+  "sourceCommit": "889b2b4e913b18e43303bf7ce8935358aefd23a1",
+  "created": "2026-10-07",
+  "destination": "app/resources/ion-dist/assets/v1",
+  "rules": 45,
+  "matches": 60,
+  "files": [
+    {
+      "file": "shared-28-DFptrJn_.js",
+      "originalSha256": "035414cf95865895ec6479b845025f110a8dbcfd47e38e5b89f5488f4c03b159",
+      "patchedSha256": "de9074e80c37583747c5b5c516e8f0f194e0ad8b8d4210d0b1380399101509da",
+      "sourceBytes": 342999,
+      "outputBytes": 343023,
+      "syntaxChecked": true
+    },
+    {
+      "file": "shared-25-DXU0HC0D.js",
+      "originalSha256": "3e7fbf7e1ef96cc0b37f8fe1b1729411bf63a6b3f0d10e0f7c9d77d95cdcaaf3",
+      "patchedSha256": "70d2f7507d02bef6dfbda3d1de1ccf564eacbe95dbda2e39b0dc04dc4963b0a5",
+      "sourceBytes": 395642,
+      "outputBytes": 395592,
+      "syntaxChecked": true
+    },
+    {
+      "file": "shared-29-Dq-RZCx0.js",
+      "originalSha256": "6735d0949a6ab009287414e6b4f4eb37ee6df8fc8366027705f4ef41a0ee93ff",
+      "patchedSha256": "0e49437cca4ecc7fe281e60a0e670f9d662e647e87e8e499398cb11c53090d4c",
+      "sourceBytes": 183837,
+      "outputBytes": 183812,
+      "syntaxChecked": true
+    },
+    {
+      "file": "c10f0af0c-lYUAT4Np.js",
+      "originalSha256": "4f3b556834a877a9bd0984ae46ddc6490354129d8855f8af2fb56a15f16db968",
+      "patchedSha256": "15d4163a5a87fb2f41dfbd52c5914fd276cdf9835f8ae2cbe4ceff43bbb52cea",
+      "sourceBytes": 536739,
+      "outputBytes": 536736,
+      "syntaxChecked": true
+    },
+    {
+      "file": "shared-26-Dyl0rRaC.js",
+      "originalSha256": "cba034bbe78895b48fde0083cf955aa6b131e6146a3ed6c6610989db39b31d4b",
+      "patchedSha256": "01aab485294c6fb4474e476d5d00a347524ea5c44a9a1c79987f37bb3bf20360",
+      "sourceBytes": 376193,
+      "outputBytes": 376203,
+      "syntaxChecked": true
+    },
+    {
+      "file": "shared-2-BaCC514e.js",
+      "originalSha256": "8dd8b7616d3c6e18585d855e290ccf75bc7a315c7f5a74836539bb3e44fc61d9",
+      "patchedSha256": "8de5c8c23e717bc5ca0aafdada2d4ae180ea376e4d2eedae706b5ac1643dd236",
+      "sourceBytes": 379050,
+      "outputBytes": 379068,
+      "syntaxChecked": true
+    },
+    {
+      "file": "shared-7-v3MO7ivC.js",
+      "originalSha256": "ee5083f419c328b47914123e6261a9f2bdb3c4869b15c3381bd6c80300769a76",
+      "patchedSha256": "c1e991f9ab86d266cc0707c0ceb9f5499a8f1e6a439f2284cd9926c0bb5a1d21",
+      "sourceBytes": 415897,
+      "outputBytes": 415892,
+      "syntaxChecked": true
+    },
+    {
+      "file": "c49da61a8-CBee8AL6.js",
+      "originalSha256": "be369000866959503843470f8ee93b0618bb0ade863a4f3fc94bad632ef2df42",
+      "patchedSha256": "bcf7a1a7c82ed78e1af9dad97015e4bfc7b249bced1cedf27e722b1a8423f9c7",
+      "sourceBytes": 8206,
+      "outputBytes": 8263,
+      "syntaxChecked": true
+    }
+  ],
+  "patches": [
+    {
+      "kind": "hardcoded",
+      "before": "children:\"Go back home\"",
+      "after": "children:\"返回首页\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "children:\"Home\"",
+      "after": "children:\"首页\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "children:\"Page not found\"",
+      "after": "children:\"页面未找到\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "children:\"Reload\"",
+      "after": "children:\"重新加载\"",
+      "expected": 3,
+      "files": [
+        "shared-25-DXU0HC0D.js",
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 2
+        },
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "children:\"Retry\"",
+      "after": "children:\"重试\"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "children:\"Can't reach the Claude extension.\"",
+      "after": "children:\"无法连接 Claude 扩展。\"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "children:\"Sign in to claude.ai to use the side panel.\"",
+      "after": "children:\"登录 claude.ai 以使用侧边栏。\"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "children:\"You're signed into claude.ai as a different account.\"",
+      "after": "children:\"你已使用其他账户登录 claude.ai。\"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Admin settings\"",
+      "after": "title:\"管理员设置\"",
+      "expected": 1,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Analytics\"",
+      "after": "title:\"数据分析\"",
+      "expected": 1,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Create project\"",
+      "after": "title:\"创建项目\"",
+      "expected": 2,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Customize\"",
+      "after": "title:\"自定义\"",
+      "expected": 1,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Projects\"",
+      "after": "title:\"项目\"",
+      "expected": 2,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Recents\"",
+      "after": "title:\"最近\"",
+      "expected": 1,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Settings\"",
+      "after": "title:\"设置\"",
+      "expected": 1,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Sign in\"",
+      "after": "title:\"登录\"",
+      "expected": 1,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Skills\"",
+      "after": "title:\"技能\"",
+      "expected": 1,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Upgrade\"",
+      "after": "title:\"升级\"",
+      "expected": 1,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Artifact\"",
+      "after": "title:\"作品\"",
+      "expected": 5,
+      "files": [
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Artifacts\"",
+      "after": "title:\"作品\"",
+      "expected": 3,
+      "files": [
+        "c10f0af0c-lYUAT4Np.js",
+        "shared-29-Dq-RZCx0.js"
+      ],
+      "matches": [
+        {
+          "file": "c10f0af0c-lYUAT4Np.js",
+          "count": 1
+        },
+        {
+          "file": "shared-29-Dq-RZCx0.js",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "label:\"Chat\"",
+      "after": "label:\"聊天\"",
+      "expected": 2,
+      "files": [
+        "shared-26-Dyl0rRaC.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-26-Dyl0rRaC.js",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "label:\"Code\"",
+      "after": "label:\"代码\"",
+      "expected": 4,
+      "files": [
+        "shared-2-BaCC514e.js",
+        "shared-26-Dyl0rRaC.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-2-BaCC514e.js",
+          "count": 1
+        },
+        {
+          "file": "shared-26-Dyl0rRaC.js",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "label:\"Audio Description\"",
+      "after": "label:\"音频描述\"",
+      "expected": 1,
+      "files": [
+        "shared-7-v3MO7ivC.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-7-v3MO7ivC.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"Couldn\\u2019t finish loading\"",
+      "after": "\"加载未能完成\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"This page ran into a problem\"",
+      "after": "\"此页面遇到了问题\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"Check your connection, then reload.\"",
+      "after": "\"请检查网络连接，然后重新加载。\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"Reload to continue.\"",
+      "after": "\"重新加载以继续。\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"Reload to continue. If it keeps happening, check\"",
+      "after": "\"重新加载以继续。如果问题反复出现，请查看\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"Still not working? You can reach out to\"",
+      "after": "\"仍然无法使用？你可以联系\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "children:\"support\"",
+      "after": "children:\"支持团队\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"with this error code:\"",
+      "after": "\"并提供此错误代码：\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "title:\"Learn more about Anthropic\"",
+      "after": "title:\"了解更多关于 Anthropic 的信息\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"Claude can help with many things, but finding this page isn\\u2019t one of them.\"",
+      "after": "\"Claude 能帮你做很多事，但无法找到这个页面。\"",
+      "expected": 1,
+      "files": [
+        "shared-28-DFptrJn_.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-28-DFptrJn_.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\" This panel is hosted by the Claude Chrome extension, but it didn't respond. Reload the side panel, or check that the extension is enabled.\"",
+      "after": "\" 此面板由 Claude Chrome 扩展提供，但扩展没有响应。请重新加载侧边栏，或检查扩展是否已启用。\"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\" Sign in to claude.ai in this browser, then reload this panel. If you're already signed in, the extension may not have permission to access claude.ai \\u2014 check chrome://extensions \\u2192 Claude \\u2192 Site access.\"",
+      "after": "\" 请在此浏览器中登录 claude.ai，然后重新加载此面板。如果已经登录，扩展可能没有访问 claude.ai 的权限，请检查 chrome://extensions → Claude → 网站访问权限。\"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"This panel is signed in as \"",
+      "after": "\"此面板登录的账户是 \"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\"another account\"",
+      "after": "\"另一个账户\"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "hardcoded",
+      "before": "\", but the Claude extension is signed in as a different account. Browser actions run as the extension's account, so the side panel can't be used here. Sign in to claude.ai as the extension's account and reload the side panel.\"",
+      "after": "\"，但 Claude 扩展登录的是另一个账户。浏览器操作会使用扩展的账户，因此此处无法使用侧边栏。请使用扩展的账户登录 claude.ai，然后重新加载侧边栏。\"",
+      "expected": 1,
+      "files": [
+        "shared-25-DXU0HC0D.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-25-DXU0HC0D.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "component-fallback",
+      "before": "searchLanguages:\"Search languages\"",
+      "after": "searchLanguages:\"搜索语言\"",
+      "expected": 1,
+      "files": [
+        "c49da61a8-CBee8AL6.js"
+      ],
+      "matches": [
+        {
+          "file": "c49da61a8-CBee8AL6.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "component-fallback",
+      "before": "noLanguagesFound:\"No languages found\"",
+      "after": "noLanguagesFound:\"未找到语言\"",
+      "expected": 1,
+      "files": [
+        "c49da61a8-CBee8AL6.js"
+      ],
+      "matches": [
+        {
+          "file": "c49da61a8-CBee8AL6.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "component-fallback",
+      "before": "language:\"Language\"",
+      "after": "language:\"语言\"",
+      "expected": 1,
+      "files": [
+        "c49da61a8-CBee8AL6.js"
+      ],
+      "matches": [
+        {
+          "file": "c49da61a8-CBee8AL6.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "component-fallback",
+      "before": "oneLanguageFound:\"1 language found\"",
+      "after": "oneLanguageFound:\"找到 1 种语言\"",
+      "expected": 1,
+      "files": [
+        "c49da61a8-CBee8AL6.js"
+      ],
+      "matches": [
+        {
+          "file": "c49da61a8-CBee8AL6.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "component-fallback",
+      "before": "nLanguagesFound:\"{count} languages found\"",
+      "after": "nLanguagesFound:\"找到 {count} 种语言\"",
+      "expected": 1,
+      "files": [
+        "c49da61a8-CBee8AL6.js"
+      ],
+      "matches": [
+        {
+          "file": "c49da61a8-CBee8AL6.js",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "kind": "locale-list",
+      "before": "[\"en-US\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\"]",
+      "after": "[\"en-US\",\"zh-CN\",\"de-DE\",\"fr-FR\",\"ko-KR\",\"ja-JP\",\"es-419\",\"es-ES\",\"it-IT\",\"hi-IN\",\"pt-BR\",\"id-ID\"]",
+      "expected": 2,
+      "files": [
+        "shared-2-BaCC514e.js"
+      ],
+      "matches": [
+        {
+          "file": "shared-2-BaCC514e.js",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "kind": "locale-name",
+      "before": "B={\"en-US\":",
+      "after": "B={\"zh-CN\":{name:\"Chinese (Simplified)\",localName:\"简体中文\"},\"en-US\":",
+      "expected": 1,
+      "files": [
+        "c49da61a8-CBee8AL6.js"
+      ],
+      "matches": [
+        {
+          "file": "c49da61a8-CBee8AL6.js",
+          "count": 1
+        }
+      ]
+    }
+  ]
+}
