@@ -5,11 +5,12 @@ import json, os
 ROOT = '/workspace/Claude Desktop/zh-i18n'
 REPORT = json.load(open(ROOT + '/work/diff-report-4x.json', encoding='utf-8'))
 REUSE = json.load(open(ROOT + '/work/reuse-4x.json', encoding='utf-8'))
-FE_EN = json.load(open(ROOT + '/work/ion-i18n-4.29/i18n/en-US.json', encoding='utf-8'))
-SH_EN = json.load(open(ROOT + '/work/app-i18n-4.29/resources/i18n/en-US.json', encoding='utf-8'))
+FE_EN = json.load(open(ROOT + '/work/ion-i18n-4.16336/i18n/en-US.json', encoding='utf-8'))
+SH_EN = json.load(open(ROOT + '/work/app-i18n-4.16336/resources/i18n/en-US.json', encoding='utf-8'))
 
 frontend = {k: FE_EN[k] for k in REPORT['frontend']['missing'] if k not in REUSE}
-shell = {k: SH_EN[k] for k in REPORT['desktop_shell']['missing']}
+SH_REUSE = json.load(open(ROOT + '/work/reuse-shell-official-4x.json', encoding='utf-8'))
+shell = {k: SH_EN[k] for k in REPORT['desktop_shell']['missing'] if k not in SH_REUSE}
 
 os.makedirs(ROOT + '/work/batches', exist_ok=True)
 for f in os.listdir(ROOT + '/work/batches'):

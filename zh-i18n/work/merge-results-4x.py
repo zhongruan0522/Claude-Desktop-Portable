@@ -3,8 +3,8 @@
 import json, os, re, sys
 
 ROOT = '/workspace/Claude Desktop/zh-i18n'
-ION_EN = os.path.join(ROOT, 'work/ion-i18n-4.29/i18n/en-US.json')
-APP_EN = os.path.join(ROOT, 'work/app-i18n-4.29/resources/i18n/en-US.json')
+ION_EN = os.path.join(ROOT, 'work/ion-i18n-4.16336/i18n/en-US.json')
+APP_EN = os.path.join(ROOT, 'work/app-i18n-4.16336/resources/i18n/en-US.json')
 
 def load(p):
     with open(p, encoding='utf-8') as f: return json.load(f)
@@ -52,6 +52,7 @@ def merge(dict_path, en_path, update_sources):
             if not struct_ok(en[k], zh):
                 failed[k] = {'en': en[k], 'zh': zh}; continue
             d[k] = zh; applied += 1
+            failed.pop(k, None)  # 后续 source 修复了先前失败条目时清除记录
     tmp = dict_path + '.new'
     with open(tmp, 'w', encoding='utf-8') as f:
         json.dump(d, f, ensure_ascii=False, indent=1)
@@ -61,15 +62,34 @@ def merge(dict_path, en_path, update_sources):
     return failed
 
 fe_sources = [os.path.join(ROOT, 'work/reuse-4x.json')] + \
-             [os.path.join(ROOT, 'work/batches/out-batch-%d.json' % i) for i in range(1, 7)]
+             [os.path.join(ROOT, 'work/results/batch-%d.out.json' % i) for i in range(1, 7)]
 fe_failed = merge(os.path.join(ROOT, 'language/zh-CN/linux/dictionary.json'), ION_EN, fe_sources)
 
-sh_sources = [os.path.join(ROOT, 'work/shell-reuse-4x.json'),
-              os.path.join(ROOT, 'work/batches/out-batch-shell.json')]
+sh_sources = [os.path.join(ROOT, 'work/reuse-shell-official-4x.json'),
+              os.path.join(ROOT, 'work/results/batch-shell.out.json'),
+              os.path.join(ROOT, 'work/results/shell-icu-fixes.json')]
 sh_failed = merge(os.path.join(ROOT, 'language/zh-CN/linux/desktop-shell-dictionary.json'), APP_EN, sh_sources)
 
+dyn_failed = merge(os.path.join(ROOT, 'language/zh-CN/dynamic/zh-CN.json'),
+                   os.path.join(ROOT, 'work/ion-i18n-4.16336/i18n/dynamic/en-US.json'),
+                   [os.path.join(ROOT, 'work/results/dynamic-extra.json')])
+
+# overrides 是强制覆盖层: 死键直接删, 不需要 struct 校验
+ov_path = os.path.join(ROOT, 'language/zh-CN/linux/overrides.json')
+ov = load(ov_path)
+ov_en = load(ION_EN)
+ov_dead = [k for k in ov if k not in ov_en]
+for k in ov_dead: del ov[k]
+if ov_dead:
+    with open(ov_path + '.new', 'w', encoding='utf-8') as f:
+        json.dump(ov, f, ensure_ascii=False, indent=1)
+    os.replace(ov_path + '.new', ov_path)
+print('overrides: 删死键 %d -> %d 键' % (len(ov_dead), len(ov)))
+
 all_failed = dict(fe_failed); all_failed.update({('shell:' + k): v for k, v in sh_failed.items()})
-json.dump(all_failed, open(os.path.join(ROOT, 'work/merge-failed-4x.json'), 'w', encoding='utf-8'),
+all_failed.update({('dyn:' + k): v for k, v in dyn_failed.items()})
+real_failed = {k: v for k, v in all_failed.items() if k != '_overrides_dead'}
+json.dump(real_failed, open(os.path.join(ROOT, 'work/merge-failed-4x.json'), 'w', encoding='utf-8'),
           ensure_ascii=False, indent=1)
-print('校验未通过/异常条目: %d' % len(all_failed))
-if all_failed: sys.exit(1)
+print('校验未通过/异常条目: %d' % len(real_failed))
+if real_failed: sys.exit(1)

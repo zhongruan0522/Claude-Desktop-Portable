@@ -2,7 +2,7 @@
 
 适用于通过 Anthropic 官方 apt 源（`downloads.claude.ai/claude-desktop/apt/stable`）安装的
 Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识别 4.x / 3.x 两种资源布局**，
-已在 **4.29.0（amd64，asar 布局）** 与 **3.6556.2（amd64，明文目录布局）** 上完整验证：
+已在 **4.16336.0（amd64，asar 布局）** 与 **3.6556.2（amd64，明文目录布局）** 上完整验证：
 安装 → 全量校验 → 幂等重装 → 升级检测 → 恢复后与官方原版**逐字节一致**。
 
 ## 4.x 布局（4.29.0 起）
@@ -44,19 +44,21 @@ sudo ./install-linux.sh --set-locale   # 安装并把 ~/.config/Claude/config.js
 | app.asar locale 映射补丁 | 同款补丁 | Linux Electron 不校验 asar 签名；重建后全条目 SHA-256 完整性自检通过 |
 | AppX 清单注册 zh-CN | 无需 | 前端按词典文件枚举语言，asar 内 `i18n/zh-CN.json` 直接被识别 |
 
-## 覆盖率（Linux 4.29.0，2026-10-28 全量同步）
+## 覆盖率（Linux 4.16336.0，2026-11-05 全量同步）
 
 | 层 | 键数 | 已翻译 | 说明 |
 | --- | ---: | ---: | --- |
-| 前端主词典 | 39,482 | 39,062（98.9%，等效 100%） | 安装器口径 0 键回退；其余 420 键为专名/OAuth scope/格式串（Google Play、CI、{kb}KB、证书块等），按原样保留英文 |
-| 前端覆盖（overrides） | 336 | 336 | 安装时按当前版英文资源过滤 |
-| 动态文案 | 49 | 49 | |
-| 桌面壳（菜单/弹窗/托盘） | 947 | 937（99.0%，等效 100%） | 其余 10 键为 Claude、{title}: {value} 等专名/格式串，保留英文 |
+| 前端主词典 | 41,771 | 41,322（98.9%，等效 100%） | 安装器口径 0 键回退；其余 449 键为专名/OAuth scope/格式串（Google Play、CI、{kb}KB、证书块等），按原样保留英文 |
+| 前端覆盖（overrides） | 313 | 313 | 安装时按当前版英文资源过滤 |
+| 动态文案 | 51 | 51 | |
+| 桌面壳（菜单/弹窗/托盘） | 1,112 | 1,097（98.7%，等效 100%） | 其余 15 键为 Claude、{title}: {value} 等专名/格式串，保留英文 |
 
-2026-10-28 对照 4.29.0 解包资源全量同步：适配 4.x asar 布局（安装器重写，支持条目
-替换/新增/删除与 integrity 重算）；新译 2,932 条（前端 2,856 + 桌面壳 76，并行批次
-全部通过 ICU 变量/分支/富文本标签结构校验，安装器干跑 0 键回退）；跨批次术语统一
-70 条（例行程序/计划任务/极高·最高档位等）。
+2026-11-05 对照 4.16336.0 解包资源增量同步：官方前端词典 39,482 → 41,771 键（纯新增
+3,715、删除 1,426，英文原文零变更，存量译文全部有效）；新译 3,779 条（前端 3,712 +
+桌面壳 65 + 动态 2，并行批次全部通过 ICU 变量/分支/富文本标签结构校验，安装器干跑
+0 键回退）；复用官方壳新自带 zh-Hans.json 译名 114 条、Windows 词典 3 条；清理死键
+1,463 个（前端 1,426 + 壳 14 + overrides 23）；跨批次统一人称（您→你，282 条）与
+术语（计划任务/例行程序/快速输入，24 条），修复 12 条嵌套 ICU 结构。
 
 术语沿用 Windows 包：
 作品（Artifacts）、技能（Skills）、思考强度（Effort）、工作树（worktree）、运行器（runner）、
@@ -77,9 +79,9 @@ sudo ./install-linux.sh --set-locale   # 安装并把 ~/.config/Claude/config.js
 - `install-linux.py` — Python 助手（布局检测、asar 重建引擎、词典合并、JS 补丁、备份与
   还原、locale 写入），由主脚本调用，也可单独运行：
   `ZH_RESOURCES=… ZH_BACKUP=… ZH_LANG=… python3 install-linux.py check`
-- `language/zh-CN/linux/dictionary.json` — 前端词典（39,482 键全量映射的基础词典）
-- `language/zh-CN/linux/desktop-shell-dictionary.json` — 桌面壳词典（947 键）
-- `language/zh-CN/linux/overrides.json` — 覆盖文案
+- `language/zh-CN/linux/dictionary.json` — 前端词典（41,771 键全量映射的基础词典）
+- `language/zh-CN/linux/desktop-shell-dictionary.json` — 桌面壳词典（1,112 键）
+- `language/zh-CN/linux/overrides.json` — 覆盖文案（313 键）
 - `language/zh-CN/dynamic/zh-CN.json` — 动态文案（Windows/Linux 通用）
 - `language/zh-CN/hardcoded.json`、`frontend-hardcoded.json`、`assets-manifest.json` — JS 规则
   （与 Windows 安装器共用，安装时按当前版本内容重新匹配）
