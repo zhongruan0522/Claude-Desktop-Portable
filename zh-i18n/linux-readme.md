@@ -62,7 +62,8 @@ sudo ./install-linux.sh --set-locale   # 安装并把 ~/.config/Claude/config.js
 
 术语沿用 Windows 包：
 作品（Artifacts）、技能（Skills）、思考强度（Effort）、工作树（worktree）、运行器（runner）、
-会话栏（Session Rail）、例行程序（routine）、计划任务（scheduled task）、快速输入（Quick Entry）、
+会话栏（Session Rail）、定时任务（routine / scheduled task，官方已将 Routines 更名为
+Scheduled tasks，两者统一译作定时任务）、快速输入（Quick Entry）、
 远程控制（Remote Control）等；保留 Claude、Cowork、Claude Code、Inventory、P/S 等专名与配置值。
 
 ## 已知限制

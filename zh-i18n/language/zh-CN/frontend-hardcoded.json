@@ -609,15 +609,15 @@
   ],
   [
     "Search scheduled tasks...",
-    "搜索计划任务..."
+    "搜索定时任务..."
   ],
   [
     "Search scheduled tasks…",
-    "搜索计划任务…"
+    "搜索定时任务…"
   ],
   [
     "Create your first scheduled task",
-    "创建你的第一个计划任务"
+    "创建你的第一个定时任务"
   ],
   [
     "Daily brief",
@@ -1965,7 +1965,7 @@
   ],
   [
     "Allow scheduled tasks",
-    "允许计划任务"
+    "允许定时任务"
   ],
   [
     "Allow keep awake",
@@ -1973,7 +1973,7 @@
   ],
   [
     "Let Claude keep the computer awake. When off, Claude never prevents sleep and hides the keep-awake switches in Settings, the Scheduled page and the Code tab.",
-    "允许 Claude 保持计算机唤醒。关闭时，Claude 不会阻止睡眠，并隐藏设置、“计划任务”页和 Code 标签页中的保持唤醒开关。"
+    "允许 Claude 保持计算机唤醒。关闭时，Claude 不会阻止睡眠，并隐藏设置、“定时任务”页和 Code 标签页中的保持唤醒开关。"
   ],
   [
     "Stop external apps and websites from opening Claude Desktop via claude:// links.",
@@ -2089,11 +2089,11 @@
   ],
   [
     "Scheduled-task tool approval lifetime",
-    "计划任务工具批准有效期"
+    "定时任务工具批准有效期"
   ],
   [
     "How many days a scheduled task may reuse a lasting MCP-tool approval before it asks again. 0 removes the lasting option.",
-    "计划任务可重复使用 MCP 工具持久批准的天数，超过后需要再次询问。0 表示不提供持久选项。"
+    "定时任务可重复使用 MCP 工具持久批准的天数，超过后需要再次询问。0 表示不提供持久选项。"
   ],
   [
     "Allowed plugin MCP servers",
@@ -2369,11 +2369,11 @@
   ],
   [
     "Your artifacts and scheduled tasks are stored at ",
-    "你的作品和计划任务存储在 "
+    "你的作品和定时任务存储在 "
   ],
   [
     "Your artifacts and scheduled tasks are stored at",
-    "你的作品和计划任务存储在"
+    "你的作品和定时任务存储在"
   ],
   [
     "You’re running Claude through your organization’s own inference provider (127.0.0.1:15721). Your conversations are sent there, not to Anthropic, and are governed by your organization’s agreement with that provider.",
