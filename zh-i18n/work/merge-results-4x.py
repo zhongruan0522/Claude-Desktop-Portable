@@ -3,8 +3,8 @@
 import json, os, re, sys
 
 ROOT = '/workspace/Claude Desktop/zh-i18n'
-ION_EN = os.path.join(ROOT, 'work/ion-i18n-4.16336/i18n/en-US.json')
-APP_EN = os.path.join(ROOT, 'work/app-i18n-4.16336/resources/i18n/en-US.json')
+ION_EN = os.path.join(ROOT, 'work/ion-i18n-4.23118/i18n/en-US.json')
+APP_EN = os.path.join(ROOT, 'work/app-i18n-4.23118/resources/i18n/en-US.json')
 
 def load(p):
     with open(p, encoding='utf-8') as f: return json.load(f)
@@ -71,7 +71,7 @@ sh_sources = [os.path.join(ROOT, 'work/reuse-shell-official-4x.json'),
 sh_failed = merge(os.path.join(ROOT, 'language/zh-CN/linux/desktop-shell-dictionary.json'), APP_EN, sh_sources)
 
 dyn_failed = merge(os.path.join(ROOT, 'language/zh-CN/dynamic/zh-CN.json'),
-                   os.path.join(ROOT, 'work/ion-i18n-4.16336/i18n/dynamic/en-US.json'),
+                   os.path.join(ROOT, 'work/ion-i18n-4.23118/i18n/dynamic/en-US.json'),
                    [os.path.join(ROOT, 'work/results/dynamic-extra.json')])
 
 # overrides 是强制覆盖层: 死键直接删, 不需要 struct 校验

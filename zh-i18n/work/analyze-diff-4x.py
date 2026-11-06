@@ -3,8 +3,8 @@
 import json, os, re
 
 BASE = '/workspace/Claude Desktop/zh-i18n'
-ION = os.path.join(BASE, 'work/ion-i18n-4.16336/i18n')      # ion-dist.asar 提取
-APP = os.path.join(BASE, 'work/app-i18n-4.16336/resources/i18n')  # app.asar 提取
+ION = os.path.join(BASE, 'work/ion-i18n-4.23118/i18n')      # ion-dist.asar 提取
+APP = os.path.join(BASE, 'work/app-i18n-4.23118/resources/i18n')  # app.asar 提取
 LANG = os.path.join(BASE, 'language/zh-CN')
 OUT = os.path.join(BASE, 'work/diff-report-4x.json')
 

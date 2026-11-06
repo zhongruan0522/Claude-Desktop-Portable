@@ -5,8 +5,8 @@ import json, os
 ROOT = '/workspace/Claude Desktop/zh-i18n'
 REPORT = json.load(open(ROOT + '/work/diff-report-4x.json', encoding='utf-8'))
 REUSE = json.load(open(ROOT + '/work/reuse-4x.json', encoding='utf-8'))
-FE_EN = json.load(open(ROOT + '/work/ion-i18n-4.16336/i18n/en-US.json', encoding='utf-8'))
-SH_EN = json.load(open(ROOT + '/work/app-i18n-4.16336/resources/i18n/en-US.json', encoding='utf-8'))
+FE_EN = json.load(open(ROOT + '/work/ion-i18n-4.23118/i18n/en-US.json', encoding='utf-8'))
+SH_EN = json.load(open(ROOT + '/work/app-i18n-4.23118/resources/i18n/en-US.json', encoding='utf-8'))
 
 frontend = {k: FE_EN[k] for k in REPORT['frontend']['missing'] if k not in REUSE}
 SH_REUSE = json.load(open(ROOT + '/work/reuse-shell-official-4x.json', encoding='utf-8'))
