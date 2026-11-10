@@ -516,7 +516,7 @@
  "nurvBp3Alh": "{n, plural, other {已添加市场中的插件尚未安装。请在“自定义 › 插件”中安装你需要的插件。} one {已添加市场中的插件尚未安装。请在“自定义 › 插件”中安装你需要的插件。}}",
  "nwIJW/BlSV": "此 Claude 版本不含 Cowork。请重新安装 Claude 以使用此功能。",
  "nxIxZKz5hC": "未打包或未注册的扩展已被你的组织的策略停用。",
- "o1AA1vlbvN": "无法打开该会话。其会话记录可能已被移除。",
+ "o1AA1vlbvN": "无法打开该会话。其对话记录可能已被移除。",
  "o5W3PYH1Xy": "与 {host} 的重新连接已停止：你的组织配置的 ssh 程序已无法在这台电脑上使用。你在那里运行的会话已保留；请咨询 IT 管理员，然后重新连接。",
  "o9w6oDowXc": "{m, plural, other {已从 Claude（第三方）上传 # 个 Skills 中的 {n} 个} one {已从 Claude（第三方）上传 # 个 Skills 中的 {n} 个}}",
  "oIarML/J6d": "这将停止所有正在运行的 Cowork 任务，删除 Cowork 虚拟机包，并重启 Claude。下次使用 Cowork 时会重新下载该包。",
