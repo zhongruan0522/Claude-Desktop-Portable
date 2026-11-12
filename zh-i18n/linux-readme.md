@@ -1,8 +1,9 @@
 # Linux（官方 APT 版）汉化说明
 
 适用于通过 Anthropic 官方 apt 源（`downloads.claude.ai/claude-desktop/apt/stable`）安装的
-Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识别 4.x / 3.x 两种资源布局**，
-已在 **4.23118.1（amd64，asar 布局）** 与 **3.6556.2（amd64，明文目录布局）** 上完整验证：
+Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识别 5.x / 4.x / 3.x 三种资源布局**，
+已在 **5.1231.2（amd64，asar 布局 + frame-shell 新层）**、**4.23118.1（amd64，asar 布局）** 与
+**3.6556.2（amd64，明文目录布局）** 上完整验证：
 安装 → 全量校验 → 幂等重装 → 升级检测 → 恢复后与官方原版**逐字节一致**。
 
 ## 4.x 布局（4.29.0 起）
@@ -13,6 +14,21 @@ Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识�
   `en-US.json`/`zh-CN.json` 不复存在）。
 - 汉化方式：安装器在 asar 内新增 `zh-CN` 词条、按内容规则就地补丁 JS、重建 asar
   并重算全部 integrity，重建后自检（逐条目 SHA-256 比对）通过才落盘；`reset` 整档还原。
+
+## 5.x 布局（5.1231.x 起）
+
+- 前端与桌面壳词典路径不变；`resources/i18n/` 官方开始自带 `zh-Hans.json`
+  （简体中文桌面壳官方翻译），按"官方优先"并入桌面壳词典（见下）。
+- **frame/shell 捆绑包**（作品共享页 / Artifact 查看器外壳；4.23118.x 后期已引入、
+  5.x 延续，同一份 frame-shell 词典对两个版本均生效）：
+  英文原文内嵌于 JS 的 `{id, defaultMessage}` 消息对，官方仅附带 10 种语言各 108 键的
+  词典（无 en-US.json，无中文）；捆绑包由模拟器经 `shell-manifest.json` 伺服，
+  **启动时对清单内每个文件做 bytes+SHA-256 校验**，可用语言硬编码在
+  `frame-shell.html` 的 meta 标签（`data-shipped` / `data-catalogs`）里。
+- 汉化方式：在 asar 内新增 `frame/shell/i18n/frame-shell/zh-CN.json`（全部 1,826 键，
+  英文原文从 JS 提取）、登记 `shell-manifest.json`（bytes + sha256 + contentType）、
+  在 `frame-shell.html` 语言清单中加入 `zh-CN`（并同步被修改文件的清单哈希，
+  否则启动校验会拒绝整个捆绑包）。
 
 ## 使用
 
@@ -44,14 +60,25 @@ sudo ./install-linux.sh --set-locale   # 安装并把 ~/.config/Claude/config.js
 | app.asar locale 映射补丁 | 同款补丁 | Linux Electron 不校验 asar 签名；重建后全条目 SHA-256 完整性自检通过 |
 | AppX 清单注册 zh-CN | 无需 | 前端按词典文件枚举语言，asar 内 `i18n/zh-CN.json` 直接被识别 |
 
-## 覆盖率（Linux 4.23118.1，2026-11-10 同步）
+## 覆盖率（Linux 5.1231.2，2026-11-12 同步）
 
 | 层 | 键数 | 已翻译 | 说明 |
 | --- | ---: | ---: | --- |
-| 前端主词典 | 42,695 | 42,239（98.9%，等效 100%） | 安装器口径 0 键回退；其余 456 键为专名/OAuth scope/格式串（Google Play、CI、{kb}KB、证书块等），按原样保留英文 |
-| 前端覆盖（overrides） | 309 | 309 | 安装时按当前版英文资源过滤 |
-| 动态文案 | 51 | 51 | |
-| 桌面壳（菜单/弹窗/托盘） | 1,130 | 1,115（98.7%，等效 100%） | 其余 15 键为 Claude、{title}: {value} 等专名/格式串，保留英文 |
+| 前端主词典 | 43,833 | 43,364（等效 100%） | 安装器口径 0 键回退；469 键为专名/OAuth scope/格式串按原样保留英文 |
+| 前端覆盖（overrides） | 300 | 300 | 安装时按当前版英文资源过滤 |
+| 动态文案 | 51 | 51 | 本版官方无变化 |
+| 桌面壳（菜单/弹窗/托盘） | 1,279 | 1,263（等效 100%） | 含官方 zh-Hans 797 条并入 |
+| frame-shell（5.x 新层） | 1,826 | 1,814（等效 100%） | 英文原文自 JS 提取；剩余为专名 |
+
+2026-11-12 对照 5.1231.2 增量同步：官方前端词典 42,695 → 43,833 键（新增 1,623、死键 485，
+存量英文原文零变更、存量译文结构校验 0 失败）；桌面壳 1,130 → 1,279 键（新增 162、死键 13）；
+动态文案零变化。**官方壳新增自带 zh-Hans.json（864 键）**：按"官方优先"将结构兼容的 797 条
+并入桌面壳词典（覆盖 749 条存量译文、补齐 48 条新键）；56 条因官方把复数分支简化等
+ICU 结构差异未采纳、保留原译文。新译 2,369 条（前端 1,608 + 壳 112 + frame-shell 649，
+并行批次全部通过 ICU 变量/分支/富文本标签结构校验）；复用翻译记忆 20 条、Windows 词典 1,174 条
+（frame-shell 1,173 + 前端 1）。清理死键 507（前端 485 + 壳 13 + overrides 9）。
+安装器新增 frame-shell 词典层支持（见上文 5.x 布局），`Plugins`/`Customize` 等硬编码
+文案在本版已进词典键，旧的 Linux 适配规则自然失配、保留以兼容 4.x。
 
 2026-11-10 对照 4.23118.1 增量同步：4.23118.1（2026-11-09，捆绑 Claude Code 2.1.321）
 为修复版本——前端 ion-dist.asar 的 JS 与英文资源相对 4.23118.0 **零变化**（仅官方更新了
@@ -85,9 +112,10 @@ Scheduled tasks，两者统一译作定时任务）、快速输入（Quick Entry
 - `install-linux.py` — Python 助手（布局检测、asar 重建引擎、词典合并、JS 补丁、备份与
   还原、locale 写入），由主脚本调用，也可单独运行：
   `ZH_RESOURCES=… ZH_BACKUP=… ZH_LANG=… python3 install-linux.py check`
-- `language/zh-CN/linux/dictionary.json` — 前端词典（42,695 键全量映射的基础词典）
-- `language/zh-CN/linux/desktop-shell-dictionary.json` — 桌面壳词典（1,112 键）
-- `language/zh-CN/linux/overrides.json` — 覆盖文案（309 键）
+- `language/zh-CN/linux/dictionary.json` — 前端词典（43,833 键全量映射的基础词典）
+- `language/zh-CN/linux/desktop-shell-dictionary.json` — 桌面壳词典（1,279 键，官方 zh-Hans 优先并入）
+- `language/zh-CN/linux/frame-shell-dictionary.json` — frame-shell 词典（5.x 新层，1,826 键）
+- `language/zh-CN/linux/overrides.json` — 覆盖文案（300 键）
 - `language/zh-CN/dynamic/zh-CN.json` — 动态文案（Windows/Linux 通用）
 - `language/zh-CN/hardcoded.json`、`frontend-hardcoded.json`、`assets-manifest.json` — JS 规则
   （与 Windows 安装器共用，安装时按当前版本内容重新匹配）

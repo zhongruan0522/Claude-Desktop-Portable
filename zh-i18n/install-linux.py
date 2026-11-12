@@ -376,6 +376,108 @@ def patch_ion_dist(state):
     mark_deployed(state, 'ion-dist.asar#zh-CN')  # 仅记录，重置时整档恢复
     return len(fe_en), translated
 
+# ---------- 5.x：frame-shell 词典层（app.asar 内 frame/shell 捆绑包） ----------
+FS_MSG_RE = re.compile(
+    r'\{\s*(?:id:\s*"([^"]+)",\s*defaultMessage:\s*("(?:[^"\\]|\\.)*")'
+    r'|defaultMessage:\s*("(?:[^"\\]|\\.)*"),\s*id:\s*"([^"]+)")\s*\}')
+
+def frame_shell_en_map(asar, header, data, data_start):
+    """从 frame-shell JS 条目提取 {id: defaultMessage} 英文映射。"""
+    en = {}
+    for epath, node in asar_walk(header):
+        if node.get('unpacked'): continue
+        base = posixpath.basename(epath)
+        if not (base.startswith('frame-shell') or base.startswith('chunk-')): continue
+        if '/resources/frame/shell/' not in epath: continue
+        if not epath.endswith('.js'): continue
+        off = int(node['offset'])
+        blob = data[data_start + off:data_start + off + int(node['size'])]
+        try:
+            text = blob.decode('utf-8')
+        except UnicodeDecodeError:
+            continue
+        for m in FS_MSG_RE.finditer(text):
+            key = m.group(1) or m.group(4)
+            try:
+                en[key] = json.loads(m.group(2) or m.group(3))
+            except Exception:
+                continue
+    return en
+
+def patch_frame_shell(asar, header, data, data_start, repl, add):
+    """在 app.asar 内新增 frame-shell zh-CN.json，并同步 shell-manifest.json 与 frame-shell.html 的语言清单。"""
+    fs_dir = asar_find(header, '/resources/frame/shell/i18n/frame-shell')
+    fs_html = asar_find(header, '/resources/frame/shell/frame-shell.html')
+    fs_manifest = asar_find(header, '/resources/frame/shell/shell-manifest.json')
+    if fs_dir is None or fs_html is None or fs_manifest is None:
+        p('· frame-shell：未找到捆绑包结构，跳过该层')  # 旧版本无此层
+        return
+    en = frame_shell_en_map(asar, header, data, data_start)
+    if not en:
+        p('· frame-shell：未能从 JS 提取英文原文，跳过该层')
+        return
+    dict_path = os.path.join(LANG, 'linux/frame-shell-dictionary.json')
+    if not os.path.isfile(dict_path):
+        p('· frame-shell：缺少词典文件，跳过该层')
+        return
+    fs_dict = load(dict_path)
+    fs_out, fs_translated, fs_fallback = merge_dict(en, fs_dict)
+    fs_blob = json_bytes(fs_out)
+    add['/resources/frame/shell/i18n/frame-shell/zh-CN.json'] = fs_blob
+    p('· frame-shell 词典：%d/%d 键已翻译（%d 键回退英文）' % (fs_translated, len(en), fs_fallback))
+
+    digest = hashlib.sha256(fs_blob).hexdigest()
+    # frame-shell.html：语言清单加入 zh-CN（data-shipped + data-catalogs，带 12 位缓存指纹）
+    # 注意：html 被修改后必须同步其在 shell-manifest.json 中的条目，
+    # 否则启动时的清单校验（manifest→磁盘逐字节比对）会拒绝整个捆绑包。
+    off = int(fs_html['offset'])
+    htext = data[data_start + off:data_start + off + int(fs_html['size'])].decode('utf-8')
+    htext2 = htext
+    html_changed = False
+    m1 = re.search(r'data-shipped="([^"]*)"', htext2)
+    m2 = re.search(r'data-catalogs="([^"]*)"', htext2)
+    if m1 and m2 and 'zh-CN:' not in m2.group(1):
+        shipped = m1.group(1).split(',') if m1.group(1) else []
+        if 'zh-CN' not in shipped:
+            shipped.append('zh-CN')
+        htext2 = htext2.replace(m1.group(0), 'data-shipped="%s"' % ','.join(shipped), 1)
+        m2b = re.search(r'data-catalogs="([^"]*)"', htext2)
+        cats = [c for c in m2b.group(1).split(',') if c] if m2b.group(1) else []
+        cats = [c for c in cats if not c.startswith('zh-CN:')]
+        cats.append('zh-CN:' + digest[:12])
+        htext2 = htext2.replace(m2b.group(0), 'data-catalogs="%s"' % ','.join(cats), 1)
+        html_changed = True
+        p('· frame-shell 语言清单：frame-shell.html 已加入 zh-CN')
+    else:
+        p('· frame-shell 语言清单：已加入')
+    html_blob = htext2.encode('utf-8')
+
+    # shell-manifest.json：登记新文件并同步被修改文件的条目（服务端按清单逐字节校验并提供文件）
+    off = int(fs_manifest['offset'])
+    mtext = data[data_start + off:data_start + off + int(fs_manifest['size'])].decode('utf-8')
+    manifest = json.loads(mtext)
+    manifest_changed = False
+    files = manifest.setdefault('files', {})
+    key = 'i18n/frame-shell/zh-CN.json'
+    if files.get(key, {}).get('sha256') != digest:
+        files[key] = {'bytes': len(fs_blob),
+                      'contentType': 'application/json; charset=utf-8', 'sha256': digest}
+        manifest_changed = True
+    if html_changed and files.get('frame-shell.html', {}).get('sha256') != hashlib.sha256(html_blob).hexdigest():
+        files['frame-shell.html'] = {'bytes': len(html_blob),
+                                     'contentType': files.get('frame-shell.html', {}).get(
+                                         'contentType', 'text/html; charset=utf-8'),
+                                     'sha256': hashlib.sha256(html_blob).hexdigest()}
+        manifest_changed = True
+    if manifest_changed:
+        repl['/resources/frame/shell/shell-manifest.json'] = \
+            json.dumps(manifest, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+        p('· frame-shell 清单：shell-manifest.json 已更新（登记 zh-CN.json，同步 frame-shell.html）')
+    else:
+        p('· frame-shell 清单：已是最新')
+    if html_changed:
+        repl['/resources/frame/shell/frame-shell.html'] = html_blob
+
 def patch_app_asar(state):
     asar = os.path.join(RESOURCES, 'app.asar')
     data, header, data_start = asar_open(asar)
@@ -412,6 +514,8 @@ def patch_app_asar(state):
             epath, blob = target
             repl[epath] = blob.replace(b'id:"id-ID"}', b'id:"id-ID",zh:"zh-CN"}')
             p('· app.asar 桌面语言映射：将打补丁（zh → zh-CN）')
+
+    patch_frame_shell(asar, header, data, data_start, repl, add)
 
     if not repl and not add:
         return
@@ -654,6 +758,12 @@ def do_check():
             p('· 桌面壳 zh-CN.json: 已部署（%d 键）' % len(json.loads(blob.decode('utf-8'))))
         else:
             p('· 桌面壳 zh-CN.json: 未部署')
+        fs = asar_find(asar_open(asar)[1], '/resources/frame/shell/i18n/frame-shell/zh-CN.json')
+        if fs is not None:
+            blob = asar_entry(asar, '/resources/frame/shell/i18n/frame-shell/zh-CN.json')[0]
+            p('· frame-shell zh-CN.json: 已部署（%d 键）' % len(json.loads(blob.decode('utf-8'))))
+        else:
+            p('· frame-shell zh-CN.json: 未部署')
     else:
         fe = os.path.join(RESOURCES, 'ion-dist/i18n/zh-CN.json')
         if os.path.exists(fe):
