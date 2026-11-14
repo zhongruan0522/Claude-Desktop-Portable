@@ -39,10 +39,14 @@ sh.update(official)
 dump(ROOT + '/language/zh-CN/linux/desktop-shell-dictionary.json', sh)
 print('  桌面壳: 移除死键 %d，新增 %d（官方 zh-Hans 并入 %d 条）' % (len(sh_dead), len(sh) - sh_before, len(official)))
 
-# frame-shell: 新词典层
-fs = load(ROOT + '/work/reuse-win-fs-5x.json')
+# frame-shell: 死键 + 复用 + 批次
+fs = load(ROOT + '/language/zh-CN/linux/frame-shell-dictionary.json')
+for k in REPORT['frame_shell']['dead']: fs.pop(k, None)
+fs_before = len(fs)
+fs.update(load(ROOT + '/work/reuse-win-fs-5x.json'))
 fs.update(batch_sources(['batch-fs-1', 'batch-fs-2']))
 dump(ROOT + '/language/zh-CN/linux/frame-shell-dictionary.json', fs)
+print('  frame-shell: 移除死键 %d，新增 %d' % (len(REPORT['frame_shell']['dead']), len(fs) - fs_before))
 
 # overrides: 死键
 ov = load(ROOT + '/language/zh-CN/linux/overrides.json')

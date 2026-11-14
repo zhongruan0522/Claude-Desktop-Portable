@@ -8,13 +8,13 @@ REUSE_FE = json.load(open(ROOT + '/work/reuse-win-5x.json', encoding='utf-8'))
 REUSE_SH = json.load(open(ROOT + '/work/reuse-win-shell-5x.json', encoding='utf-8'))
 REUSE_FS = json.load(open(ROOT + '/work/reuse-win-fs-5x.json', encoding='utf-8'))
 OFFICIAL_SH = json.load(open(ROOT + '/work/official-shell-zh-5x.json', encoding='utf-8'))
-FE_EN = json.load(open(ROOT + '/work/ion-i18n-5.1231.2/i18n/en-US.json', encoding='utf-8'))
-SH_EN = json.load(open(ROOT + '/work/app-i18n-5.1231.2/resources/i18n/en-US.json', encoding='utf-8'))
-FS_EN = json.load(open(ROOT + '/work/frame-shell-en-5x.json', encoding='utf-8'))
+FE_EN = json.load(open(ROOT + '/work/ion-i18n-5.11492.5/i18n/en-US.json', encoding='utf-8'))
+SH_EN = json.load(open(ROOT + '/work/app-i18n-5.11492.5/resources/i18n/en-US.json', encoding='utf-8'))
+FS_EN = json.load(open(ROOT + '/work/frame-shell-en-5.11492.5.json', encoding='utf-8'))
 
 frontend = {k: FE_EN[k] for k in REPORT['frontend']['missing'] if k not in REUSE_FE}
 shell = {k: SH_EN[k] for k in REPORT['desktop_shell']['missing'] if k not in OFFICIAL_SH and k not in REUSE_SH}
-fs = {k: FS_EN[k] for k in FS_EN if k not in REUSE_FS}
+fs = {k: FS_EN[k] for k in REPORT['frame_shell']['missing'] if k not in REUSE_FS}
 
 os.makedirs(ROOT + '/work/batches', exist_ok=True)
 for f in os.listdir(ROOT + '/work/batches'):

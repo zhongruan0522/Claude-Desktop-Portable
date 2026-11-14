@@ -4,11 +4,11 @@
 import json, os, re
 
 BASE = '/workspace/Claude Desktop/zh-i18n'
-ION_OLD = os.path.join(BASE, 'work/ion-i18n-4.23118.1/i18n')
-ION_NEW = os.path.join(BASE, 'work/ion-i18n-5.1231.2/i18n')
-APP_OLD = os.path.join(BASE, 'work/app-i18n-4.23118.1/resources/i18n')
-APP_NEW = os.path.join(BASE, 'work/app-i18n-5.1231.2/resources/i18n')
-FRAME   = os.path.join(BASE, 'work/app-frame-shell-5.1231.2/resources/frame/shell/i18n/frame-shell')
+ION_OLD = os.path.join(BASE, 'work/ion-i18n-5.1231.2/i18n')
+ION_NEW = os.path.join(BASE, 'work/ion-i18n-5.11492.5/i18n')
+APP_OLD = os.path.join(BASE, 'work/app-i18n-5.1231.2/resources/i18n')
+APP_NEW = os.path.join(BASE, 'work/app-i18n-5.11492.5/resources/i18n')
+FRAME   = os.path.join(BASE, 'work/app-frame-shell-5.11492.5/resources/frame/shell/i18n/frame-shell')
 LANG = os.path.join(BASE, 'language/zh-CN')
 OUT = os.path.join(BASE, 'work/diff-report-5x.json')
 
@@ -95,13 +95,26 @@ print('  valid(在 en-US 中)=%d  其中值==英文=%d  与我们译文不同且
       % (len(in_en), len(same_as_en), len(diff_from_ours), len(missing_in_ours)))
 print('  sample diff_from_ours:', json.dumps(dict(list(diff_from_ours.items())[:8]), ensure_ascii=False, indent=1)[:1200])
 
-# frame-shell 新层
+# frame-shell 层: JS 提取英文 vs 现有词典
+FS_EN_MAP = load('frame-shell-en-5.11492.5.json')
+fs_dict_path = os.path.join(LANG, 'linux/frame-shell-dictionary.json')
+fs_dict = load(fs_dict_path) if os.path.exists(fs_dict_path) else {}
+fs_dead = sorted(k for k in fs_dict if k not in FS_EN_MAP)
+fs_missing = sorted(k for k in FS_EN_MAP if k not in fs_dict)
+fs_struct_fail = {}
+for k in FS_EN_MAP:
+    if k in fs_dict and fs_dict[k] != FS_EN_MAP[k] and not struct_ok(FS_EN_MAP[k], fs_dict[k]):
+        fs_struct_fail[k] = {'en': FS_EN_MAP[k], 'zh': fs_dict[k]}
 fs_files = sorted(os.listdir(FRAME))
 fs_sample = load(os.path.join(FRAME, fs_files[0]))
 print('== frame-shell ==')
 print('  languages=%d sample=%s keys=%d' % (len(fs_files), fs_files[0], len(fs_sample)))
+print('  en_map=%d dict=%d dead=%d missing=%d struct_fail=%d'
+      % (len(FS_EN_MAP), len(fs_dict), len(fs_dead), len(fs_missing), len(fs_struct_fail)))
 
 rep = {'frontend': fe, 'desktop_shell': shell, 'dynamic': dyn, 'overrides_dead': ov_dead,
+       'frame_shell': {'name': 'frame-shell', 'en_keys': len(FS_EN_MAP), 'dict_keys': len(fs_dict),
+                       'dead': fs_dead, 'missing': fs_missing, 'struct_fail': fs_struct_fail},
        'official_zh_hans': {'keys': len(off_keys), 'diff_from_ours': diff_from_ours,
                             'missing_in_ours': missing_in_ours, 'same_as_en': same_as_en}}
 with open(OUT, 'w', encoding='utf-8') as f:

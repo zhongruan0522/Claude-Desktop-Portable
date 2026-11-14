@@ -17,9 +17,9 @@ fe = load(ROOT + '/language/zh-CN/linux/dictionary.json')
 sh = load(ROOT + '/language/zh-CN/linux/desktop-shell-dictionary.json')
 fs = load(ROOT + '/language/zh-CN/linux/frame-shell-dictionary.json')
 
-FE_EN = load(ROOT + '/work/ion-i18n-5.1231.2/i18n/en-US.json')
-SH_EN = load(ROOT + '/work/app-i18n-5.1231.2/resources/i18n/en-US.json')
-FS_EN = load(ROOT + '/work/frame-shell-en-5x.json')
+FE_EN = load(ROOT + '/work/ion-i18n-5.11492.5/i18n/en-US.json')
+SH_EN = load(ROOT + '/work/app-i18n-5.11492.5/resources/i18n/en-US.json')
+FS_EN = load(ROOT + '/work/frame-shell-en-5.11492.5.json')
 
 n1 = n2 = n3 = 0
 for k, v in tm.items():

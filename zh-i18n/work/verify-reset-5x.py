@@ -10,7 +10,7 @@ os.environ['ZH_LANG'] = '/workspace/Claude Desktop/zh-i18n/language/zh-CN'
 def sha(p):
     return hashlib.sha256(open(p, 'rb').read()).hexdigest()
 
-base = '/workspace/Claude Desktop/zh-i18n/work/deb-5.1231.2/root/usr/lib/claude-desktop/resources'
+base = '/workspace/Claude Desktop/zh-i18n/work/deb-5.11492.5/usr/lib/claude-desktop/resources'
 for name in ('app.asar', 'ion-dist.asar'):
     a = sha(os.path.join(RES, name))
     b = sha(os.path.join(base, name))

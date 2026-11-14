@@ -35,10 +35,10 @@ def struct_ok(en, zh):
     if _tokens(a) != _tokens(b): return False
     return True
 
-FE_EN = load(ROOT + '/work/ion-i18n-5.1231.2/i18n/en-US.json')
-SH_EN = load(ROOT + '/work/app-i18n-5.1231.2/resources/i18n/en-US.json')
-FS_EN = load(ROOT + '/work/frame-shell-en-5x.json')
-ZH_OFF = load(ROOT + '/work/app-i18n-5.1231.2/resources/i18n/zh-Hans.json')
+FE_EN = load(ROOT + '/work/ion-i18n-5.11492.5/i18n/en-US.json')
+SH_EN = load(ROOT + '/work/app-i18n-5.11492.5/resources/i18n/en-US.json')
+FS_EN = load(ROOT + '/work/frame-shell-en-5.11492.5.json')
+ZH_OFF = load(ROOT + '/work/app-i18n-5.11492.5/resources/i18n/zh-Hans.json')
 
 # 翻译记忆: 英文原文 -> 中文 (优先级: 官方壳 zh-Hans > Windows 壳 > Windows 前端 > Linux 现有词典)
 def build_tm(en_map, zh_map):
@@ -50,10 +50,10 @@ def build_tm(en_map, zh_map):
     return tm
 
 tm = {}
-tm.update(build_tm(load(ROOT + '/language/zh-CN/linux/dictionary.json'), load(ROOT + '/language/zh-CN/linux/dictionary.json')))
-tm.update(build_tm(load(ROOT + '/work/app-i18n-4.23118.1/resources/i18n/en-US.json'),
-                   load(ROOT + '/language/zh-CN/linux/desktop-shell-dictionary.json')))
+tm.update(build_tm(FE_EN, load(ROOT + '/language/zh-CN/linux/dictionary.json')))
+tm.update(build_tm(SH_EN, load(ROOT + '/language/zh-CN/linux/desktop-shell-dictionary.json')))
 tm.update(build_tm(load(ROOT + '/language/zh-CN/zh-CN.json'), load(ROOT + '/language/zh-CN/zh-CN.json')))
+tm.update(build_tm(FS_EN, load(ROOT + '/language/zh-CN/linux/frame-shell-dictionary.json')))
 tm.update(build_tm(SH_EN, ZH_OFF))  # 官方壳优先级最高, 后写覆盖
 
 stats = {}

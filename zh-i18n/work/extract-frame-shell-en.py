@@ -4,7 +4,7 @@ import re, json, glob
 
 en = {}
 conflicts = 0
-for f in sorted(glob.glob('/tmp/fs-js/resources/frame/shell/**/*.js', recursive=True)):
+for f in sorted(glob.glob('fs-shell-5.11492.5/resources/frame/shell/**/*.js', recursive=True)):
     t = open(f, encoding='utf-8', errors='replace').read()
     pat = re.compile(
         r'\{\s*(?:id:\s*"([^"]+)",\s*defaultMessage:\s*("(?:[^"\\]|\\.)*")'
@@ -19,10 +19,10 @@ for f in sorted(glob.glob('/tmp/fs-js/resources/frame/shell/**/*.js', recursive=
         en[k] = v
 
 print('total ids:', len(en), 'conflicts:', conflicts)
-json.dump(en, open('frame-shell-en-5x.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
+json.dump(en, open('frame-shell-en-5.11492.5.json', 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
 
-de = json.load(open('app-frame-shell-5.1231.2/resources/frame/shell/i18n/frame-shell/de-DE.json', encoding='utf-8'))
-ja = json.load(open('app-frame-shell-5.1231.2/resources/frame/shell/i18n/frame-shell/ja-JP.json', encoding='utf-8'))
+de = json.load(open('app-frame-shell-5.11492.5/resources/frame/shell/i18n/frame-shell/de-DE.json', encoding='utf-8'))
+ja = json.load(open('app-frame-shell-5.11492.5/resources/frame/shell/i18n/frame-shell/ja-JP.json', encoding='utf-8'))
 print('de keys:', len(de), 'all in en map:', all(k in en for k in de))
 print('ja keys:', len(ja), 'all in en map:', all(k in en for k in ja))
 extra = [k for k in en if k not in de]

@@ -7,10 +7,10 @@ WIN = json.load(open(ROOT + '/language/zh-CN/zh-CN.json', encoding='utf-8'))
 WIN_OV = json.load(open(ROOT + '/language/zh-CN/zh-CN.overrides.json', encoding='utf-8'))
 REP = json.load(open(ROOT + '/work/diff-report-5x.json', encoding='utf-8'))
 
-FE_EN = json.load(open(ROOT + '/work/ion-i18n-5.1231.2/i18n/en-US.json', encoding='utf-8'))
-SH_EN = json.load(open(ROOT + '/work/app-i18n-5.1231.2/resources/i18n/en-US.json', encoding='utf-8'))
-FS_EN = json.load(open(ROOT + '/work/frame-shell-en-5x.json', encoding='utf-8'))
-ZH_OFF = json.load(open(ROOT + '/work/app-i18n-5.1231.2/resources/i18n/zh-Hans.json', encoding='utf-8'))
+FE_EN = json.load(open(ROOT + '/work/ion-i18n-5.11492.5/i18n/en-US.json', encoding='utf-8'))
+SH_EN = json.load(open(ROOT + '/work/app-i18n-5.11492.5/resources/i18n/en-US.json', encoding='utf-8'))
+FS_EN = json.load(open(ROOT + '/work/frame-shell-en-5.11492.5.json', encoding='utf-8'))
+ZH_OFF = json.load(open(ROOT + '/work/app-i18n-5.11492.5/resources/i18n/zh-Hans.json', encoding='utf-8'))
 
 def strip_icu(value):
     s = str(value); res = ''; i = 0
@@ -50,14 +50,14 @@ def reuse_pool(keys, en_map):
 
 fe_keys = REP['frontend']['missing']
 sh_keys = [k for k in REP['desktop_shell']['missing'] if k not in ZH_OFF or ZH_OFF[k] == SH_EN[k]]
-fs_keys = list(FS_EN)
+fs_keys = REP['frame_shell']['missing']
 
 for name, keys, en_map in (('frontend', fe_keys, FE_EN), ('shell(rest)', sh_keys, SH_EN), ('frame-shell', fs_keys, FS_EN)):
     pool = reuse_pool(keys, en_map)
     print('%s: %d 键, Windows 可复用 %d (%.1f%%)' % (name, len(keys), len(pool), 100 * len(pool) / max(1, len(keys))))
 
-# shell: 官方 zh-Hans 有效条目
-valid_off = {k: v for k, v in ZH_OFF.items() if k in SH_EN and v != SH_EN[k] and struct_ok(SH_EN[k], v)}
+# shell: 官方 zh-Hans 有效条目（官方口径优先并入；人称统一「你」）
+valid_off = {k: v.replace('您', '你') for k, v in ZH_OFF.items() if k in SH_EN and v != SH_EN[k] and struct_ok(SH_EN[k], v)}
 print('official shell zh-Hans valid:', len(valid_off))
 json.dump(valid_off, open(ROOT + '/work/official-shell-zh-5x.json', 'w', encoding='utf-8'),
           ensure_ascii=False, indent=1)
