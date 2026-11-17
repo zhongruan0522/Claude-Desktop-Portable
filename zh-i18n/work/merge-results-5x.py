@@ -1,60 +1,68 @@
 #!/usr/bin/env python3
-# 5.x 合并: 死键清理 + 批次/复用/官方合并
-import json, os
+# 5.x 合并: 死键清理 + 批次/TM复用/Windows复用/官方壳合并
+import glob, os
+from common5x import ROOT, WORK, LANG, load, dump
 
-ROOT = '/workspace/Claude Desktop/zh-i18n'
-REPORT = json.load(open(ROOT + '/work/diff-report-5x.json', encoding='utf-8'))
+REPORT = load(os.path.join(WORK, 'diff-report-5x.json'))
 
-def load(p): return json.load(open(p, encoding='utf-8'))
-def dump(p, obj):
-    with open(p, 'w', encoding='utf-8') as f:
-        json.dump(obj, f, ensure_ascii=False, indent=1)
-    print('%s: %d 键' % (os.path.relpath(p, ROOT), len(obj)))
-
-def batch_sources(names):
+def batch_sources(prefix):
     out = {}
-    for n in names:
-        out.update(load(ROOT + '/work/results/' + n + '.out.json'))
+    for p in sorted(glob.glob(os.path.join(WORK, 'batches', f'tm-{prefix}*.json'))):
+        out.update(load(p))
+    for p in sorted(glob.glob(os.path.join(WORK, 'results', f'{prefix}*.out.json'))):
+        out.update(load(p))
     return out
 
-# 前端: 死键 + TM复用 + 批次
-fe = load(ROOT + '/language/zh-CN/linux/dictionary.json')
+def write_and_report(path, obj):
+    dump(path, obj)
+    print('%s: %d 键' % (os.path.relpath(path, ROOT), len(obj)))
+
+# 前端: 死键 + Windows复用 + TM/翻译批次
+fe_path = os.path.join(LANG, 'linux/dictionary.json')
+fe = load(fe_path)
 fe_dead = REPORT['frontend']['dead']
-for k in fe_dead: fe.pop(k, None)
+for k in fe_dead:
+    fe.pop(k, None)
 fe_before = len(fe)
-fe.update(load(ROOT + '/work/reuse-win-5x.json'))
-fe.update(batch_sources(['batch-fe-1', 'batch-fe-2', 'batch-fe-3', 'batch-fe-4', 'batch-fe-5']))
-dump(ROOT + '/language/zh-CN/linux/dictionary.json', fe)
+fe.update(load(os.path.join(WORK, 'reuse-win-5x.json')))
+fe.update(batch_sources('batch-fe'))
+write_and_report(fe_path, fe)
 print('  前端: 移除死键 %d，新增 %d' % (len(fe_dead), len(fe) - fe_before))
 
-# 桌面壳: 死键 + 批次 + 复用 + 官方 zh-Hans(最后并入 = 优先级最高)
-sh = load(ROOT + '/language/zh-CN/linux/desktop-shell-dictionary.json')
+# 桌面壳: 死键 + TM/翻译批次 + Windows复用 + 官方 zh-Hans(最后并入 = 优先级最高)
+sh_path = os.path.join(LANG, 'linux/desktop-shell-dictionary.json')
+sh = load(sh_path)
 sh_dead = REPORT['desktop_shell']['dead']
-for k in sh_dead: sh.pop(k, None)
+for k in sh_dead:
+    sh.pop(k, None)
 sh_before = len(sh)
-sh.update(batch_sources(['batch-shell']))
-sh.update(load(ROOT + '/work/reuse-win-shell-5x.json'))
-official = load(ROOT + '/work/official-shell-zh-5x.json')
+sh.update(batch_sources('batch-shell'))
+sh.update(load(os.path.join(WORK, 'reuse-win-shell-5x.json')))
+official = load(os.path.join(WORK, 'official-shell-zh-5x.json'))
 sh.update(official)
-dump(ROOT + '/language/zh-CN/linux/desktop-shell-dictionary.json', sh)
+write_and_report(sh_path, sh)
 print('  桌面壳: 移除死键 %d，新增 %d（官方 zh-Hans 并入 %d 条）' % (len(sh_dead), len(sh) - sh_before, len(official)))
 
-# frame-shell: 死键 + 复用 + 批次
-fs = load(ROOT + '/language/zh-CN/linux/frame-shell-dictionary.json')
-for k in REPORT['frame_shell']['dead']: fs.pop(k, None)
+# frame-shell: 死键 + Windows复用 + TM/翻译批次
+fs_path = os.path.join(LANG, 'linux/frame-shell-dictionary.json')
+fs = load(fs_path)
+fs_dead = REPORT['frame_shell']['dead']
+for k in fs_dead:
+    fs.pop(k, None)
 fs_before = len(fs)
-fs.update(load(ROOT + '/work/reuse-win-fs-5x.json'))
-fs.update(batch_sources(['batch-fs-1', 'batch-fs-2']))
-dump(ROOT + '/language/zh-CN/linux/frame-shell-dictionary.json', fs)
-print('  frame-shell: 移除死键 %d，新增 %d' % (len(REPORT['frame_shell']['dead']), len(fs) - fs_before))
+fs.update(load(os.path.join(WORK, 'reuse-win-fs-5x.json')))
+fs.update(batch_sources('batch-fs'))
+write_and_report(fs_path, fs)
+print('  frame-shell: 移除死键 %d，新增 %d' % (len(fs_dead), len(fs) - fs_before))
 
-# overrides: 死键
-ov = load(ROOT + '/language/zh-CN/linux/overrides.json')
-ov_dead = REPORT['overrides_dead']
-for k in ov_dead: ov.pop(k, None)
-dump(ROOT + '/language/zh-CN/linux/overrides.json', ov)
-print('  overrides: 移除死键 %d' % len(ov_dead))
+# overrides: 死键 + 结构失效键清理
+ov_path = os.path.join(LANG, 'linux/overrides.json')
+ov = load(ov_path)
+ov_drop = sorted(set(REPORT['overrides_dead']) | set(REPORT.get('overrides_struct_fail', [])))
+for k in ov_drop:
+    ov.pop(k, None)
+write_and_report(ov_path, ov)
+print('  overrides: 移除死键/失效键 %d' % len(ov_drop))
 
-# dynamic 不变
-dyn = load(ROOT + '/language/zh-CN/dynamic/zh-CN.json')
-print('  dynamic: 不变（%d 键）' % len(dyn))
+dyn = load(os.path.join(LANG, 'dynamic/zh-CN.json'))
+print('  dynamic: %d 键' % len(dyn))

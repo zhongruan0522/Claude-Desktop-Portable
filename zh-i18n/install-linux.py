@@ -341,7 +341,8 @@ def patch_ion_dist(state):
     add = {'/i18n/zh-CN.json': json_bytes(fe_out)}
     remove = []
 
-    ov = {k: v for k, v in load(os.path.join(LANG, 'linux/overrides.json')).items() if k in fe_en}
+    ov = {k: v for k, v in load(os.path.join(LANG, 'linux/overrides.json')).items()
+          if k in fe_en and struct_ok(fe_en[k], v)}
     if ov: add['/i18n/zh-CN.overrides.json'] = json_bytes(ov)
     elif asar_find(header, '/i18n/zh-CN.overrides.json') is not None:
         remove.append('/i18n/zh-CN.overrides.json')
@@ -378,18 +379,16 @@ def patch_ion_dist(state):
 
 # ---------- 5.x：frame-shell 词典层（app.asar 内 frame/shell 捆绑包） ----------
 FS_MSG_RE = re.compile(
-    r'\{\s*(?:id:\s*"([^"]+)",\s*defaultMessage:\s*("(?:[^"\\]|\\.)*")'
-    r'|defaultMessage:\s*("(?:[^"\\]|\\.)*"),\s*id:\s*"([^"]+)")\s*\}')
+    r'\{\s*(?:(?:id|defaultMessage|description)\s*:\s*"(?:[^"\\]|\\.)*"\s*,\s*){1,2}'
+    r'(?:id|defaultMessage|description)\s*:\s*"(?:[^"\\]|\\.)*"\s*\}')
+FS_PROP_RE = re.compile(r'\b(id|defaultMessage)\s*:\s*("(?:[^"\\]|\\.)*")')
 
 def frame_shell_en_map(asar, header, data, data_start):
     """从 frame-shell JS 条目提取 {id: defaultMessage} 英文映射。"""
     en = {}
     for epath, node in asar_walk(header):
         if node.get('unpacked'): continue
-        base = posixpath.basename(epath)
-        if not (base.startswith('frame-shell') or base.startswith('chunk-')): continue
-        if '/resources/frame/shell/' not in epath: continue
-        if not epath.endswith('.js'): continue
+        if '/resources/frame/shell/' not in epath or not epath.endswith('.js'): continue
         off = int(node['offset'])
         blob = data[data_start + off:data_start + off + int(node['size'])]
         try:
@@ -397,11 +396,12 @@ def frame_shell_en_map(asar, header, data, data_start):
         except UnicodeDecodeError:
             continue
         for m in FS_MSG_RE.finditer(text):
-            key = m.group(1) or m.group(4)
             try:
-                en[key] = json.loads(m.group(2) or m.group(3))
+                props = {pm.group(1): json.loads(pm.group(2)) for pm in FS_PROP_RE.finditer(m.group(0))}
             except Exception:
                 continue
+            if 'id' in props and 'defaultMessage' in props:
+                en[props['id']] = props['defaultMessage']
     return en
 
 def patch_frame_shell(asar, header, data, data_start, repl, add):
@@ -436,20 +436,20 @@ def patch_frame_shell(asar, header, data, data_start, repl, add):
     html_changed = False
     m1 = re.search(r'data-shipped="([^"]*)"', htext2)
     m2 = re.search(r'data-catalogs="([^"]*)"', htext2)
-    if m1 and m2 and 'zh-CN:' not in m2.group(1):
-        shipped = m1.group(1).split(',') if m1.group(1) else []
+    zh_cat = 'zh-CN:' + digest[:12]
+    if m1 and m2 and (zh_cat not in m2.group(1).split(',') or 'zh-CN' not in m1.group(1).split(',')):
+        shipped = [s for s in m1.group(1).split(',') if s] if m1.group(1) else []
         if 'zh-CN' not in shipped:
             shipped.append('zh-CN')
         htext2 = htext2.replace(m1.group(0), 'data-shipped="%s"' % ','.join(shipped), 1)
         m2b = re.search(r'data-catalogs="([^"]*)"', htext2)
-        cats = [c for c in m2b.group(1).split(',') if c] if m2b.group(1) else []
-        cats = [c for c in cats if not c.startswith('zh-CN:')]
-        cats.append('zh-CN:' + digest[:12])
+        cats = [c for c in m2b.group(1).split(',') if c and not c.startswith('zh-CN:')] if m2b.group(1) else []
+        cats.append(zh_cat)
         htext2 = htext2.replace(m2b.group(0), 'data-catalogs="%s"' % ','.join(cats), 1)
         html_changed = True
-        p('· frame-shell 语言清单：frame-shell.html 已加入 zh-CN')
+        p('· frame-shell 语言清单：frame-shell.html 已同步 zh-CN')
     else:
-        p('· frame-shell 语言清单：已加入')
+        p('· frame-shell 语言清单：已是最新')
     html_blob = htext2.encode('utf-8')
 
     # shell-manifest.json：登记新文件并同步被修改文件的条目（服务端按清单逐字节校验并提供文件）
@@ -639,7 +639,8 @@ def do_install_dir3(state):
     mark_deployed(state, 'ion-dist/i18n/zh-CN.json')
     save_state(state)
 
-    ov = {k: v for k, v in load(os.path.join(LANG, 'linux/overrides.json')).items() if k in fe_en}
+    ov = {k: v for k, v in load(os.path.join(LANG, 'linux/overrides.json')).items()
+          if k in fe_en and struct_ok(fe_en[k], v)}
     ov_path = os.path.join(RESOURCES, 'ion-dist/i18n/zh-CN.overrides.json')
     if ov:
         write_json_atomic(ov_path, ov)

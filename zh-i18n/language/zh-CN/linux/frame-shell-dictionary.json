@@ -1842,5 +1842,7 @@
  "gei4tszZ2B": "{name}，{count, plural, one {# 个待处理} other {# 个待处理}}",
  "mFoFkp98E8": "发送至",
  "mn6gZBE2it": "正在等待你的管理员",
- "pc5SN5gJh3": "无法检查你的连接器。"
+ "pc5SN5gJh3": "无法检查你的连接器。",
+ "7y+aj7eVJz": "与 Claude 一起聊天、创作和编辑。这可能需要几分钟才能生效。",
+ "dnJIQXKRAV": "你已拥有 Claude 席位"
 }

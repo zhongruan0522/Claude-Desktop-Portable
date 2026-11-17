@@ -25,7 +25,7 @@ Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识�
   词典（无 en-US.json，无中文）；捆绑包由模拟器经 `shell-manifest.json` 伺服，
   **启动时对清单内每个文件做 bytes+SHA-256 校验**，可用语言硬编码在
   `frame-shell.html` 的 meta 标签（`data-shipped` / `data-catalogs`）里。
-- 汉化方式：在 asar 内新增 `frame/shell/i18n/frame-shell/zh-CN.json`（全部 1,844 键，
+- 汉化方式：在 asar 内新增 `frame/shell/i18n/frame-shell/zh-CN.json`（全部 1,846 键，
   英文原文从 JS 提取）、登记 `shell-manifest.json`（bytes + sha256 + contentType）、
   在 `frame-shell.html` 语言清单中加入 `zh-CN`（并同步被修改文件的清单哈希，
   否则启动校验会拒绝整个捆绑包）。
@@ -60,15 +60,23 @@ sudo ./install-linux.sh --set-locale   # 安装并把 ~/.config/Claude/config.js
 | app.asar locale 映射补丁 | 同款补丁 | Linux Electron 不校验 asar 签名；重建后全条目 SHA-256 完整性自检通过 |
 | AppX 清单注册 zh-CN | 无需 | 前端按词典文件枚举语言，asar 内 `i18n/zh-CN.json` 直接被识别 |
 
-## 覆盖率（Linux 5.11492.5，2026-11-14 同步）
+## 覆盖率（Linux 5.11492.5，2026-11-17 复核补译）
 
 | 层 | 键数 | 已翻译 | 说明 |
 | --- | ---: | ---: | --- |
-| 前端主词典 | 44,218 | 43,747（等效 100%） | 安装器口径 0 键回退；471 键为专名/OAuth scope/格式串按原样保留英文 |
-| 前端覆盖（overrides） | 300 | 300 | 安装时按当前版英文资源过滤 |
+| 前端主词典 | 44,218 | 43,761（等效 100%） | 安装器口径 0 键回退；457 键为专名/OAuth scope/格式串按原样保留英文 |
+| 前端覆盖（overrides） | 300 | 300 | 安装时按当前版英文资源及 ICU 结构过滤 |
 | 动态文案 | 51 | 51 | 本版官方无变化 |
 | 桌面壳（菜单/弹窗/托盘） | 1,310 | 1,294（等效 100%） | 含官方 zh-Hans 824 条并入 |
-| frame-shell（5.x 新层） | 1,844 | 1,832（等效 100%） | 英文原文自 JS 提取；剩余为专名 |
+| frame-shell（5.x 新层） | 1,846 | 1,834（等效 100%） | 英文原文自 JS 提取；剩余为专名/纯格式串 |
+
+2026-11-17 对照官方 APT 最新版 5.11492.5 解包复核与补漏：修复 `install-linux.py` 与提取脚本中
+`frame-shell` JS 消息正则未匹配带 `description` 字段条目的问题（1,844 → 1,846 键，补译席位开通弹窗
+2 键），并同步修复词典更新后重跑安装器时 `frame-shell.html` 的 `data-catalogs` 指纹刷新逻辑；
+复查前端 `zh == en` 条目在 JS 调用点上下文，补译此前误留英文的 17 条界面文案（输入框、作品、
+可被发现、可能存在、已印记、签发 ID-JAG、使用者密钥/机密、电子表格、抓取、周期切换及方案卡片等），
+统一 2 条 `effort` 术语为「思考强度」，修正 3 条 UUID 占位符多余空格；同步升级 `zh-i18n/work/`
+流程脚本（新增 `unpack-deb.py` 与 `common5x.py`，自动获取/解包最新 deb 并消除跨脚本硬编码版本号）。
 
 2026-11-14 对照 5.11492.5 增量同步：官方前端词典 43,833 → 44,218 键（新增 657、死键 272，
 存量英文原文零变更）；桌面壳 1,279 → 1,310 键（新增 35、死键 4）；动态文案零变化；
@@ -125,7 +133,7 @@ Scheduled tasks，两者统一译作定时任务）、快速输入（Quick Entry
   `ZH_RESOURCES=… ZH_BACKUP=… ZH_LANG=… python3 install-linux.py check`
 - `language/zh-CN/linux/dictionary.json` — 前端词典（44,218 键全量映射的基础词典）
 - `language/zh-CN/linux/desktop-shell-dictionary.json` — 桌面壳词典（1,310 键，官方 zh-Hans 优先并入）
-- `language/zh-CN/linux/frame-shell-dictionary.json` — frame-shell 词典（5.x 新层，1,844 键）
+- `language/zh-CN/linux/frame-shell-dictionary.json` — frame-shell 词典（5.x 新层，1,846 键）
 - `language/zh-CN/linux/overrides.json` — 覆盖文案（300 键）
 - `language/zh-CN/dynamic/zh-CN.json` — 动态文案（Windows/Linux 通用）
 - `language/zh-CN/hardcoded.json`、`frontend-hardcoded.json`、`assets-manifest.json` — JS 规则

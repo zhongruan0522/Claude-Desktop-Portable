@@ -16,6 +16,7 @@ zh-i18n/work/app-i18n-*/
 zh-i18n/work/app-frame-shell-*/
 zh-i18n/work/test*-resources/
 zh-i18n/work/test*-backup/
+zh-i18n/work/.zh-CN-backup/
 
 # 系统杂项
 .DS_Store
