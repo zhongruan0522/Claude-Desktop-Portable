@@ -17,11 +17,11 @@
   ],
   [
     "Allow Claude to automatically classify sessions as blocked, ready for review, or done. Classifying sessions counts towards your plan usage. Applies to new sessions.",
-    "允许 Claude 自动将会话分类为已阻止、待审核或已完成。分类会话会计入你的计划用量。适用于新会话。"
+    "允许 Claude 自动将会话分类为已受阻、待审查或已完成。分类会话会计入您的套餐用量。适用于新会话。"
   ],
   [
     "Are you sure you want to delete 1 chat? This cannot be undone.",
-    "你确定要删除 1 个聊天吗？此操作无法撤消。"
+    "您确定要删除 1 个对话吗？此操作无法撤销。"
   ],
   [
     "Authorization tokens",
@@ -33,15 +33,15 @@
   ],
   [
     "Automatically archive desktop sessions when the associated pull request is merged or closed.",
-    "关联的拉取请求合并或关闭后，自动归档桌面会话。"
+    "关联的 PR 合并或关闭后，自动归档桌面会话。"
   ],
   [
     "Automatically archive desktop sessions when the associated pull request is merged or closed. Archiving also removes the session's worktree and deletes its branch once the pull request is merged. Work that isn't pushed is kept.",
-    "当关联的 pull request 合并或关闭时，自动归档桌面会话。归档还会移除会话的工作树，并在 pull request 合并后删除其分支。未推送的工作将被保留。"
+    "当关联的 PR 合并或关闭时，自动归档桌面会话。归档还会移除会话的工作树，并在 PR 合并后删除其分支。未推送的工作将被保留。"
   ],
   [
     "Autofix pull requests",
-    "自动修复拉取请求"
+    "自动修复 PR"
   ],
   [
     "Auto-populate the model picker from /v1/models at launch.",
@@ -49,11 +49,11 @@
   ],
   [
     "Claude understands your codebase and helps you build, debug, and ship faster. Upgrade your plan to get started.",
-    "Claude 了解你的代码库，能帮助你更快地构建、调试和发布。升级你的计划即可开始使用。"
+    "Claude 了解您的代码库，能帮助您更快地构建、调试和发布。升级您的套餐即可开始使用。"
   ],
   [
     "Claude understands your codebase and helps you build, debug, and ship faster. Get started in the desktop app.",
-    "Claude 了解你的代码库，能帮助你更快地构建、调试和发布。请在桌面应用中开始使用。"
+    "Claude 了解您的代码库，能帮助您更快地构建、调试和发布。请在桌面应用中开始使用。"
   ],
   [
     "Claude Code (CLI, Desktop, IDE)",
@@ -109,7 +109,7 @@
   ],
   [
     "Installed on your computer",
-    "安装在你的计算机上"
+    "安装在您的计算机上"
   ],
   [
     "Extra HTTP headers sent on every inference request to the configured provider. For tenant routing, org IDs, Bedrock Guardrails, etc.",
@@ -125,7 +125,7 @@
   ],
   [
     "When you create a pull request, Claude automatically monitors it for CI failures and review comments, then responds proactively. Claude may post comments on your behalf.",
-    "当你创建 pull request 时，Claude 会自动监控 CI 失败和审查评论，并积极响应。Claude 可能会代表你发表评论。"
+    "当您创建 PR 时，Claude 会自动监控 CI 失败和审查评论，并积极响应。Claude 可能会代表您发表评论。"
   ],
   [
     "Browse extensions",
@@ -168,10 +168,6 @@
     "网关凭据"
   ],
   [
-    "网关 credentials",
-    "网关凭据"
-  ],
-  [
     "Learn more",
     "了解更多"
   ],
@@ -193,7 +189,7 @@
   ],
   [
     "Plugins & skills",
-    "插件与技能"
+    "插件与 Skills"
   ],
   [
     "Search settings",
@@ -205,7 +201,7 @@
   ],
   [
     "Telemetry & updates",
-    "诊断与更新"
+    "遥测与更新"
   ],
   [
     "Usage limits",
@@ -241,11 +237,11 @@
   ],
   [
     "ANTHROPIC TELEMETRY",
-    "Anthropic 诊断数据"
+    "Anthropic 遥测"
   ],
   [
     "Block essential telemetry",
-    "阻止必要诊断数据"
+    "阻止必要遥测"
   ],
   [
     "Block nonessential services",
@@ -253,7 +249,7 @@
   ],
   [
     "Block nonessential telemetry",
-    "阻止非必要诊断数据"
+    "阻止非必要遥测"
   ],
   [
     "Built-in tool policy",
@@ -289,11 +285,11 @@
   ],
   [
     "ESSENTIAL TELEMETRY",
-    "必要诊断数据"
+    "必要遥测"
   ],
   [
     "Favicon fetch and the artifact-preview iframe origin. Artifacts will not render.",
-    "获取网站图标和作品预览 iframe 来源。作品将无法渲染。"
+    "获取网站图标和 Artifact 预览 iframe 来源。Artifacts 将无法渲染。"
   ],
   [
     "Folders users may attach as a workspace. Leave unset for unrestricted access.",
@@ -313,7 +309,7 @@
   ],
   [
     "Max tokens per window",
-    "每窗口最大令牌数"
+    "每窗口最大 Token 数"
   ],
   [
     "MCP SERVERS",
@@ -325,7 +321,7 @@
   ],
   [
     "NONESSENTIAL TELEMETRY",
-    "非必要诊断数据"
+    "非必要遥测"
   ],
   [
     "ORGANIZATION PLUGINS",
@@ -349,7 +345,7 @@
   ],
   [
     "Prompts, completions, and your data are never sent to Anthropic. Telemetry covers crash and usage signals only.",
-    "提示、补全和你的数据绝不会发送给 Anthropic。诊断数据只包含崩溃和使用信号。"
+    "提示词、补全和您的数据绝不会发送给 Anthropic。遥测数据只包含崩溃和使用信号。"
   ],
   [
     "Reject desktop extensions that are not signed by a trusted publisher.",
@@ -365,7 +361,7 @@
   ],
   [
     "Tags telemetry events with your organization's UUID so Anthropic support can find them. Not used for auth.",
-    "使用你组织的 UUID 标记诊断数据事件，方便 Anthropic 支持人员定位。不会用于认证。"
+    "使用您组织的 UUID 标记遥测事件，方便 Anthropic 支持人员定位。不会用于身份验证。"
   ],
   [
     "Users see only this provider at the login screen. The option to sign in to Claude.ai is hidden.",
@@ -389,7 +385,7 @@
   ],
   [
     "Anthropic telemetry",
-    "Anthropic 诊断数据"
+    "Anthropic 遥测"
   ],
   [
     "OpenTelemetry collector endpoint",
@@ -405,7 +401,7 @@
   ],
   [
     "Hi! How can I help you today?",
-    "你好！今天我能为你提供什么帮助？"
+    "您好！今天我能为您提供什么帮助？"
   ],
   [
     "Write a message...",
@@ -425,11 +421,11 @@
   ],
   [
     "Search chats...",
-    "搜索聊天..."
+    "搜索对话..."
   ],
   [
     "Search chats…",
-    "搜索聊天..."
+    "搜索对话..."
   ],
   [
     "Delete selected",
@@ -437,7 +433,7 @@
   ],
   [
     "Record Memory Trace (auto-stop)",
-    "记录内存跟踪 (自动)"
+    "记录内存跟踪（自动停止）"
   ],
   [
     "Record Performance Trace",
@@ -457,11 +453,11 @@
   ],
   [
     "Filter chats",
-    "筛选聊天"
+    "筛选对话"
   ],
   [
     "Auto-populate the model picker from the provider's model-list endpoint at launch. Turn off if the endpoint isn't reachable from your network, or to use a fixed list. When off, the model list below is required and must use full model IDs (aliases like sonnet/opus are resolved via discovery).",
-    "启动时从提供商的模型列表端点自动填充模型选择器。如果你的网络无法访问该端点，或需要使用固定列表，请关闭此项。关闭后，下面的模型列表为必填，且必须使用完整模型 ID（sonnet/opus 等别名会通过发现解析）。"
+    "启动时从提供商的模型列表端点自动填充模型选择器。如果您的网络无法访问该端点，或需要使用固定列表，请关闭此项。关闭后，下面的模型列表为必填，且必须使用完整模型 ID（sonnet/opus 等别名会通过发现解析）。"
   ],
   [
     "Anthropic's guidelines",
@@ -473,7 +469,7 @@
   ],
   [
     "Learn how your information is protected when using Anthropic products, and visit our",
-    "了解你在使用 Anthropic 产品时信息如何受到保护，并访问我们的"
+    "了解您在使用 Anthropic 产品时信息如何受到保护，并访问我们的"
   ],
   [
     "for more details.",
@@ -493,11 +489,11 @@
   ],
   [
     "Monitor chats closely as this comes with",
-    "请密切关注聊天，因为这会带来"
+    "请密切关注对话，因为这会带来"
   ],
   [
     ". Monitor chats closely as this comes with",
-    "。请密切关注聊天，因为这会带来"
+    "。请密切关注对话，因为这会带来"
   ],
   [
     "security risks",
@@ -505,11 +501,7 @@
   ],
   [
     "Skills have moved to",
-    "技能已移至"
-  ],
-  [
-    "Back at it, claude",
-    "继续开始吧，claude"
+    "Skills 已移至"
   ],
   [
     "Permanently delete Anthropic's server-side copies of your Claude Code sessions. Sessions stored locally on your computer aren't affected. Claude Code on the web sessions are managed separately — go to",
@@ -525,11 +517,11 @@
   ],
   [
     "Allow the use of your chats and coding sessions to train and improve Anthropic AI models.",
-    "允许使用你的聊天和编码会话来训练和改进 Anthropic AI 模型。"
+    "允许使用您的对话和编码会话来训练和改进 Anthropic AI 模型。"
   ],
   [
     "Allow Claude to remember relevant context from your chats. This setting controls memory for both chats and projects.",
-    "允许 Claude 记住你聊天中的相关上下文。此设置会同时控制聊天和项目的记忆。"
+    "允许 Claude 记住您对话中的相关上下文。此设置会同时控制对话和项目的记忆。"
   ],
   [
     "Import memory from other AI providers",
@@ -537,7 +529,7 @@
   ],
   [
     "Bring relevant context and data from another AI provider to Claude. We'll provide a prompt you can use to fetch the memory from your other account.",
-    "将其他 AI 提供商中的相关上下文和数据导入 Claude。我们会提供一段提示词，你可以用它从其他账号获取记忆。"
+    "将其他 AI 提供商中的相关上下文和数据导入 Claude。我们会提供一段提示词，您可以用它从其他账户获取记忆。"
   ],
   [
     "Start import",
@@ -557,11 +549,11 @@
   ],
   [
     "Add and manage MCP servers that you’re working on.",
-    "添加并管理你正在使用的 MCP 服务器。"
+    "添加并管理您正在使用的 MCP 服务器。"
   ],
   [
     "Add and manage MCP servers that you're working on.",
-    "添加并管理你正在使用的 MCP 服务器。"
+    "添加并管理您正在使用的 MCP 服务器。"
   ],
   [
     "Delete…",
@@ -577,7 +569,7 @@
   ],
   [
     "Point this configuration at a bootstrap URL to have your organization manage these settings remotely.",
-    "将此配置指向一个引导 URL，让你的组织远程管理这些设置。"
+    "将此配置指向一个引导 URL，让您的组织远程管理这些设置。"
   ],
   [
     "HTTPS endpoint that returns a per-user JSON config overlay. Values from the response override local settings and become read-only.",
@@ -585,7 +577,7 @@
   ],
   [
     "Archive 1 task? You can find it in the Archived tab.",
-    "要归档 1 个任务吗？你可以在“已归档”标签页中找到它。"
+    "要归档 1 个任务吗？您可以在“已归档”标签页中找到它。"
   ],
   [
     "More ideas",
@@ -617,7 +609,7 @@
   ],
   [
     "Create your first scheduled task",
-    "创建你的第一个定时任务"
+    "创建您的第一个定时任务"
   ],
   [
     "Daily brief",
@@ -653,11 +645,11 @@
   ],
   [
     "Reduce animation in streaming responses and other interface elements. System follows your operating system's reduce-motion setting.",
-    "减少流式响应和其他界面元素中的动画。系统会遵循你的操作系统“减少动态效果”设置。"
+    "减少流式响应和其他界面元素中的动画。系统会遵循您的操作系统“减少动态效果”设置。"
   ],
   [
     "Reduce animation in streaming responses and other interface elements. System follows your operating system’s reduce-motion setting.",
-    "减少流式响应和其他界面元素中的动画。系统会遵循你的操作系统“减少动态效果”设置。"
+    "减少流式响应和其他界面元素中的动画。系统会遵循您的操作系统“减少动态效果”设置。"
   ],
   [
     "Transcript width",
@@ -685,7 +677,7 @@
   ],
   [
     "Devices that can control your local machine through remote sessions.",
-    "可通过远程会话控制你本地机器的设备。"
+    "可通过远程会话控制您本地机器的设备。"
   ],
   [
     "Help improve our AI models",
@@ -693,19 +685,19 @@
   ],
   [
     "Let Claude search the connector directory and surface ones relevant to your conversation.",
-    "让 Claude 搜索连接器目录，并显示与你的对话相关的连接器。"
+    "让 Claude 搜索连接器目录，并显示与您的对话相关的连接器。"
   ],
   [
     "When safety measures flag a message, automatically switch to a different model to keep chatting.",
-    "当安全措施标记某条消息时，自动切换到其他模型以继续聊天。"
+    "当安全措施标记某条消息时，自动切换到其他模型以继续对话。"
   ],
   [
     "When off, your chat will pause instead.",
-    "关闭后，你的聊天将暂停。"
+    "关闭后，您的对话将暂停。"
   ],
   [
     "When off, your session will pause instead. Applies to web and remote sessions.",
-    "关闭后，你的会话将暂停。适用于网页和远程会话。"
+    "关闭后，您的会话将暂停。适用于网页和远程会话。"
   ],
   [
     "View and manage memory",
@@ -717,15 +709,15 @@
   ],
   [
     "When safety measures flag a message, automatically switch to a different model to keep chatting. When off, your chat will pause instead.",
-    "当安全措施标记某条消息时，自动切换到其他模型以继续聊天。关闭后，你的聊天将暂停。"
+    "当安全措施标记某条消息时，自动切换到其他模型以继续对话。关闭后，您的对话将暂停。"
   ],
   [
     "When safety measures flag a message, automatically switch to a different model to keep chatting. When off, your session will pause instead. Applies to web and remote sessions.",
-    "当安全措施标记某条消息时，自动切换到其他模型以继续聊天。关闭后，你的会话将暂停。适用于网页和远程会话。"
+    "当安全措施标记某条消息时，自动切换到其他模型以继续对话。关闭后，您的会话将暂停。适用于网页和远程会话。"
   ],
   [
     "Does not apply to Web Search, which runs server-side at your inference provider rather than from the sandbox.",
-    "不适用于 Web Search；它在你的推理提供商服务器端运行，而不是从沙箱中运行。"
+    "不适用于 Web Search；它在您的推理提供商服务器端运行，而不是从沙盒中运行。"
   ],
   [
     "Only affects tool calls. Inference and MCP traffic are covered by their own allowlists elsewhere.",
@@ -733,7 +725,7 @@
   ],
   [
     "Hosts you add here also need to be open on your network firewall. See Egress Requirements for the full allowlist.",
-    "你在这里添加的主机还需要在网络防火墙中放行。完整允许列表见“出站要求”。"
+    "您在这里添加的主机还需要在网络防火墙中放行。完整允许列表见“出站要求”。"
   ],
   [
     "Folders users may attach as a workspace. Leave unset for unrestricted access. Supports ~ and a fixed set of environment variables.",
@@ -741,15 +733,15 @@
   ],
   [
     "Disable bundled skills and workflows",
-    "禁用内置技能和工作流"
+    "禁用内置 Skills 和工作流"
   ],
   [
     "Disables Claude Code's bundled skills and workflows (deep-research and similar). Use where they cannot function, for instance when WebFetch is egress-blocked and the gateway does not forward the WebSearch server tool.",
-    "禁用 Claude Code 内置的技能和工作流（deep-research 及类似功能）。适用于它们无法运行的场景，例如 WebFetch 被出站阻止且网关不转发 WebSearch 服务器工具时。"
+    "禁用 Claude Code 内置的 Skills 和工作流（deep-research 及类似功能）。适用于它们无法运行的场景，例如 WebFetch 被出站阻止且网关不转发 WebSearch 服务器工具时。"
   ],
   [
     "CHAT RESTRICTIONS",
-    "聊天限制"
+    "对话限制"
   ],
   [
     "Advanced file analysis",
@@ -757,11 +749,11 @@
   ],
   [
     "Allow Claude to run code in a local sandbox to analyze attached files it can't read natively — like Excel and PowerPoint — and perform inline data analysis. The sandbox can only read files attached to the conversation and has no network access. Off by default.",
-    "允许 Claude 在本地沙箱中运行代码，以分析它无法原生读取的附件文件，例如 Excel 和 PowerPoint，并执行内联数据分析。沙箱只能读取附加到对话中的文件，且没有网络访问权限。默认关闭。"
+    "允许 Claude 在本地沙盒中运行代码，以分析它无法原生读取的附件文件，例如 Excel 和 PowerPoint，并执行内联数据分析。沙盒只能读取附加到对话中的文件，且没有网络访问权限。默认关闭。"
   ],
   [
     "A UUID you generate. Tags telemetry so Anthropic support can locate your fleet's events. If unset, a shared placeholder UUID is sent and your events can't be distinguished from other unconfigured deployments. Not used for auth.",
-    "你生成的 UUID。用于标记诊断数据，方便 Anthropic 支持定位你设备群的事件。未设置时会发送共享占位 UUID，你的事件将无法与其他未配置的部署区分。不会用于认证。"
+    "您生成的 UUID。用于标记遥测数据，方便 Anthropic 支持人员定位您设备群的事件。未设置时会发送共享占位 UUID，您的事件将无法与其他未配置的部署区分。不会用于身份验证。"
   ],
   [
     "Discard Changes",
@@ -841,7 +833,7 @@
   ],
   [
     "Disables Claude Code's bundled skills and workflows (deep-research and similar).",
-    "禁用 Claude Code 内置的技能和工作流（deep-research 及类似功能）。"
+    "禁用 Claude Code 内置的 Skills 和工作流（deep-research 及类似功能）。"
   ],
   [
     "Use where they cannot function, for instance when WebFetch is egress-blocked and the gateway does not forward the WebSearch server tool.",
@@ -849,7 +841,7 @@
   ],
   [
     "Allow Claude to run code in a local sandbox to analyze attached files it can't read natively",
-    "允许 Claude 在本地沙箱中运行代码，以分析它无法原生读取的附件文件"
+    "允许 Claude 在本地沙盒中运行代码，以分析它无法原生读取的附件文件"
   ],
   [
     "like Excel and PowerPoint",
@@ -861,7 +853,7 @@
   ],
   [
     "The sandbox can only read files attached to the conversation and has no network access.",
-    "沙箱只能读取附加到对话中的文件，且没有网络访问权限。"
+    "沙盒只能读取附加到对话中的文件，且没有网络访问权限。"
   ],
   [
     "Off by default.",
@@ -901,15 +893,15 @@
   ],
   [
     "A UUID you generate.",
-    "你生成的 UUID。"
+    "您生成的 UUID。"
   ],
   [
     "Tags telemetry so Anthropic support can locate your fleet's events.",
-    "用于标记诊断数据，方便 Anthropic 支持定位你设备群的事件。"
+    "用于标记遥测数据，方便 Anthropic 支持人员定位您设备群的事件。"
   ],
   [
     "If unset, a shared placeholder UUID is sent and your events can't be distinguished from other unconfigured deployments.",
-    "未设置时会发送共享占位 UUID，你的事件将无法与其他未配置的部署区分。"
+    "未设置时会发送共享占位 UUID，您的事件将无法与其他未配置的部署区分。"
   ],
   [
     "Not used for auth.",
@@ -933,11 +925,11 @@
   ],
   [
     "Higher effort means more thorough responses, but takes longer and uses your limits faster.",
-    "更高的思考深度会带来更全面的回答，但耗时更久，也会更快消耗你的额度。"
+    "更高的思考强度会带来更详尽的回答，但耗时更久，也会更快消耗您的额度。"
   ],
   [
     "May use excessive tokens resulting in long response times and may hit token limits. Use sparingly for the hardest tasks.",
-    "可能会消耗大量 token，导致响应时间很长，也可能触及 token 限制。请仅在最困难的任务中谨慎使用。"
+    "可能会消耗大量 Token，导致响应时间较长，也可能触及 Token 上限。请仅在最困难的任务中谨慎使用。"
   ],
   [
     "Most capable for ambitious work",
@@ -949,15 +941,15 @@
   ],
   [
     "Based on your conversations in Claude chat.",
-    "基于你在 Claude 聊天中的对话。"
+    "基于您在 Claude 对话中的对话。"
   ],
   [
     "Looking at your month ...",
-    "正在回顾你这个月的对话……"
+    "正在回顾您这个月的对话……"
   ],
   [
     "Looking at your month …",
-    "正在回顾你这个月的对话……"
+    "正在回顾您这个月的对话……"
   ],
   [
     "This should only take a minute or so.",
@@ -973,7 +965,7 @@
   ],
   [
     "Get a nudge to take a break from Claude. You can snooze or adjust anytime.",
-    "接收 Claude 发出的休息提醒。你可以随时稍后提醒或调整。"
+    "接收 Claude 发出的休息提醒。您可以随时稍后提醒或调整。"
   ],
   [
     "Quiet hours",
@@ -981,15 +973,11 @@
   ],
   [
     "Set time limits for Claude. You can dismiss or adjust anytime.",
-    "设置 Claude 的使用时限。你可以随时忽略或调整。"
+    "设置 Claude 的使用时限。您可以随时忽略或调整。"
   ],
   [
     "A quiet month.",
     "这个月很安静。"
-  ],
-  [
-    "Not much to reflect on from this month's conversations with Claude. One short exchange in Chinese, and that was the month.",
-    "这个月与 Claude 的对话没什么可回顾的。只有一段简短的中文交流，这就是这个月的全部了。"
   ],
   [
     "MOST ACTIVE DAY",
@@ -1005,7 +993,7 @@
   ],
   [
     "YOUR TIME WITH CLAUDE",
-    "你与 Claude 共度的时间"
+    "您与 Claude 共度的时间"
   ],
   [
     "Time spent",
@@ -1017,31 +1005,27 @@
   ],
   [
     "Schedule quiet hours and get a nudge when a session runs long.",
-    "设置安静时段；当会话持续过长时，Claude 会提醒你。"
+    "设置勿扰时段；当会话持续过长时，Claude 会提醒您。"
   ],
   [
     "Set quiet hours and breaks",
-    "设置安静时段和休息提醒"
+    "设置勿扰时段和休息提醒"
   ],
   [
     "WHAT YOU SPENT TIME ON",
-    "你的时间投入"
+    "您的时间投入"
   ],
   [
     "A brief hello",
     "简短问候"
   ],
   [
-    "A single short greeting exchange in Chinese",
-    "一次简短的中文问候交流"
-  ],
-  [
     "EXPANDING YOUR SKILLS",
-    "拓展你的技能"
+    "拓展您的技能"
   ],
   [
     "Your Claude activity measured as AI fluency skills",
-    "你的 Claude 活动将按 AI 熟练度技能衡量"
+    "您的 Claude 活动将按 AI 熟练度技能衡量"
   ],
   [
     "Nothing to build on yet",
@@ -1061,7 +1045,7 @@
   ],
   [
     "Claude uses memory to build your reflection. Turn this off anytime in memory settings.",
-    "Claude 会使用记忆生成你的回顾。你可以随时在记忆设置中关闭此功能。"
+    "Claude 会使用记忆生成您的回顾。您可以随时在记忆设置中关闭此功能。"
   ],
   [
     "Recent Work",
@@ -1077,11 +1061,11 @@
   ],
   [
     "Auto-fix pull requests",
-    "自动修复 pull request"
+    "自动修复 PR"
   ],
   [
     "Notifications are turned off for Claude. Enable them in System Settings to get alerts when Claude finishes a task.",
-    "Claude 的通知已关闭。在系统设置中开启通知后，Claude 完成任务时会向你发送提醒。"
+    "Claude 的通知已关闭。在系统设置中开启通知后，Claude 完成任务时会向您发送提醒。"
   ],
   [
     "Want an API key?",
@@ -1089,7 +1073,7 @@
   ],
   [
     "Create keys, check usage, and more on Claude Platform. This requires another account, and API usage is billed separately.",
-    "在 Claude Platform 上创建密钥、查看用量等。这需要另一个账号，API 用量单独计费。"
+    "在 Claude Platform 上创建密钥、查看用量等。这需要另一个账户，API 用量单独计费。"
   ],
   [
     "Go to Claude Platform",
@@ -1117,15 +1101,15 @@
   ],
   [
     "Search skills and plugins",
-    "搜索技能和插件"
+    "搜索 Skills 和插件"
   ],
   [
     "Add your first skills",
-    "添加你的第一批技能"
+    "添加您的第一批 Skills"
   ],
   [
     "Skills teach Claude how you work. Add them from Discover, or create your own.",
-    "技能教会 Claude 你的工作方式。可从“发现”中添加，也可自行创建。"
+    "Skills 教会 Claude 您的工作方式。可从“发现”中添加，也可自行创建。"
   ],
   [
     "Browse Discover",
@@ -1133,7 +1117,7 @@
   ],
   [
     "Add your first plugins",
-    "添加你的第一批插件"
+    "添加您的第一批插件"
   ],
   [
     "Give Claude role-level expertise with plugins. Add them from Discover.",
@@ -1145,7 +1129,7 @@
   ],
   [
     "Your plugins",
-    "你的插件"
+    "您的插件"
   ],
   [
     "From Anthropic",
@@ -1157,7 +1141,7 @@
   ],
   [
     "Chat font",
-    "聊天字体"
+    "对话字体"
   ],
   [
     "Response completions",
@@ -1165,11 +1149,11 @@
   ],
   [
     "What should Claude call you?",
-    "Claude 应该如何称呼你？"
+    "Claude 应该如何称呼您？"
   ],
   [
     "What best describes your work?",
-    "哪项最符合你的工作？"
+    "哪项最符合您的工作？"
   ],
   [
     "Anthropic’s guidelines",
@@ -1181,11 +1165,11 @@
   ],
   [
     "Delete your account",
-    "删除你的账号"
+    "删除您的账户"
   ],
   [
     "Delete account",
-    "删除账号"
+    "删除账户"
   ],
   [
     "Anthropic believes in transparent data practices.",
@@ -1201,11 +1185,11 @@
   ],
   [
     "How we protect your data",
-    "我们如何保护你的数据"
+    "我们如何保护您的数据"
   ],
   [
     "How we use your data",
-    "我们如何使用你的数据"
+    "我们如何使用您的数据"
   ],
   [
     "Location metadata",
@@ -1213,7 +1197,7 @@
   ],
   [
     "Your data",
-    "你的数据"
+    "您的数据"
   ],
   [
     "Export data",
@@ -1221,11 +1205,11 @@
   ],
   [
     "Shared chats",
-    "已分享的聊天"
+    "已分享的对话"
   ],
   [
     "Shared artifacts",
-    "已分享的作品"
+    "已共享的 Artifacts"
   ],
   [
     "Uploaded files",
@@ -1233,15 +1217,15 @@
   ],
   [
     "Your feedback",
-    "你的反馈"
+    "您的反馈"
   ],
   [
     "Upgrade plan",
-    "升级计划"
+    "升级套餐"
   ],
   [
     "Chat on web, iOS, Android, and on your desktop",
-    "在网页端、iOS、Android 以及桌面端进行聊天"
+    "在网页端、iOS、Android 以及桌面端进行对话"
   ],
   [
     "Generate code and visualize data",
@@ -1277,7 +1261,7 @@
   ],
   [
     "Extended thinking for complex work",
-    "用于复杂任务的深入思考"
+    "用于复杂工作的扩展思考"
   ],
   [
     "Connector search",
@@ -1289,7 +1273,7 @@
   ],
   [
     "When safeguards flag a message, automatically switch to a different model to keep chatting. When off, your chat will pause instead.",
-    "当安全机制标记消息时，自动切换到其他模型继续聊天。关闭时，聊天将暂停。"
+    "当安全机制标记消息时，自动切换到其他模型继续对话。关闭时，对话将暂停。"
   ],
   [
     "Generate code, documents, and designs in a dedicated window alongside your conversation.",
@@ -1297,11 +1281,11 @@
   ],
   [
     "AI-powered artifacts",
-    "AI 驱动的作品"
+    "AI 驱动的 Artifacts"
   ],
   [
     "Build apps and interactive documents that use Claude inside the artifact.",
-    "构建在作品内部使用 Claude 的应用程序和可交互文档。"
+    "构建在 Artifact 内部使用 Claude 的应用程序和可交互文档。"
   ],
   [
     "Inline visualizations",
@@ -1313,7 +1297,7 @@
   ],
   [
     "Claude can execute code and create and edit docs, spreadsheets, presentations, PDFs, and data reports. Required for skills.",
-    "Claude 可以执行代码，并创建和编辑文档、电子表格、演示文稿、PDF 以及数据报告。使用技能（技能）所必需。"
+    "Claude 可以执行代码，并创建和编辑文档、电子表格、演示文稿、PDF 以及数据报告。使用 Skills 所必需。"
   ],
   [
     "Allow network egress",
@@ -1329,15 +1313,15 @@
   ],
   [
     "Generate memory from chats",
-    "从聊天中生成记忆"
+    "从对话中生成记忆"
   ],
   [
     "Allow Claude to generate memory from your chats.",
-    "允许 Claude 从你的聊天中生成记忆。"
+    "允许 Claude 从您的对话中生成记忆。"
   ],
   [
     "Allow Claude to generate memory from your chats",
-    "允许 Claude 从你的聊天中生成记忆"
+    "允许 Claude 从您的对话中生成记忆"
   ],
   [
     "Include sensitive topics in memory",
@@ -1365,7 +1349,7 @@
   ],
   [
     "When safeguards flag a message, automatically switch to a different model to keep chatting. When off, your session will pause instead. Applies to cloud sessions.",
-    "当安全机制标记消息时，自动切换到其他模型继续聊天。关闭时，会话将暂停。适用于云端会话。"
+    "当安全机制标记消息时，自动切换到其他模型继续对话。关闭时，会话将暂停。适用于云端会话。"
   ],
   [
     "Code appearance",
@@ -1441,15 +1425,15 @@
   ],
   [
     "Let Claude verify your changes in the iOS Simulator on this Mac: running your app, driving it through flows, and capturing screenshots and recordings. You will be asked before Claude uses each device. When off, Claude doesn’t get its simulator tools, and you can still use the simulator in the app yourself.",
-    "允许 Claude 在此 Mac 上的 iOS 模拟器中验证你的更改：运行应用程序、驱动流程并截取屏幕截图和录屏。在 Claude 使用每台设备前都会询问你。关闭时，Claude 将无法获取模拟器工具，你仍可在应用中自行使用模拟器。"
+    "允许 Claude 在此 Mac 上的 iOS 模拟器中验证您的更改：运行应用程序、驱动流程并截取屏幕截图和录屏。在 Claude 使用每台设备前都会询问您。关闭时，Claude 将无法获取模拟器工具，您仍可在应用中自行使用模拟器。"
   ],
   [
     "Let Claude verify your changes in the iOS Simulator on this Mac: running your app, driving it through flows, and capturing screenshots and recordings. You will be asked before Claude uses each device. When off, Claude doesn't get its simulator tools, and you can still use the simulator in the app yourself.",
-    "允许 Claude 在此 Mac 上的 iOS 模拟器中验证你的更改：运行应用程序、驱动流程并截取屏幕截图和录屏。在 Claude 使用每台设备前都会询问你。关闭时，Claude 将无法获取模拟器工具，你仍可在应用中自行使用模拟器。"
+    "允许 Claude 在此 Mac 上的 iOS 模拟器中验证您的更改：运行应用程序、驱动流程并截取屏幕截图和录屏。在 Claude 使用每台设备前都会询问您。关闭时，Claude 将无法获取模拟器工具，您仍可在应用中自行使用模拟器。"
   ],
   [
     "Pull requests",
-    "拉取请求"
+    "PR"
   ],
   [
     "Branch prefix",
@@ -1461,15 +1445,15 @@
   ],
   [
     "Create pull requests automatically",
-    "自动创建 Pull Request"
+    "自动创建 PR"
   ],
   [
     "When Claude pushes changes to a branch, it automatically opens a pull request without asking first. Applies to cloud sessions only.",
-    "当 Claude 向分支推送更改时，无需先询问即自动打开 pull request。仅适用于云端会话。"
+    "当 Claude 向分支推送更改时，无需先询问即自动创建 PR。仅适用于云端会话。"
   ],
   [
     "Automatically archive desktop sessions when the associated pull request is merged or closed. Archiving also removes the session’s worktree and deletes its branch once the pull request is merged. Work that isn’t pushed is kept.",
-    "当关联的 pull request 合并或关闭时，自动归档桌面会话。归档还会移除会话的工作树，并在 pull request 合并后删除其分支。未推送的工作将被保留。"
+    "当关联的 PR 合并或关闭时，自动归档桌面会话。归档还会移除会话的工作树，并在 PR 合并后删除其分支。未推送的工作将被保留。"
   ],
   [
     "No connected Claude Code instances",
@@ -1477,7 +1461,7 @@
   ],
   [
     "When you sign in to Claude Code, your authorization tokens will appear here.",
-    "当你登录 Claude Code 时，你的授权令牌将显示在此处。"
+    "当您登录 Claude Code 时，您的授权令牌将显示在此处。"
   ],
   [
     "Desktop app version",
@@ -1485,19 +1469,19 @@
   ],
   [
     "Dictation shortcut",
-    "听写快捷方式"
+    "听写快捷键"
   ],
   [
     "Start or stop dictation in the chat you’re typing in.",
-    "在当前正在输入的聊天中开始或停止听写。"
+    "在当前正在输入的对话中开始或停止听写。"
   ],
   [
     "Start or stop dictation in the chat you're typing in.",
-    "在当前正在输入的聊天中开始或停止听写。"
+    "在当前正在输入的对话中开始或停止听写。"
   ],
   [
     "Discover skills",
-    "发现技能"
+    "发现 Skills"
   ],
   [
     "From Anthropic & Partners",
@@ -1537,11 +1521,11 @@
   ],
   [
     "Chats compact less since tools aren't pre-loaded.",
-    "由于未预加载工具，聊天压缩得较少。"
+    "由于未预加载工具，对话触发压缩的次数更少。"
   ],
   [
     "Chats compact less since tools aren’t pre-loaded.",
-    "由于未预加载工具，聊天压缩得较少。"
+    "由于未预加载工具，对话触发压缩的次数更少。"
   ],
   [
     "Permanently delete Anthropic’s server-side copies of your Claude Code sessions. Sessions stored locally on your computer aren’t affected. Cloud sessions are managed separately. Go to",
@@ -1561,11 +1545,11 @@
   ],
   [
     "Upload skill",
-    "上传技能"
+    "上传 Skill"
   ],
   [
     "Create a skill",
-    "创建技能"
+    "创建 Skill"
   ],
   [
     "Discover plugins",
@@ -1605,7 +1589,7 @@
   ],
   [
     "Chats and tasks",
-    "聊天与任务"
+    "对话与任务"
   ],
   [
     "Last activity",
@@ -1649,7 +1633,7 @@
   ],
   [
     "What are you working on?",
-    "你正在做什么？"
+    "您正在做什么？"
   ],
   [
     "Name your project",
@@ -1657,11 +1641,11 @@
   ],
   [
     "What are you trying to achieve?",
-    "你想要达成什么目标？"
+    "您想要达成什么目标？"
   ],
   [
     "Describe your project, goals, subject, etc...",
-    "描述你的项目、目标、主题等..."
+    "描述您的项目、目标、主题等..."
   ],
   [
     "Use a folder",
@@ -1745,15 +1729,15 @@
   ],
   [
     "Delete chat?",
-    "删除聊天？"
+    "删除对话？"
   ],
   [
     "Delete chat",
-    "删除聊天"
+    "删除对话"
   ],
   [
     "Search your activity",
-    "搜索你的活动"
+    "搜索您的活动"
   ],
   [
     "Delete selected?",
@@ -1761,15 +1745,15 @@
   ],
   [
     "1 item will be permanently deleted. This cannot be undone.",
-    "1 项内容将被永久删除。此操作无法撤消。"
+    "1 项内容将被永久删除。此操作无法撤销。"
   ],
   [
     "1 item will be permanently deleted. This can't be undone.",
-    "1 项内容将被永久删除。此操作无法撤消。"
+    "1 项内容将被永久删除。此操作无法撤销。"
   ],
   [
     "1 item will be permanently deleted. This can’t be undone.",
-    "1 项内容将被永久删除。此操作无法撤消。"
+    "1 项内容将被永久删除。此操作无法撤销。"
   ],
   [
     "Sort · Last edited",
@@ -1793,27 +1777,27 @@
   ],
   [
     "Add your first connectors",
-    "添加你的第一批连接器"
+    "添加您的第一批连接器"
   ],
   [
     "Connectors let Claude work with your team’s tools and data.",
-    "连接器可让 Claude 与你的团队的工具和数据协同工作。"
+    "连接器可让 Claude 与您的团队的工具和数据协同工作。"
   ],
   [
     "Connectors let Claude work with your team's tools and data.",
-    "连接器可让 Claude 与你的团队的工具和数据协同工作。"
+    "连接器可让 Claude 与您的团队的工具和数据协同工作。"
   ],
   [
     "Skills teach Claude how you work.",
-    "技能教会 Claude 你的工作方式。"
+    "Skills 教会 Claude 您的工作方式。"
   ],
   [
     "Import isn’t enabled for this deployment. Contact your organization’s administrator to turn it on.",
-    "当前部署未启用导入功能。请联系你的组织管理员将其开启。"
+    "当前部署未启用导入功能。请联系您的组织管理员将其开启。"
   ],
   [
     "Import isn't enabled for this deployment. Contact your organization's administrator to turn it on.",
-    "当前部署未启用导入功能。请联系你的组织管理员将其开启。"
+    "当前部署未启用导入功能。请联系您的组织管理员将其开启。"
   ],
   [
     "Import & export",
@@ -1853,23 +1837,23 @@
   ],
   [
     "Local sandbox",
-    "本地沙箱"
+    "本地沙盒"
   ],
   [
     "Runs commands from Claude Code in an isolated sandbox. Applies to new sessions.",
-    "在隔离的沙箱中运行 Claude Code 的命令。适用于新会话。"
+    "在隔离的沙盒中运行 Claude Code 的命令。适用于新会话。"
   ],
   [
     "Strict sandbox mode",
-    "严格沙箱模式"
+    "严格沙盒模式"
   ],
   [
     "Blocks commands that can't run inside the sandbox (ssh, for example) instead of running them outside it or asking you. Applies to every Claude Code session on this computer, including the terminal, unless a project's own settings override it.",
-    "阻止无法在沙箱内运行的命令（例如 ssh），而不是在沙箱外运行或询问你。适用于这台计算机上的所有 Claude Code 会话（包括终端），除非项目自身的设置进行了覆盖。"
+    "阻止无法在沙盒内运行的命令（例如 ssh），而不是在沙盒外运行或询问您。适用于这台计算机上的所有 Claude Code 会话（包括终端），除非项目自身的设置进行了覆盖。"
   ],
   [
     "Blocks commands that can’t run inside the sandbox (ssh, for example) instead of running them outside it or asking you. Applies to every Claude Code session on this computer, including the terminal, unless a project’s own settings override it.",
-    "阻止无法在沙箱内运行的命令（例如 ssh），而不是在沙箱外运行或询问你。适用于这台计算机上的所有 Claude Code 会话（包括终端），除非项目自身的设置进行了覆盖。"
+    "阻止无法在沙盒内运行的命令（例如 ssh），而不是在沙盒外运行或询问您。适用于这台计算机上的所有 Claude Code 会话（包括终端），除非项目自身的设置进行了覆盖。"
   ],
   [
     "Browser tools",
@@ -1925,11 +1909,11 @@
   ],
   [
     "Enable Code. Claude writes and runs code.",
-    "启用代码。Claude 编写并运行代码。"
+    "启用 Code。Claude 编写并运行代码。"
   ],
   [
     "Enable Chat. Quick questions and drafting.",
-    "启用聊天。用于快速提问和起草。"
+    "启用对话。用于快速提问和起草。"
   ],
   [
     "Not set",
@@ -1997,11 +1981,11 @@
   ],
   [
     "When true, each new conversation or task starts on the default model, and a person’s model and effort changes are no longer saved as their default.",
-    "开启后，每个新对话或任务都以默认模型启动，且个人选择的模型与投入度不再保存为默认值。"
+    "开启后，每个新对话或任务都以默认模型启动，且个人选择的模型与思考强度不再保存为默认值。"
   ],
   [
     "When true, each new conversation or task starts on the default model, and a person's model and effort changes are no longer saved as their default.",
-    "开启后，每个新对话或任务都以默认模型启动，且个人选择的模型与投入度不再保存为默认值。"
+    "开启后，每个新对话或任务都以默认模型启动，且个人选择的模型与思考强度不再保存为默认值。"
   ],
   [
     "Show estimated cost",
@@ -2025,11 +2009,11 @@
   ],
   [
     "Fetch the model catalog and its signature file from this URL (a mirror inside your network serving Anthropic’s published files) instead of downloads.claude.ai.",
-    "从此 URL（在你网络内提供 Anthropic 已发布文件的镜像）获取模型目录及其签名文件，取代 downloads.claude.ai。"
+    "从此 URL（在您网络内提供 Anthropic 已发布文件的镜像）获取模型目录及其签名文件，取代 downloads.claude.ai。"
   ],
   [
     "Fetch the model catalog and its signature file from this URL (a mirror inside your network serving Anthropic's published files) instead of downloads.claude.ai.",
-    "从此 URL（在你网络内提供 Anthropic 已发布文件的镜像）获取模型目录及其签名文件，取代 downloads.claude.ai。"
+    "从此 URL（在您网络内提供 Anthropic 已发布文件的镜像）获取模型目录及其签名文件，取代 downloads.claude.ai。"
   ],
   [
     "Animation speed",
@@ -2053,7 +2037,7 @@
   ],
   [
     "Default model effort",
-    "默认模型投入度"
+    "默认模型思考强度"
   ],
   [
     "Network proxy",
@@ -2065,11 +2049,11 @@
   ],
   [
     "Send the app’s and the agent’s traffic through this HTTP proxy instead of the operating system’s proxy settings.",
-    "让应用和智能体的流量经过此 HTTP 代理，而非操作系统的代理设置。"
+    "让应用和 Agent 的流量经过此 HTTP 代理，而非操作系统的代理设置。"
   ],
   [
     "Send the app's and the agent's traffic through this HTTP proxy instead of the operating system's proxy settings.",
-    "让应用和智能体的流量经过此 HTTP 代理，而非操作系统的代理设置。"
+    "让应用和 Agent 的流量经过此 HTTP 代理，而非操作系统的代理设置。"
   ],
   [
     "Proxy auto-config (PAC) URL",
@@ -2117,7 +2101,7 @@
   ],
   [
     " is true. ",
-    " 为 true 时，允许用户导入 Claude.ai 聊天和项目，以及这台电脑上较早的 Claude 会话。"
+    " 为 true 时，允许用户导入 Claude.ai 对话和项目，以及这台电脑上较早的 Claude 会话。"
   ],
   [
     " is a separate switch.",
@@ -2149,7 +2133,7 @@
   ],
   [
     "Prompt to import at the top of a new chat or task. ",
-    "在新聊天或任务顶部显示导入提示。"
+    "在新对话或任务顶部显示导入提示。"
   ],
   [
     ": only when earlier Claude sessions are found on this computer. ",
@@ -2161,7 +2145,7 @@
   ],
   [
     "Connector favicons and the artifact-preview and MCP Apps widget iframe origins. Artifacts will not render.",
-    "连接器网站图标以及作品预览和 MCP 应用小部件的 iframe 来源。作品将无法渲染。"
+    "连接器网站图标以及 Artifact 预览和 MCP Apps 小组件的 iframe 来源。Artifacts 将无法渲染。"
   ],
   [
     "Where OpenTelemetry logs and metrics are sent. Leave blank to disable.",
@@ -2169,11 +2153,11 @@
   ],
   [
     "Stop Claude Desktop from fetching updates entirely (no time limit). You’ll need to push new versions yourself.",
-    "完全阻止 Claude Desktop 获取更新（不设时限）。你需要自行推送新版本。"
+    "完全阻止 Claude Desktop 获取更新（不设时限）。您需要自行推送新版本。"
   ],
   [
     "Stop Claude Desktop from fetching updates entirely (no time limit). You'll need to push new versions yourself.",
-    "完全阻止 Claude Desktop 获取更新（不设时限）。你需要自行推送新版本。"
+    "完全阻止 Claude Desktop 获取更新（不设时限）。您需要自行推送新版本。"
   ],
   [
     "Configuration relaunch window",
@@ -2189,11 +2173,11 @@
   ],
   [
     "Chat retention period",
-    "聊天保留期限"
+    "对话保留期限"
   ],
   [
     "Delete chats, with their files, after this many days without activity. Unset: kept until the user deletes them. Projects and memory stay.",
-    "聊天在无活动达到此天数后连同其文件一起删除。未设置：一直保留，直至用户自行删除。项目和记忆不受影响。"
+    "对话在无活动达到此天数后连同其文件一起删除。未设置：一直保留，直至用户自行删除。项目和记忆不受影响。"
   ],
   [
     "Code retention period",
@@ -2213,7 +2197,7 @@
   ],
   [
     "Per-user soft cap, counted client-side over the token cap window. Not a server-enforced quota.",
-    "按用户统计的软上限，在客户端按 token 上限窗口计数。并非服务器强制配额。"
+    "按用户统计的软上限，在客户端按 Token 上限窗口计数。并非服务器强制配额。"
   ],
   [
     "Configuration notices",
@@ -2257,11 +2241,11 @@
   ],
   [
     "Sign in to your account",
-    "登录你的账号"
+    "登录您的账户"
   ],
   [
     "Log in to your account",
-    "登录你的账号"
+    "登录您的账户"
   ],
   [
     "Continue with Google",
@@ -2273,7 +2257,7 @@
   ],
   [
     "Enter your email",
-    "输入你的邮箱"
+    "输入您的邮箱"
   ],
   [
     "Email address",
@@ -2285,11 +2269,11 @@
   ],
   [
     "Check your email",
-    "请查收你的邮件"
+    "请查收您的邮件"
   ],
   [
     "Use single sign-on (SSO)",
-    "使用单点登录 (SSO)"
+    "使用单点登录（SSO）"
   ],
   [
     "Sign in with SSO",
@@ -2309,7 +2293,7 @@
   ],
   [
     "Send a temporary login code to your email",
-    "向你的邮箱发送临时登录验证码"
+    "向您的邮箱发送临时登录验证码"
   ],
   [
     "Terms of Service",
@@ -2329,23 +2313,23 @@
   ],
   [
     "Choose an account",
-    "选择账号"
+    "选择账户"
   ],
   [
     "Create an account",
-    "创建账号"
+    "创建账户"
   ],
   [
     "Don't have an account?",
-    "还没有账号？"
+    "还没有账户？"
   ],
   [
     "Don’t have an account?",
-    "还没有账号？"
+    "还没有账户？"
   ],
   [
     "Already have an account?",
-    "已有账号？"
+    "已有账户？"
   ],
   [
     "Sign out",
@@ -2365,23 +2349,23 @@
   ],
   [
     "Still not working? You can reach out to support with this error code:",
-    "仍然无法正常工作？你可以携带此错误代码联系支持团队："
+    "仍然无法正常工作？您可以携带此错误代码联系支持团队："
   ],
   [
     "Your artifacts and scheduled tasks are stored at ",
-    "你的作品和定时任务存储在 "
+    "您的 Artifacts 和定时任务存储在 "
   ],
   [
     "Your artifacts and scheduled tasks are stored at",
-    "你的作品和定时任务存储在"
+    "您的 Artifacts 和定时任务存储在"
   ],
   [
     "You’re running Claude through your organization’s own inference provider (127.0.0.1:15721). Your conversations are sent there, not to Anthropic, and are governed by your organization’s agreement with that provider.",
-    "你正在通过你组织自己的推理提供商（127.0.0.1:15721）运行 Claude。你的对话会发送到该提供商而非 Anthropic，并受你的组织与该提供商的协议约束。"
+    "您正在通过您组织自己的推理提供商（127.0.0.1:15721）运行 Claude。您的对话会发送到该提供商而非 Anthropic，并受您的组织与该提供商的协议约束。"
   ],
   [
     "You're running Claude through your organization's own inference provider (127.0.0.1:15721). Your conversations are sent there, not to Anthropic, and are governed by your organization's agreement with that provider.",
-    "你正在通过你组织自己的推理提供商（127.0.0.1:15721）运行 Claude。你的对话会发送到该提供商而非 Anthropic，并受你的组织与该提供商的协议约束。"
+    "您正在通过您组织自己的推理提供商（127.0.0.1:15721）运行 Claude。您的对话会发送到该提供商而非 Anthropic，并受您的组织与该提供商的协议约束。"
   ],
   [
     "Profile photo",
@@ -2397,19 +2381,19 @@
   ],
   [
     "To delete your account, please cancel your Claude Pro subscription first.",
-    "要删除账户，请先取消你的 Claude Pro 订阅。"
+    "要删除账户，请先取消您的 Claude Pro 订阅。"
   ],
   [
     "To delete your account, please cancel your Claude Max subscription first.",
-    "要删除账户，请先取消你的 Claude Max 订阅。"
+    "要删除账户，请先取消您的 Claude Max 订阅。"
   ],
   [
     "On track. You should reach tomorrow’s reset with room to spare.",
-    "进度正常。到明天重置时，你的额度应该还有富余。"
+    "进度正常。到明天重置时，您的额度应该还有富余。"
   ],
   [
     "On track. You should reach today’s reset with room to spare.",
-    "进度正常。到今天重置时，你的额度应该还有富余。"
+    "进度正常。到今天重置时，您的额度应该还有富余。"
   ],
   [
     "Limit resets",
@@ -2433,7 +2417,7 @@
   ],
   [
     "Applies automatically to cloud sessions. After it’s used or expires, your plan’s regular usage applies.",
-    "自动用于云端会话。用完或过期后，按你套餐的常规用量计算。"
+    "自动用于云端会话。用完或过期后，按您套餐的常规用量计算。"
   ],
   [
     "Reset for free",
@@ -2441,11 +2425,11 @@
   ],
   [
     "Allow Claude to search for relevant details in past chats.",
-    "允许 Claude 在过去的聊天中搜索相关细节。"
+    "允许 Claude 在过去的对话中搜索相关细节。"
   ],
   [
     "A confirmation has been emailed to you. Your Anthropic account executive will review and confirm coverage.",
-    "确认邮件已发送给你。你的 Anthropic 客户经理将审核并确认覆盖范围。"
+    "确认邮件已发送给您。您的 Anthropic 客户经理将审核并确认覆盖范围。"
   ],
   [
     "About additional billing emails",
@@ -2513,7 +2497,7 @@
   ],
   [
     "Available to your organization",
-    "可供你的组织使用"
+    "可供您的组织使用"
   ],
   [
     "Back to billing details",
@@ -2545,7 +2529,7 @@
   ],
   [
     "Both models answer the same prompt, independently. Vote on each pair.",
-    "两个模型各自独立回答同一个提示。请对每一组投票。"
+    "两个模型各自独立回答同一个提示词。请对每一组投票。"
   ],
   [
     "Both retrieves and modifies data",
@@ -2597,7 +2581,7 @@
   ],
   [
     "Certification is completed through a secure link emailed to your organization's primary contact.",
-    "认证需通过发送给你组织主要联系人的安全链接完成。"
+    "认证需通过发送给您组织主要联系人的安全链接完成。"
   ],
   [
     "Certification links are sent by email",
@@ -2661,19 +2645,19 @@
   ],
   [
     "Couldn't confirm your answer",
-    "无法确认你的回答"
+    "无法确认您的回答"
   ],
   [
     "Couldn’t load this page. Go back to the artifact and try again.",
-    "无法加载此页面。请返回作品后重试。"
+    "无法加载此页面。请返回 Artifact 后重试。"
   ],
   [
     "Go back to the artifact and try again.",
-    "请返回作品后重试。"
+    "请返回 Artifact 后重试。"
   ],
   [
     "Returning to the artifact…",
-    "正在返回作品…"
+    "正在返回 Artifact…"
   ],
   [
     "Create new file",
@@ -2685,7 +2669,7 @@
   ],
   [
     "Credit available on this organization. To move it, name the destination organization in your reason and your account executive will complete the transfer.",
-    "此组织可用的额度。如需转移，请在理由中注明目标组织，你的客户经理会完成转移。"
+    "此组织可用的额度。如需转移，请在理由中注明目标组织，您的客户经理会完成转移。"
   ],
   [
     "Current limit comes from",
@@ -2745,15 +2729,15 @@
   ],
   [
     "Describe the change you want...",
-    "描述你想要的更改..."
+    "描述您想要的更改..."
   ],
   [
     "Describe what your plugin does and its key features...",
-    "描述你的插件功能及其主要特性..."
+    "描述您的插件功能及其主要特性..."
   ],
   [
     "A clear, concise description of what your plugin does.",
-    "清晰简洁地描述你的插件的功能。"
+    "清晰简洁地描述您的插件的功能。"
   ],
   [
     "Dismiss guest pass",
@@ -2761,7 +2745,7 @@
   ],
   [
     "Download Claude for your desktop or mobile device.",
-    "为你的桌面或移动设备下载 Claude。"
+    "为您的桌面或移动设备下载 Claude。"
   ],
   [
     "Download as CSV",
@@ -2777,7 +2761,7 @@
   ],
   [
     "Email address for communications about your plugin.",
-    "用于接收与你的插件相关沟通的邮箱地址。"
+    "用于接收与您的插件相关沟通的邮箱地址。"
   ],
   [
     "Email addresses look like name@company.com.",
@@ -2789,7 +2773,7 @@
   ],
   [
     "Request your certification link",
-    "申请你的认证链接"
+    "申请您的认证链接"
   ],
   [
     "Resend Certification Email",
@@ -2821,7 +2805,7 @@
   ],
   [
     "Export is temporarily unavailable on this account for your security. Contact support to verify your identity.",
-    "为保护你的安全，此账户暂时无法导出。请联系支持团队验证你的身份。"
+    "为保护您的安全，此账户暂时无法导出。请联系支持团队验证您的身份。"
   ],
   [
     "Extension ID",
@@ -2869,7 +2853,7 @@
   ],
   [
     "Interview progress",
-    "面试进度"
+    "访谈进度"
   ],
   [
     "Invite domain",
@@ -2941,7 +2925,7 @@
   ],
   [
     "Open a new role",
-    "打开新角色"
+    "开设新角色"
   ],
   [
     "Open in Claude ↗",
@@ -3013,7 +2997,7 @@
   ],
   [
     "Pricing applies to these accounts going forward. To add or remove an account, contact your account executive.",
-    "定价将从现在起适用于这些账户。如需添加或移除账户，请联系你的客户经理。"
+    "定价将从现在起适用于这些账户。如需添加或移除账户，请联系您的客户经理。"
   ],
   [
     "Primary use cases",
@@ -3033,15 +3017,15 @@
   ],
   [
     "Provide examples of how users can use your plugin.",
-    "提供用户如何使用你的插件的示例。"
+    "提供用户如何使用您的插件的示例。"
   ],
   [
     "Provide licensing and legal information for your plugin.",
-    "提供你的插件的许可和法律信息。"
+    "提供您的插件的许可和法律信息。"
   ],
   [
     "Provide the links for your plugin.",
-    "提供你的插件的相关链接。"
+    "提供您的插件的相关链接。"
   ],
   [
     "Provide your contact details for communications about your plugin.",
@@ -3049,7 +3033,7 @@
   ],
   [
     "Provided by your account team",
-    "由你的客户团队提供"
+    "由您的客户团队提供"
   ],
   [
     "Read the transcript",
@@ -3137,7 +3121,7 @@
   ],
   [
     "Seats on your agreement",
-    "你协议中的席位"
+    "您协议中的席位"
   ],
   [
     "Select a server in the Connection step first.",
@@ -3145,11 +3129,11 @@
   ],
   [
     "Select the surfaces where you would like your plugin to be supported.",
-    "选择你希望插件支持的平台。"
+    "选择您希望插件支持的平台。"
   ],
   [
     "Sends your note and this modal's debug data (conversation and API usage logs) to Anthropic.",
-    "将你的备注以及此窗口的调试数据（对话和 API 用量日志）发送给 Anthropic。"
+    "将您的备注以及此窗口的调试数据（对话和 API 用量日志）发送给 Anthropic。"
   ],
   [
     "Sent to the session.",
@@ -3177,7 +3161,7 @@
   ],
   [
     "Sign in to Claude, then open this again from the artifact.",
-    "请登录 Claude，然后从作品中再次打开。"
+    "请登录 Claude，然后从 Artifact 中再次打开。"
   ],
   [
     "Sign in to claude.ai to use the side panel.",
@@ -3209,7 +3193,7 @@
   ],
   [
     "Summary of your calendar, emails, and messages.",
-    "你的日历、邮件和消息摘要。"
+    "您的日历、邮件和消息摘要。"
   ],
   [
     "Supported platforms",
@@ -3241,19 +3225,19 @@
   ],
   [
     "Thank you for the feedback!",
-    "感谢你的反馈！"
+    "感谢您的反馈！"
   ],
   [
     "The URL to your plugin repository.",
-    "你的插件仓库的 URL。"
+    "您的插件仓库的 URL。"
   ],
   [
     "The public homepage or documentation site for your plugin.",
-    "你的插件的公开主页或文档站点。"
+    "您的插件的公开主页或文档站点。"
   ],
   [
     "The accounts your pricing and provisioning will apply to. Discounts are not applied retroactively to accounts added later.",
-    "你的定价和配置将适用的账户。折扣不会追溯应用于之后添加的账户。"
+    "您的定价和配置将适用的账户。折扣不会追溯应用于之后添加的账户。"
   ],
   [
     "The file for this export could not be found. Request a new export.",
@@ -3261,7 +3245,7 @@
   ],
   [
     "The local folder Claude starts in for this project’s work, without asking you. Claude may run commands in that folder without asking.",
-    "Claude 在此项目工作时默认启动的本地文件夹，不会询问你。Claude 可能会在该文件夹中直接运行命令而不询问。"
+    "Claude 在此项目工作时默认启动的本地文件夹，不会询问您。Claude 可能会在该文件夹中直接运行命令而不询问。"
   ],
   [
     "This is a payer (management) account",
@@ -3305,7 +3289,7 @@
   ],
   [
     "This will remove Claude’s access. You can reconnect at any time.",
-    "这将移除 Claude 的访问权限。你可以随时重新连接。"
+    "这将移除 Claude 的访问权限。您可以随时重新连接。"
   ],
   [
     "Today’s brief",
@@ -3333,15 +3317,15 @@
   ],
   [
     "Upgrade your Teams workspace under this agreement.",
-    "在此协议下升级你的 Teams 工作区。"
+    "在此协议下升级您的 Teams 工作区。"
   ],
   [
     "Use the email associated with your lab or institution.",
-    "请使用与你的实验室或机构关联的邮箱。"
+    "请使用与您的实验室或机构关联的邮箱。"
   ],
   [
     "Use your saved memory in this panel’s replies. Fixed once the chat starts.",
-    "在此面板的回复中使用你保存的记忆。聊天开始后无法更改。"
+    "在此面板的回复中使用您保存的记忆。对话开始后无法更改。"
   ],
   [
     "Users connect and sign in before any tools or resources are available.",
@@ -3349,11 +3333,11 @@
   ],
   [
     "Verify it’s you",
-    "验证是你本人"
+    "验证是您本人"
   ],
   [
     "Verify your institutional email",
-    "验证你的机构邮箱"
+    "验证您的机构邮箱"
   ],
   [
     "Waiting for both responses to finish",
@@ -3365,7 +3349,7 @@
   ],
   [
     "We could not find this link. Make sure you are logged in with the account that requested the link.",
-    "找不到此链接。请确保你使用申请该链接的账户登录。"
+    "找不到此链接。请确保您使用申请该链接的账户登录。"
   ],
   [
     "Welcome to Claude via AWS Marketplace",
@@ -3377,7 +3361,7 @@
   ],
   [
     "Where Remote Control starts on your device without asking. Claude may run commands there without asking.",
-    "远程控制在你设备上默认启动的位置，不会询问你。Claude 可能会在那里直接运行命令而不询问。"
+    "Remote Control 在您设备上默认启动的位置，不会询问您。Claude 可能会在那里直接运行命令而不询问。"
   ],
   [
     "Where do I find these IDs?",
@@ -3385,11 +3369,11 @@
   ],
   [
     "Where to find your IDs",
-    "在哪里找到你的 ID"
+    "在哪里找到您的 ID"
   ],
   [
     "Which response do you prefer?",
-    "你更喜欢哪个回复？"
+    "您更喜欢哪个回复？"
   ],
   [
     "Why reject? (sent to the session)",
@@ -3401,50 +3385,50 @@
   ],
   [
     "You should check your name is not already taken. You may not use brand names you do not own in the name of your plugin.",
-    "请确认你的名称未被占用。插件名称中不得使用你不拥有的品牌名。"
+    "请确认您的名称未被占用。插件名称中不得使用您不拥有的品牌名。"
   ],
   [
     "You're signed into claude.ai as a different account.",
-    "你在 claude.ai 上登录的是另一个账户。"
+    "您在 claude.ai 上登录的是另一个账户。"
   ],
   [
     "You've been invited to try Claude",
-    "你受邀试用 Claude"
+    "您受邀试用 Claude"
   ],
   [
     "You've received a gift subscription to Claude. Sign in to redeem your gift.",
-    "你收到了一份 Claude 礼品订阅。请登录以兑换。"
+    "您收到了一份 Claude 礼品订阅。请登录以兑换。"
   ],
   [
     "Your account executive will review added tenants before they’re provisioned.",
-    "你的客户经理会在配置前审核新添加的租户。"
+    "您的客户经理会在配置前审核新添加的租户。"
   ],
   [
     "Your account executive will review this addition before it’s provisioned.",
-    "你的客户经理会在配置前审核此次添加。"
+    "您的客户经理会在配置前审核此次添加。"
   ],
   [
     "Your export should begin downloading automatically.",
-    "你的导出应会自动开始下载。"
+    "您的导出应会自动开始下载。"
   ],
   [
     "Your organization's encryption key is disabled or revoked. Re-enable it, then open the link in your email again.",
-    "你组织的加密密钥已被禁用或撤销。请重新启用，然后再次打开邮件中的链接。"
+    "您组织的加密密钥已被禁用或撤销。请重新启用，然后再次打开邮件中的链接。"
   ],
   [
     "Your pick",
-    "你的选择"
+    "您的选择"
   ],
   [
     "Your work email",
-    "你的工作邮箱"
+    "您的工作邮箱"
   ],
   [
     "You’re giving feedback on a new version of Claude.",
-    "你正在对新版本的 Claude 提供反馈。"
+    "您正在对新版本的 Claude 提供反馈。"
   ],
   [
     "You’re signed in to Claude with a different account than this artifact tab. Switch accounts in Claude, then try again from the artifact.",
-    "你在 Claude 中登录的账户与此作品标签页不同。请在 Claude 中切换账户，然后从作品中重试。"
+    "您在 Claude 中登录的账户与此 Artifact 标签页不同。请在 Claude 中切换账户，然后从 Artifact 中重试。"
   ]
 ]

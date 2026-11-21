@@ -60,15 +60,20 @@ sudo ./install-linux.sh --set-locale   # 安装并把 ~/.config/Claude/config.js
 | app.asar locale 映射补丁 | 同款补丁 | Linux Electron 不校验 asar 签名；重建后全条目 SHA-256 完整性自检通过 |
 | AppX 清单注册 zh-CN | 无需 | 前端按词典文件枚举语言，asar 内 `i18n/zh-CN.json` 直接被识别 |
 
-## 覆盖率（Linux 6.28899.2，2026-11-21 增量同步）
+## 覆盖率（Linux 6.28899.2，2026-11-21 全量精校与官方术语对齐）
 
 | 层 | 键数 | 已翻译 | 说明 |
 | --- | ---: | ---: | --- |
-| 前端主词典 | 46,447 | 45,993（等效 100%） | 安装器口径 0 键回退；454 键为专名/OAuth scope/格式串按原样保留英文 |
-| 前端覆盖（overrides） | 290 | 290 | 安装时按当前版英文资源及 ICU 结构过滤 |
-| 动态文案 | 51 | 51 | 本版官方无变化 |
-| 桌面壳（菜单/弹窗/托盘） | 1,575 | 1,559（等效 100%） | 含官方 zh-Hans 1,448 条并入 |
-| frame-shell（5.x+ 层） | 1,898 | 1,886（等效 100%） | 英文原文自 JS 提取；剩余为专名/纯格式串 |
+| 前端主词典 | 46,447 | 45,939（等效 100%） | 安装器口径 0 键回退；508 键为专名/官方保留词（Artifact/Skill/PR/Diff/Fork 等）/OAuth scope/格式串 |
+| 前端覆盖（overrides） | 290 | 290 | 与主词典全量同步，安装时按 ICU 结构过滤 |
+| 动态文案 | 51 | 51 | 已对齐 `Token`、`思考强度` 等术语 |
+| 桌面壳（菜单/弹窗/托盘） | 1,575 | 1,550（等效 100%） | 官方 `zh-Hans.json` **1,567/1,567 条 100% 原样复用**（含 25 条官方保留英文专名） |
+| frame-shell（5.x+ 层） | 1,898 | 1,885（等效 100%） | 英文原文自 JS 提取；剩余 13 键为专名/纯格式串 |
+
+2026-11-21 全量逐条精校与 Agent/官方术语统一：
+- **官方译文 100% 原样复用**：升级 `install-linux.py` 与 `zh-i18n/work/common5x.py` 的 `struct_ok()` 为完整 ICU MessageFormat 语法校验器（兼容中文省略 `one` 分支与直写 `{var}` 的合法复数写法），桌面壳原样并入全部 **1,567/1,567 条**官方 `zh-Hans.json`（补齐此前因复数校验过严跳过的 94 条，并额外检出修复 1 条原脚本漏报的运行期变量名错写 Bug `QD+x5dnPVC`）；跨层同原文 70 条直接锁定复用官方译文；全库人称对齐官方统一为「您」（仅用户发给 Claude 的第一人称示例提示词保持「你」）。
+- **全量 50,261 键 + 887 条 JS 硬编码规则逐条对照英文精校**：拆分 165 个批次（高优 Agent/术语/跨层 A 组 54 批 + 通用界面 B 组 111 批）全覆盖核对，累计修正 **4,435 条**语义错译、串键、多义词误译与术语偏移（含 `CHGpxkyOsd` 串键错译「引导插图」、`g3hx72ya32` 错译「充分规划知识」、`E37670` LLM 错译「法学硕士」、`Checks cancelled` 错译「支票已取消」、`+ tax` 反译「含税」、`wall clock` 错译「挂钟」、`/web-setup` 斜杠命令误译、终端光标 `Block` 错译「阻止」、`Background` 后台/背景颠倒、`Canvas LMS` 错译「画布」、`O8rEfJhp62` `Rewind` 错译「快退」、`oUQNLoQUff` 语序错误等），并统一跨层 360 处同英文长句译法；同步精校 `hardcoded.json`、`assets-manifest.json`、`frontend-hardcoded.json`（修正 236 处、清理 4 条脏条目）。
+- **术语规范留仓与脚本升级**：沉淀完整规范至 [glossary.md](glossary.md)，升级 `zh-i18n/work/` 下 `common5x.py`、`analyze-diff-5x.py`、`reuse-check-5x.py`、`tm-reuse-5x.py`、`check-batch.py`、`unpack-deb.py`，新增全库术语与质量审计脚本 `audit-glossary.py`（官方壳复用 1,567/1,567、结构失败 0、错别字 0、术语告警 0）。
 
 2026-11-21 对照官方 APT 最新版 6.28899.2 增量同步：官方前端词典 44,218 → 46,447 键（新增 3,588、
 死键 1,359）；桌面壳 1,310 → 1,575 键（新增 272、死键 7）；动态文案零变化；overrides 清理死键 10
@@ -125,11 +130,8 @@ app.asar 代码有实质更新（worktree 技能菜单、file index 等），英
 复用官方壳 zh-Hans.json 译名 5 条、Windows 词典 3 条；清理死键 233 个（前端 226 +
 壳 3 + overrides 4）；复用译名中 4 条人称统一为您→你。
 
-术语沿用 Windows 包：
-作品（Artifacts）、技能（Skills）、思考强度（Effort）、工作树（worktree）、运行器（runner）、
-会话栏（Session Rail）、定时任务（routine / scheduled task，官方已将 Routines 更名为
-Scheduled tasks，两者统一译作定时任务）、快速输入（Quick Entry）、
-远程控制（Remote Control）等；保留 Claude、Cowork、Claude Code、Inventory、P/S 等专名与配置值。
+术语规范详见 [glossary.md](glossary.md)（官方优先复用，对齐官方 `zh-Hans.json` 及 Agent 圈常用语）：
+保留 `Artifact`、`Skill`/`Skills`、`Remote Control`、`Agent`/`Subagent`/`Agentic`、`Token`（LLM 计量，认证用「令牌」）、`PR`、`Diff`、`Fork`、`Dispatch`（动词「派发」）、`MCP App`、`Cowork`、`Claude Code` 等专名；统一 `提示词`（LLM）、`钩子`、`工作树`、`思考强度`、`套餐`（订阅）vs `计划模式`/`计划`（Agent 规划）、`沙盒`、`计算机使用`、`对话`/`侧边对话`/`会话`、`对话记录`、`定时任务`、`自动模式`、`自动接受编辑`、`绕过权限`、`回退`、`引导`、`暂存`（Git stash）vs `待提交`/`待提交区`（Git staged）、`讨论串`（评论用「评论串」）、`发现项`、`遥测`、`受阻`（任务态）vs `已阻止`（安全拦截）、`快速输入`、`会话栏`、`运行器` 等，全库统一官方人称「您」。
 
 ## 已知限制
 

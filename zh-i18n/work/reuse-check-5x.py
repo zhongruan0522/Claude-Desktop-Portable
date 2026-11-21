@@ -18,11 +18,12 @@ def reuse_pool(keys, en_map):
     for src_name, src in (('win', WIN), ('win_ov', WIN_OV)):
         for k in keys:
             if k in src and k in en_map and src[k] != en_map[k] and struct_ok(en_map[k], src[k]):
-                pool.setdefault(k, ('win' if src_name == 'win' else 'win_ov', src[k].replace('您', '你')))
+                pool.setdefault(k, ('win' if src_name == 'win' else 'win_ov', src[k]))
     return pool
 
-valid_off = {k: v.replace('您', '你') for k, v in ZH_OFF.items()
-             if k in SH_EN and v != SH_EN[k] and struct_ok(SH_EN[k], v)}
+# 全量原样复用官方壳 zh-Hans.json（含保留英文专名及官方中文复数写法，保持官方人称「您」）
+valid_off = {k: v for k, v in ZH_OFF.items()
+             if k in SH_EN and struct_ok(SH_EN[k], v)}
 print('official shell zh-Hans valid:', len(valid_off))
 dump(os.path.join(WORK, 'official-shell-zh-5x.json'), valid_off)
 

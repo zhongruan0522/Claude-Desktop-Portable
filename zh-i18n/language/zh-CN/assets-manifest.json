@@ -186,7 +186,7 @@
     {
       "kind": "hardcoded",
       "before": "children:\"You're signed into claude.ai as a different account.\"",
-      "after": "children:\"你已使用其他账户登录 claude.ai。\"",
+      "after": "children:\"您已使用其他账户登录 claude.ai。\"",
       "expected": 1,
       "files": [
         "shared-25-DXU0HC0D.js"
@@ -321,7 +321,7 @@
     {
       "kind": "hardcoded",
       "before": "title:\"Skills\"",
-      "after": "title:\"技能\"",
+      "after": "title:\"Skills\"",
       "expected": 1,
       "files": [
         "shared-29-Dq-RZCx0.js"
@@ -351,7 +351,7 @@
     {
       "kind": "hardcoded",
       "before": "title:\"Artifact\"",
-      "after": "title:\"作品\"",
+      "after": "title:\"Artifact\"",
       "expected": 5,
       "files": [
         "shared-29-Dq-RZCx0.js"
@@ -366,7 +366,7 @@
     {
       "kind": "hardcoded",
       "before": "title:\"Artifacts\"",
-      "after": "title:\"作品\"",
+      "after": "title:\"Artifacts\"",
       "expected": 3,
       "files": [
         "c10f0af0c-lYUAT4Np.js",
@@ -386,7 +386,7 @@
     {
       "kind": "hardcoded",
       "before": "label:\"Chat\"",
-      "after": "label:\"聊天\"",
+      "after": "label:\"对话\"",
       "expected": 2,
       "files": [
         "shared-26-Dyl0rRaC.js"
@@ -401,7 +401,7 @@
     {
       "kind": "hardcoded",
       "before": "label:\"Code\"",
-      "after": "label:\"代码\"",
+      "after": "label:\"Code\"",
       "expected": 4,
       "files": [
         "shared-2-BaCC514e.js",
@@ -511,7 +511,7 @@
     {
       "kind": "hardcoded",
       "before": "\"Still not working? You can reach out to\"",
-      "after": "\"仍然无法使用？你可以联系\"",
+      "after": "\"仍然无法使用？您可以联系\"",
       "expected": 1,
       "files": [
         "shared-28-DFptrJn_.js"
@@ -571,7 +571,7 @@
     {
       "kind": "hardcoded",
       "before": "\"Claude can help with many things, but finding this page isn\\u2019t one of them.\"",
-      "after": "\"Claude 能帮你做很多事，但无法找到这个页面。\"",
+      "after": "\"Claude 能帮您做很多事，但无法找到这个页面。\"",
       "expected": 1,
       "files": [
         "shared-28-DFptrJn_.js"
@@ -601,7 +601,7 @@
     {
       "kind": "hardcoded",
       "before": "\" Sign in to claude.ai in this browser, then reload this panel. If you're already signed in, the extension may not have permission to access claude.ai \\u2014 check chrome://extensions \\u2192 Claude \\u2192 Site access.\"",
-      "after": "\" 请在此浏览器中登录 claude.ai，然后重新加载此面板。如果已经登录，扩展可能没有访问 claude.ai 的权限，请检查 chrome://extensions → Claude → 网站访问权限。\"",
+      "after": "\" 请在此浏览器中登录 claude.ai，然后重新加载此面板。如果已经登录，扩展程序可能没有访问 claude.ai 的权限，请检查 chrome://extensions → Claude → 网站访问权限。\"",
       "expected": 1,
       "files": [
         "shared-25-DXU0HC0D.js"

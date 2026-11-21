@@ -83,7 +83,7 @@ def unpack_all(deb_path, ver=None):
 def clean_all():
     patterns = [
         '*.deb', 'deb-*', 'deb4', 'ion-i18n-*', 'app-i18n-*', 'app-frame-shell-*',
-        'test*-resources', 'test*-backup', '.zh-CN-backup', 'batches', 'results', 'tm-*.json',
+        'test*-resources', 'test*-backup', '.zh-CN-backup', 'batches', 'results', 'tm-*.json', 'audit',
     ]
     removed = []
     for pat in patterns:

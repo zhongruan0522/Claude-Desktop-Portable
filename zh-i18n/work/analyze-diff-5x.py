@@ -62,11 +62,11 @@ off_keys = set(zh_official)
 print('== official zh-Hans (app.asar resources/i18n) ==')
 print('  official_keys=%d' % len(off_keys))
 print('  keys not in en-US.json: %d' % len([k for k in off_keys if k not in sh_en]))
-in_en = {k: v.replace('您', '你') for k, v in zh_official.items() if k in sh_en}
+in_en = {k: v for k, v in zh_official.items() if k in sh_en}
 same_as_en = [k for k, v in in_en.items() if v == sh_en[k]]
 diff_from_ours = {k: v for k, v in in_en.items()
-                  if v != sh_en[k] and k in sh_dict and sh_dict[k] != v and struct_ok(sh_en[k], v)}
-missing_in_ours = {k: v for k, v in in_en.items() if k not in sh_dict and v != sh_en[k] and struct_ok(sh_en[k], v)}
+                  if k in sh_dict and sh_dict[k] != v and struct_ok(sh_en[k], v)}
+missing_in_ours = {k: v for k, v in in_en.items() if k not in sh_dict and struct_ok(sh_en[k], v)}
 print('  valid(在 en-US 中)=%d  其中值==英文=%d  与我们译文不同且结构OK=%d  我们缺的=%d'
       % (len(in_en), len(same_as_en), len(diff_from_ours), len(missing_in_ours)))
 if diff_from_ours:

@@ -19,7 +19,7 @@ def build_tm(en_map, zh_map):
         en = en_map.get(k)
         if en is None or zh == en or not struct_ok(en, zh):
             continue
-        tm.setdefault(en, zh.replace('您', '你'))
+        tm.setdefault(en, zh)
     return tm
 
 tm = {}
