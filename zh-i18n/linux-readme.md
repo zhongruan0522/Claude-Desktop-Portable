@@ -1,8 +1,8 @@
 # Linux（官方 APT 版）汉化说明
 
 适用于通过 Anthropic 官方 apt 源（`downloads.claude.ai/claude-desktop/apt/stable`）安装的
-Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识别 5.x / 4.x / 3.x 三种资源布局**，
-已在 **5.11492.5（amd64，asar 布局 + frame-shell 新层）**、**5.1231.2**、**4.23118.1（amd64，asar 布局）** 与
+Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识别 6.x / 5.x / 4.x / 3.x 资源布局**，
+已在 **6.28899.2（amd64，asar 布局 + frame-shell 层）**、**5.11492.5**、**5.1231.2**、**4.23118.1（amd64，asar 布局）** 与
 **3.6556.2（amd64，明文目录布局）** 上完整验证：
 安装 → 全量校验 → 幂等重装 → 升级检测 → 恢复后与官方原版**逐字节一致**。
 
@@ -25,7 +25,7 @@ Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识�
   词典（无 en-US.json，无中文）；捆绑包由模拟器经 `shell-manifest.json` 伺服，
   **启动时对清单内每个文件做 bytes+SHA-256 校验**，可用语言硬编码在
   `frame-shell.html` 的 meta 标签（`data-shipped` / `data-catalogs`）里。
-- 汉化方式：在 asar 内新增 `frame/shell/i18n/frame-shell/zh-CN.json`（全部 1,846 键，
+- 汉化方式：在 asar 内新增 `frame/shell/i18n/frame-shell/zh-CN.json`（全部 1,898 键，
   英文原文从 JS 提取）、登记 `shell-manifest.json`（bytes + sha256 + contentType）、
   在 `frame-shell.html` 语言清单中加入 `zh-CN`（并同步被修改文件的清单哈希，
   否则启动校验会拒绝整个捆绑包）。
@@ -60,15 +60,29 @@ sudo ./install-linux.sh --set-locale   # 安装并把 ~/.config/Claude/config.js
 | app.asar locale 映射补丁 | 同款补丁 | Linux Electron 不校验 asar 签名；重建后全条目 SHA-256 完整性自检通过 |
 | AppX 清单注册 zh-CN | 无需 | 前端按词典文件枚举语言，asar 内 `i18n/zh-CN.json` 直接被识别 |
 
-## 覆盖率（Linux 5.11492.5，2026-11-17 复核补译）
+## 覆盖率（Linux 6.28899.2，2026-11-21 增量同步）
 
 | 层 | 键数 | 已翻译 | 说明 |
 | --- | ---: | ---: | --- |
-| 前端主词典 | 44,218 | 43,761（等效 100%） | 安装器口径 0 键回退；457 键为专名/OAuth scope/格式串按原样保留英文 |
-| 前端覆盖（overrides） | 300 | 300 | 安装时按当前版英文资源及 ICU 结构过滤 |
+| 前端主词典 | 46,447 | 45,993（等效 100%） | 安装器口径 0 键回退；454 键为专名/OAuth scope/格式串按原样保留英文 |
+| 前端覆盖（overrides） | 290 | 290 | 安装时按当前版英文资源及 ICU 结构过滤 |
 | 动态文案 | 51 | 51 | 本版官方无变化 |
-| 桌面壳（菜单/弹窗/托盘） | 1,310 | 1,294（等效 100%） | 含官方 zh-Hans 824 条并入 |
-| frame-shell（5.x 新层） | 1,846 | 1,834（等效 100%） | 英文原文自 JS 提取；剩余为专名/纯格式串 |
+| 桌面壳（菜单/弹窗/托盘） | 1,575 | 1,559（等效 100%） | 含官方 zh-Hans 1,448 条并入 |
+| frame-shell（5.x+ 层） | 1,898 | 1,886（等效 100%） | 英文原文自 JS 提取；剩余为专名/纯格式串 |
+
+2026-11-21 对照官方 APT 最新版 6.28899.2 增量同步：官方前端词典 44,218 → 46,447 键（新增 3,588、
+死键 1,359）；桌面壳 1,310 → 1,575 键（新增 272、死键 7）；动态文案零变化；overrides 清理死键 10
+（300 → 290 键）；frame-shell JS 英文 1,846 → 1,898 键（新增 148、死键 96，存量英文原文零变更；
+官方附带 10 语言词典扩充至 1,901 键，仍无中文）。官方壳 `zh-Hans.json` 由 893 大幅扩充至 1,567 键，
+按“官方优先”并入结构兼容的 1,448 条（直接补齐新键 261 条、覆写存量 219 条，统一改为「你」人称；
+94 条因官方省略复数 `one` 分支或占位符次数差异未采纳）。新译 3,391 条（前端 3,377 + 壳 10 +
+frame-shell 4，并行批次全部通过 ICU 变量/分支/富文本标签结构校验）；复用翻译记忆 350 条（含跨层复用
+前端新译 71 条至 frame-shell）、Windows 词典 6 条；清理死键 1,472。同步升级 `zh-i18n/work/` 脚本：
+`make-batches-5x.py` 按 `BATCH_SIZE` 动态分批与补零编号，`tm-reuse-5x.py` 支持跨层复用已译批次与旧版
+`frame-shell-en` 基线并跳过已译批次，`analyze-diff-5x.py` 增加 frame-shell `changed_en` 对比，
+`check-batch.py` 增加敬称「您」检查提醒。安装器零改动（6.x 沿用 5.x 资源布局，结构驱动规则自动命中）。
+验证：五层词典全量校验通过 → 安装 → 部署校验（manifest 49 文件字节+SHA-256 全过）→ 幂等重装 →
+reset 恢复后与官方原版逐字节一致。
 
 2026-11-17 对照官方 APT 最新版 5.11492.5 解包复核与补漏：修复 `install-linux.py` 与提取脚本中
 `frame-shell` JS 消息正则未匹配带 `description` 字段条目的问题（1,844 → 1,846 键，补译席位开通弹窗
@@ -131,10 +145,10 @@ Scheduled tasks，两者统一译作定时任务）、快速输入（Quick Entry
 - `install-linux.py` — Python 助手（布局检测、asar 重建引擎、词典合并、JS 补丁、备份与
   还原、locale 写入），由主脚本调用，也可单独运行：
   `ZH_RESOURCES=… ZH_BACKUP=… ZH_LANG=… python3 install-linux.py check`
-- `language/zh-CN/linux/dictionary.json` — 前端词典（44,218 键全量映射的基础词典）
-- `language/zh-CN/linux/desktop-shell-dictionary.json` — 桌面壳词典（1,310 键，官方 zh-Hans 优先并入）
-- `language/zh-CN/linux/frame-shell-dictionary.json` — frame-shell 词典（5.x 新层，1,846 键）
-- `language/zh-CN/linux/overrides.json` — 覆盖文案（300 键）
+- `language/zh-CN/linux/dictionary.json` — 前端词典（46,447 键全量映射的基础词典）
+- `language/zh-CN/linux/desktop-shell-dictionary.json` — 桌面壳词典（1,575 键，官方 zh-Hans 优先并入）
+- `language/zh-CN/linux/frame-shell-dictionary.json` — frame-shell 词典（5.x+ 层，1,898 键）
+- `language/zh-CN/linux/overrides.json` — 覆盖文案（290 键）
 - `language/zh-CN/dynamic/zh-CN.json` — 动态文案（Windows/Linux 通用）
 - `language/zh-CN/hardcoded.json`、`frontend-hardcoded.json`、`assets-manifest.json` — JS 规则
   （与 Windows 安装器共用，安装时按当前版本内容重新匹配）

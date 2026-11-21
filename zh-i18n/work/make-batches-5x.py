@@ -29,20 +29,24 @@ def write_batch(name, data):
     dump(os.path.join(batches_dir, name + '.json'), data)
     print(name + ': %d 条' % len(data))
 
-keys = sorted(frontend)
-N = 5
-per = max(1, (len(keys) + N - 1) // N)
-for i in range(N):
-    part = keys[i * per:(i + 1) * per]
-    if part:
-        write_batch('batch-fe-%d' % (i + 1), {k: frontend[k] for k in part})
+def split_batches(prefix, data, target_size):
+    keys = sorted(data)
+    if not keys:
+        print(prefix + ': 0 条（跳过）')
+        return
+    n = max(1, (len(keys) + target_size - 1) // target_size)
+    per = (len(keys) + n - 1) // n
+    width = max(2, len(str(n))) if n > 1 else 1
+    for i in range(n):
+        part = keys[i * per:(i + 1) * per]
+        if part:
+            name = f'{prefix}-{i + 1:0{width}d}' if n > 1 else prefix
+            write_batch(name, {k: data[k] for k in part})
+
+fe_size = int(os.environ.get('BATCH_SIZE', '220'))
+fs_size = int(os.environ.get('FS_BATCH_SIZE', '150'))
+split_batches('batch-fe', frontend, fe_size)
 write_batch('batch-shell', shell)
-fkeys = sorted(fs)
-F = 2
-fper = max(1, (len(fkeys) + F - 1) // F)
-for i in range(F):
-    part = fkeys[i * fper:(i + 1) * fper]
-    if part:
-        write_batch('batch-fs-%d' % (i + 1), {k: fs[k] for k in part})
+split_batches('batch-fs', fs, fs_size)
 print('复用: fe %d, shell %d, fs %d; 官方壳 %d 条将经 merge 直接并入'
       % (len(REUSE_FE), len(REUSE_SH), len(REUSE_FS), len(OFFICIAL_SH)))

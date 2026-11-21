@@ -34,6 +34,8 @@ for k in set(src) & set(out):
     en, zh = str(src[k]), str(out[k])
     if zh == en:
         print('  注意 %s: 译文与英文相同（若为专名/格式串则可接受）' % k); continue
+    if '您' in zh:
+        print('  注意 %s: 包含敬称「您」，仓库约定统一用「你」' % k)
     if en.count('{') != zh.count('{') or en.count('}') != zh.count('}'):
         errs.append('%s: 花括号计数不一致 (%d/%d vs %d/%d)' % (k, en.count('{'), en.count('}'), zh.count('{'), zh.count('}')))
     if sorted(re.findall(r'<[^>]*>', en)) != sorted(re.findall(r'<[^>]*>', zh)):

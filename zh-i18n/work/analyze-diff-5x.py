@@ -73,10 +73,12 @@ if diff_from_ours:
     print('  sample diff_from_ours:', json.dumps(dict(list(diff_from_ours.items())[:8]), ensure_ascii=False, indent=1)[:1200])
 
 FS_EN_MAP = load(P_NEW['fs_en'])
+FS_OLD_MAP = load(P_OLD['fs_en']) if P_OLD and os.path.exists(P_OLD['fs_en']) else {}
 fs_dict_path = os.path.join(LANG, 'linux/frame-shell-dictionary.json')
 fs_dict = load(fs_dict_path) if os.path.exists(fs_dict_path) else {}
 fs_dead = sorted(k for k in fs_dict if k not in FS_EN_MAP)
 fs_missing = sorted(k for k in FS_EN_MAP if k not in fs_dict)
+fs_changed = sorted(k for k in FS_EN_MAP if k in FS_OLD_MAP and FS_EN_MAP[k] != FS_OLD_MAP[k])
 fs_struct_fail = {}
 fs_eq = []
 for k in FS_EN_MAP:
@@ -91,13 +93,14 @@ if os.path.isdir(frame_i18n):
     fs_sample = load(os.path.join(frame_i18n, fs_files[0]))
     print('== frame-shell ==')
     print('  languages=%d sample=%s keys=%d' % (len(fs_files), fs_files[0], len(fs_sample)))
-print('  en_map=%d dict=%d dead=%d missing=%d struct_fail=%d zh==en=%d'
-      % (len(FS_EN_MAP), len(fs_dict), len(fs_dead), len(fs_missing), len(fs_struct_fail), len(fs_eq)))
+print('  en_old=%d en_map=%d dict=%d dead=%d missing=%d changed_en=%d struct_fail=%d zh==en=%d'
+      % (len(FS_OLD_MAP), len(FS_EN_MAP), len(fs_dict), len(fs_dead), len(fs_missing), len(fs_changed), len(fs_struct_fail), len(fs_eq)))
 
 rep = {'version': VER, 'frontend': fe, 'desktop_shell': shell, 'dynamic': dyn,
        'overrides_dead': ov_dead, 'overrides_struct_fail': ov_fail,
-       'frame_shell': {'name': 'frame-shell', 'en_keys': len(FS_EN_MAP), 'dict_keys': len(fs_dict),
-                       'dead': fs_dead, 'missing': fs_missing, 'struct_fail': fs_struct_fail, 'zh_eq_en': fs_eq},
+       'frame_shell': {'name': 'frame-shell', 'en_keys': len(FS_EN_MAP), 'old_en_keys': len(FS_OLD_MAP),
+                       'dict_keys': len(fs_dict), 'dead': fs_dead, 'missing': fs_missing,
+                       'changed_en': fs_changed, 'struct_fail': fs_struct_fail, 'zh_eq_en': fs_eq},
        'official_zh_hans': {'keys': len(off_keys), 'diff_from_ours': diff_from_ours,
                             'missing_in_ours': missing_in_ours, 'same_as_en': same_as_en}}
 dump(OUT, rep)
