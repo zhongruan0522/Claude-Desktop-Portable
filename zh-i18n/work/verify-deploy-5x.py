@@ -3,7 +3,7 @@
 import hashlib, importlib.util, json, os, re
 from common5x import ROOT, WORK, LANG
 
-RES = os.environ.get('ZH_RESOURCES', os.path.join(WORK, 'test-resources'))
+RES = os.environ.get('ZH_RESOURCES', os.path.join(WORK, 'test-run/resources'))
 os.environ.setdefault('ZH_RESOURCES', RES)
 os.environ.setdefault('ZH_BACKUP', os.path.join(os.path.dirname(RES), '.zh-CN-backup'))
 os.environ.setdefault('ZH_LANG', LANG)

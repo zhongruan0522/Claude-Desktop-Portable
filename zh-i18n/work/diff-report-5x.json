@@ -1,10 +1,10 @@
 {
- "version": "6.28899.2",
+ "version": "6.28899.6",
  "frontend": {
   "name": "frontend",
-  "en_keys": 46447,
-  "old_en_keys": 0,
-  "dict_keys": 46447,
+  "en_keys": 46448,
+  "old_en_keys": 46447,
+  "dict_keys": 46448,
   "dead": [],
   "missing": [],
   "changed_en": [],
@@ -523,7 +523,7 @@
  "desktop_shell": {
   "name": "desktop-shell",
   "en_keys": 1575,
-  "old_en_keys": 0,
+  "old_en_keys": 1575,
   "dict_keys": 1575,
   "dead": [],
   "missing": [],
@@ -560,7 +560,7 @@
  "dynamic": {
   "name": "dynamic",
   "en_keys": 51,
-  "old_en_keys": 0,
+  "old_en_keys": 51,
   "dict_keys": 51,
   "dead": [],
   "missing": [],
@@ -573,7 +573,7 @@
  "frame_shell": {
   "name": "frame-shell",
   "en_keys": 1898,
-  "old_en_keys": 0,
+  "old_en_keys": 1898,
   "dict_keys": 1898,
   "dead": [],
   "missing": [],

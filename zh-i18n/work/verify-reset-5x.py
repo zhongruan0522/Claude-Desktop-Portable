@@ -4,7 +4,7 @@ import hashlib, os, sys
 from common5x import WORK, paths_for
 
 P = paths_for()
-RES = os.environ.get('ZH_RESOURCES', os.path.join(WORK, 'test-resources'))
+RES = os.environ.get('ZH_RESOURCES', os.path.join(WORK, 'test-run/resources'))
 BASE = P['deb_res']
 
 def sha(p):

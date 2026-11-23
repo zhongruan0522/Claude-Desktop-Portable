@@ -2,7 +2,7 @@
 
 适用于通过 Anthropic 官方 apt 源（`downloads.claude.ai/claude-desktop/apt/stable`）安装的
 Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识别 6.x / 5.x / 4.x / 3.x 资源布局**，
-已在 **6.28899.2（amd64，asar 布局 + frame-shell 层）**、**5.11492.5**、**5.1231.2**、**4.23118.1（amd64，asar 布局）** 与
+已在 **6.28899.6（amd64，asar 布局 + frame-shell 层）**、**5.11492.5**、**5.1231.2**、**4.23118.1（amd64，asar 布局）** 与
 **3.6556.2（amd64，明文目录布局）** 上完整验证：
 安装 → 全量校验 → 幂等重装 → 升级检测 → 恢复后与官方原版**逐字节一致**。
 
@@ -21,8 +21,8 @@ Claude Desktop，安装目录 `/usr/lib/claude-desktop`。安装器**自动识�
   （简体中文桌面壳官方翻译），按"官方优先"并入桌面壳词典（见下）。
 - **frame/shell 捆绑包**（作品共享页 / Artifact 查看器外壳；4.23118.x 后期已引入、
   5.x 延续，同一份 frame-shell 词典对两个版本均生效）：
-  英文原文内嵌于 JS 的 `{id, defaultMessage}` 消息对，官方仅附带 10 种语言各 108 键的
-  词典（无 en-US.json，无中文）；捆绑包由模拟器经 `shell-manifest.json` 伺服，
+  英文原文内嵌于 JS 的 `{id, defaultMessage}` 消息对，官方附带 10 种语言的词典（5.11492.5 时仅各 108 键，
+  6.28899.x 为各 1,901 键；无 en-US.json，无中文）；捆绑包由模拟器经 `shell-manifest.json` 伺服，
   **启动时对清单内每个文件做 bytes+SHA-256 校验**，可用语言硬编码在
   `frame-shell.html` 的 meta 标签（`data-shipped` / `data-catalogs`）里。
 - 汉化方式：在 asar 内新增 `frame/shell/i18n/frame-shell/zh-CN.json`（全部 1,898 键，
@@ -60,15 +60,32 @@ sudo ./install-linux.sh --set-locale   # 安装并把 ~/.config/Claude/config.js
 | app.asar locale 映射补丁 | 同款补丁 | Linux Electron 不校验 asar 签名；重建后全条目 SHA-256 完整性自检通过 |
 | AppX 清单注册 zh-CN | 无需 | 前端按词典文件枚举语言，asar 内 `i18n/zh-CN.json` 直接被识别 |
 
-## 覆盖率（Linux 6.28899.2，2026-11-21 全量精校与官方术语对齐）
+## 覆盖率（Linux 6.28899.6，2026-11-23 增量同步；2026-11-21 全量精校与官方术语对齐）
 
 | 层 | 键数 | 已翻译 | 说明 |
 | --- | ---: | ---: | --- |
-| 前端主词典 | 46,447 | 45,939（等效 100%） | 安装器口径 0 键回退；508 键为专名/官方保留词（Artifact/Skill/PR/Diff/Fork 等）/OAuth scope/格式串 |
+| 前端主词典 | 46,448 | 45,940（等效 100%） | 安装器口径 0 键回退；508 键为专名/官方保留词（Artifact/Skill/PR/Diff/Fork 等）/OAuth scope/格式串 |
 | 前端覆盖（overrides） | 290 | 290 | 与主词典全量同步，安装时按 ICU 结构过滤 |
 | 动态文案 | 51 | 51 | 已对齐 `Token`、`思考强度` 等术语 |
 | 桌面壳（菜单/弹窗/托盘） | 1,575 | 1,550（等效 100%） | 官方 `zh-Hans.json` **1,567/1,567 条 100% 原样复用**（含 25 条官方保留英文专名） |
 | frame-shell（5.x+ 层） | 1,898 | 1,885（等效 100%） | 英文原文自 JS 提取；剩余 13 键为专名/纯格式串 |
+
+2026-11-23 对照官方 APT 最新版 6.28899.6 增量同步：官方前端词典 46,447 → 46,448 键（新增 2、死键 1，存量英文原文零变更）。
+新增 `J5MyIE7Qp5`「Sessions don’t use your value for {name}.」（Code 标签页环境变量设置的警告）与 `okFGaP/EGD`
+「Some sessions aren’t listed. …」（会话恢复列表末尾的说明，取代旧键 `YpBEFNvVe1`「Older sessions aren’t listed. …」）；
+桌面壳 1,575 键、动态文案 51 键、overrides 290 键、frame-shell 1,898 键均零变化，官方壳 `zh-Hans.json` 1,567 键与我们的
+译文零差异。官方本版同时修订了非英语翻译的 251 条译文值（前端 238、桌面壳 13；英文原文未变，多为 Legacy / Monitor /
+Premium 等术语统一以及标点、敬语调整），逐条对照调用点复核并经对抗验证后修正存量中文 12 条：3 条实义错误
+（`C9WGEuJVec`「of」是“3 of 5”徽标里的分隔词却译作「的」，`YXoHk0YjYL`「Power」是用户成熟度分层却译作「电源」，
+`ZVNBBAiaLC`「Review behavior for {name}」把 Review 当成动词译作「查看…的行为」），以及 9 条术语一致性修正
+（web fetch 统一「网页抓取」、定时任务的「查看指令 / 编辑指令」、「导出用租户 ID」及引用该字段名的说明、「发展中」
+层级、「全成本薪酬」、「{serverName} 嵌入应用」等）。独立复核：另写脚本重算五层差异，与仓库报告零出入；安装器的语言
+白名单（3 处）、名称映射、locale 映射锚点全部恰好命中；frame-shell 的 1,898 个 id 经 acorn 语法树交叉验证与正则提取
+完全一致；JS 规则逐条命中与 6.28899.2 完全相同（276 个文件、精确规则 229 处、文字规则 840 处），没有规则在本版失效，
+前端 ion-dist JS 也没有新增未被规则覆盖的硬编码界面文案（桌面壳主进程 JS 里新增的几条硬编码英文提示、
+文字规则引擎按引号配对扫描的既有盲区，均不在现有机制覆盖范围内，见「已知限制」）。安装器零改动。新增维护脚本 `zh-i18n/work/verify-chain.sh`，把干跑验证链
+固化为一条命令。验证：五层词典全量校验与术语审计通过 → 干跑验证链（部署校验 manifest 49 文件字节+SHA-256 全过 →
+重复安装幂等 → reset 恢复后与官方原版逐字节一致 → 从原版重装逐字节可复现）。
 
 2026-11-21 全量逐条精校与 Agent/官方术语统一：
 - **官方译文 100% 原样复用**：升级 `install-linux.py` 与 `zh-i18n/work/common5x.py` 的 `struct_ok()` 为完整 ICU MessageFormat 语法校验器（兼容中文省略 `one` 分支与直写 `{var}` 的合法复数写法），桌面壳原样并入全部 **1,567/1,567 条**官方 `zh-Hans.json`（补齐此前因复数校验过严跳过的 94 条，并额外检出修复 1 条原脚本漏报的运行期变量名错写 Bug `QD+x5dnPVC`）；跨层同原文 70 条直接锁定复用官方译文；全库人称对齐官方统一为「您」（仅用户发给 Claude 的第一人称示例提示词保持「你」）。
@@ -137,6 +154,13 @@ app.asar 代码有实质更新（worktree 技能菜单、file index 等），英
 
 - 订阅账号登录时，主界面在线加载 claude.ai 网页，本地语言包与 JS 补丁不覆盖该部分；
   第三方 API/中转模式走本地 ion-dist 前端，汉化完整生效（与 Windows 版一致）。
+- 桌面壳主进程（`app.asar` 内 `.vite/build` 的 JS）里的硬编码英文提示不在汉化范围内：安装器对
+  `app.asar` 只写入词典、locale 映射与 frame-shell 层。例如 6.28899.6 新增的
+  「Claude Code wasn’t started, because …」几条会话无法启动的原因说明仍显示英文。
+- 安装器的 JS 文字规则按引号出现顺序配对扫描源码，字符串内部含引号、正则字面量或 `\uXXXX` 转义时
+  会错位。以 6.28899.6 实测：994 处真实字面量命中中正确替换 821 处，漏替换 173 处（其中 2 处由
+  精确规则覆盖，171 处界面文案仍为英文），另有 19 处替换落在更长的英文字符串内部（发行说明等，
+  形成中英混排）。根治需改为按语法树定位后再替换，尚未实施。
 - 恢复（reset）只还原本脚本改动过的文件；`apt remove claude-desktop` 卸载不需要先 reset。
 - 在线页面的 DOM 注入翻译（javaht 的 app.asar 深度改法）未移植，保持与 Windows 包相同的
   设计取向。
@@ -147,10 +171,13 @@ app.asar 代码有实质更新（worktree 技能菜单、file index 等），英
 - `install-linux.py` — Python 助手（布局检测、asar 重建引擎、词典合并、JS 补丁、备份与
   还原、locale 写入），由主脚本调用，也可单独运行：
   `ZH_RESOURCES=… ZH_BACKUP=… ZH_LANG=… python3 install-linux.py check`
-- `language/zh-CN/linux/dictionary.json` — 前端词典（46,447 键全量映射的基础词典）
+- `language/zh-CN/linux/dictionary.json` — 前端词典（46,448 键全量映射的基础词典）
 - `language/zh-CN/linux/desktop-shell-dictionary.json` — 桌面壳词典（1,575 键，官方 zh-Hans 优先并入）
 - `language/zh-CN/linux/frame-shell-dictionary.json` — frame-shell 词典（5.x+ 层，1,898 键）
 - `language/zh-CN/linux/overrides.json` — 覆盖文案（290 键）
 - `language/zh-CN/dynamic/zh-CN.json` — 动态文案（Windows/Linux 通用）
 - `language/zh-CN/hardcoded.json`、`frontend-hardcoded.json`、`assets-manifest.json` — JS 规则
   （与 Windows 安装器共用，安装时按当前版本内容重新匹配）
+- `zh-i18n/work/` — 维护用同步脚本（`unpack-deb.py` 拉取/解包/清理最新 deb，`analyze-diff-5x.py`
+  五层差异分析，`verify-chain.sh` 干跑验证链：install → 部署校验 → 重复安装幂等 → reset 逐字节
+  复原 → 从原版重装可复现）
