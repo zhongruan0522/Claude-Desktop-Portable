@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 干跑验证链（只操作 zh-i18n/work/test-run/ 下的副本，不碰真实安装目录）：
-#   install → 部署校验 → check → 重复安装（幂等）→ reset → 与官方原版逐字节对比 → 从原版重装（可复现）
+#   JS 词法器单元测试 → install → 部署校验 → check → 重复安装（幂等）→ reset → 与官方原版逐字节对比 → 从原版重装（可复现）
 # 用法: bash zh-i18n/work/verify-chain.sh [版本]
 #   缺省版本取 work/ 下检测到的最高解包版本（common5x.current_ver）；日志与 md5 记录在 zh-i18n/work/test-run/log/
 #   任一步失败立即退出（退出码 1）并保留现场；全部通过后删除 resources 副本、仅保留 log/
@@ -30,6 +30,7 @@ step() { local name="$1"; shift; "$@" > "$LOG/$name.log" 2>&1 || { echo "✗ 步
 
 cp -a "$WORK/deb-$VER/usr/lib/claude-desktop/resources" "$RES"
 md5 > "$LOG/00-original.md5"
+step 00-js-lex-test python3 "$WORK/js-lex-test.py" "$INST"      # 安装器里 JS 词法扫描的单元测试（不需要 Node）
 step 01-install python3 "$INST" install
 md5 > "$LOG/01-install.md5"
 step 02-verify-deploy python3 "$WORK/verify-deploy-5x.py"
@@ -55,7 +56,7 @@ if cmp -s "$LOG/01-install.md5" "$LOG/04-reinstall.md5"; then
 else
   echo "· 已打补丁树上首次重装发生一次布局收敛（与首装 md5 不同），再次重装后稳定"
 fi
-for f in 01-install 02-verify-deploy 03-check 06-reset 07-verify-reset; do echo "--- $f ---"; cat "$LOG/$f.log"; done
+for f in 00-js-lex-test 01-install 02-verify-deploy 03-check 06-reset 07-verify-reset; do echo "--- $f ---"; cat "$LOG/$f.log"; done
 if [ "$FAIL" -eq 0 ]; then
   rm -rf "$RES" "$RUN/.zh-CN-backup"
   echo "✔ 干跑验证链全部通过（$VER），已删除 resources 副本，日志保留在 $LOG"
