@@ -45,7 +45,7 @@
 | `Repository` / `Workspace` / `Marketplace` / `Directory` | **`仓库`** / **`工作区`** / **`市场`** / **`目录`** | — |
 | `SSH agent` / `Git origin` | **`SSH 代理`** / **`origin`**（或 **`Git 源`**） | Web/iframe `origin` 译「来源」 |
 | `Pin` / `Unpin` | 列表/文件夹/对话=**`置顶`/`取消置顶`**；Git origin=**`锁定`/`重新锁定`**；任务栏=**`固定`/`取消固定`** | 按语境区分 |
-| `Dismiss` / `Share` / `Blocked`（安全拦截） | **`关闭`** / 协作权限 **`共享`**、外发 **`分享`** / **`已阻止`** | — |
+| `Dismiss` / `Share` / `Blocked`（安全拦截） | **`关闭`** / 协作权限 **`共享`**、外发 **`分享`** / **`已阻止`** | `Dismiss` 的义项例外：PR 审查、Anthropic 的提议/建议被否定用 **`驳回`**，从会话 PR 栏移除用 **`移除`**；「拒绝」留给 `Decline`，「忽略」留给 `Ignore` |
 
 ---
 
@@ -74,6 +74,12 @@
 | `Output style` | **`输出风格`** | 禁用「输出样式」 |
 | `Monitor`（后台事件监控功能） | **`监控器`**（动词 **`监控`**） | 硬件显示器仍译「显示器」 |
 | `Ready for review` | **`待审查`** | 禁用「可审查」「可供审阅」 |
+| `Web search` / `Web fetch` | **`网页搜索`** / **`网页抓取`** | 禁用「网络搜索」「网络搜索/获取」；`web search/fetch` 写「网页搜索/抓取」 |
+| `Instructions`（给 Claude 的指令内容） | **`指令`** | 功能名 `Instructions for Claude` = **`给 Claude 的指令`**；面向人的设置、转账、组装、分步说明仍译「说明」 |
+| `Review`（PR / 代码审查流程） | **`审查`** | `Review comments` = **`审查评论`**，`Review instructions` = **`审查指令`**；该语境不用「回顾」「审阅评论」 |
+| `Listed` / `Unlisted`（市场可见性） | **`已上架`** / **`未上架`** | `ls` 工具的 `Listed files` 仍译「列出了文件」 |
+| `Billing cycle` / `Billing period` / `Billing date` | **`计费周期`** / **`计费周期`** / **`账单日`** | 禁用「结算周期」「账期」「账单周期」「计费日期」「账单日期」 |
+| `Loaded compensation` / `fully-loaded` | **`全成本薪酬`** | 禁用「综合薪酬成本」 |
 
 ---
 
@@ -82,3 +88,4 @@
 1. **零错别字**：统一使用「撤销」（禁「撤消」）、「账单」（禁「帐单」）、「账户」（禁「账号」「帐号」「帐户」）。
 2. **避免常见机翻陷阱**：Canvas LMS（教育平台）保持 `Canvas` 不译「画布」；`background` 后台任务不译「背景」；`active` 生效中不译「主动」；macOS `Option` 键不译「选项」；`egress` 统一「出站」不译「出口」；`brief` 简报不译「简介」；`top` 热门/常用不译「顶级」。
 3. **排版与 ICU 安全**：中英文与数字间保留单空格（标点紧邻处不加空格）；全角中文标点一致；严格通过 `common5x.struct_ok()` 校验。
+4. **省略号**：中文一律用单个 `…`（U+2026），不写 ASCII `...`，也不用双 `……`；被截断的标识符前缀与字面示例内容（如 `GOCSPX-...`、证书样例、`glpat-...`）保持原样。

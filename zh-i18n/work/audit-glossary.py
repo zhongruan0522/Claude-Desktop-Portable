@@ -5,7 +5,8 @@
 1. 官方桌面壳 zh-Hans.json 100% 原样复用校验
 2. ICU MessageFormat 结构校验（common5x.struct_ok）
 3. 错别字 / 禁用词 / 括号重复词检查
-4. 锁定术语表一致性检查（Artifact / Skill / Agent / Subagent / Token / Prompt / Effort / Plan / Sandbox / Remote Control / PR / Fork / Stash vs Staged / Thread / Telemetry / Rewind / Accept edits / Side chat 等）
+4. 锁定术语表一致性检查（Artifact / Skill / Agent / Subagent / Token / Prompt / Effort / Plan / Sandbox / Remote Control / PR / Fork / Stash vs Staged / Thread / Telemetry / Rewind / Accept edits / Side chat 等；
+   2026-11-27 术语统一新增：中文省略号只用单个 …、Web search=网页搜索、Review comments=审查评论）
 5. 同英文多中文译法统计
 """
 import json, os, re, sys
@@ -93,6 +94,13 @@ for lname, em, zm in layers:
             glossary_warns['Prompt→提示(缺词)'].append((lname, k, en[:60], zh[:60]))
         if re.search(r'\b(input|output|cached|max|prompt-cache)\s+tokens?\b|\btoken\s+limits?\b', el) and ('令牌' in zh or '词元' in zh):
             glossary_warns['LLM Token→令牌/词元'].append((lname, k, en[:60], zh[:60]))
+        # 2026-11-27 术语统一新增
+        if re.search(r'[\u4e00-\u9fff]', zh) and ('...' in zh or '……' in zh):
+            glossary_warns['省略号→单个 …（禁 ... 与 ……）'].append((lname, k, en[:60], zh[:60]))
+        if re.search(r'\bweb search', el) and '网络搜索' in zh:
+            glossary_warns['Web search→网络搜索'].append((lname, k, en[:60], zh[:60]))
+        if 'review comment' in el and '审阅评论' in zh:
+            glossary_warns['Review comments→审阅评论'].append((lname, k, en[:60], zh[:60]))
 
 print(f'[3] 结构校验失败: {len(struct_fails)} 条')
 for x in struct_fails[:10]:
