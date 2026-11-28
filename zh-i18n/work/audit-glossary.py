@@ -9,7 +9,8 @@
    2026-11-27 术语统一新增：中文省略号只用单个 …、Web search=网页搜索、Review comments=审查评论；
    2026-11-28：JS 文字规则 frontend-hardcoded.json 的中文侧纳入省略号与 Review 检查，Review 检查扩到 PR/代码审查的固定搭配；
    2026-11-28 术语统一 D9：直角引号「」、Are you sure 句省略「您」、Reviewer 译「审核人员/评审者」、PR 流程用「评审」、
-   limit increase request 译「限额提升请求」、产品名 Code 译「代码」、数字紧贴中文量词）
+   limit increase request 译「限额提升请求」、产品名 Code 译「代码」、数字紧贴中文量词；
+   2026-11-28 术语统一 D8：disable 一族译「停用」、句首的 Enable / Enabling / Enabled 与「and enable …」译「开启」）
 5. 同英文多中文译法统计
 """
 import json, os, re, sys
@@ -54,6 +55,11 @@ REVIEW_RE = re.compile(r'\breview comments?\b|\b(?:code|pr) review\b|\breviewed\
 CODE_KIND_KEYS = {('fe', '/GfNmXqa0P'), ('fe', '0Aa0N5O99r'), ('fe', '6DGKcWW2C1'), ('fe', 'G8PgU8iXdR'), ('fe', 'USCMzD6r9q'),
                   ('fe', 'WXQGP2/7Ta'), ('fe', 'xX14rECk4J'), ('fe', 'xwbvXroWpK'), ('fe', 'yje76+c4Gb')}
 UNIT_NO_SPACE = re.compile(r'\d[年月日天周号位次个条项名份秒]')
+# disable 一族（disable / disabled / disabling）一律译「禁用」，不用「停用」；英文不是这一族而译「停用」的键（Retired、deactivated、turned off、stop 等）不属此列
+DISABLE_RE = re.compile(r'\b(?:disable[sd]?|disabling)\b', re.I)
+# enable（功能开关）= 启用 / 已启用。原文的 turn on / is on 仍译「开启」，同一句里两种都会出现，所以只查固定位置：
+# 句首的 Enable / Enabling 不译「开启」、句首的 Enabled 不含「开启」、「and enable …」不译「并开启」
+# （策略说明里原样保留的字面量 “enabled” / “disabled” 不受影响）
 
 for lname, em, zm in layers:
     for k, en in em.items():
@@ -126,6 +132,15 @@ for lname, em, zm in layers:
             glossary_warns['Code（产品名）→保留英文'].append((lname, k, en[:60], zh[:60]))
         if UNIT_NO_SPACE.search(zh):
             glossary_warns['数字与中文量词之间留空格（6 个月、365 天）'].append((lname, k, en[:60], zh[:60]))
+        # 2026-11-28 术语统一 D8 新增
+        if DISABLE_RE.search(el) and '停用' in zh:
+            glossary_warns['Disable 一族→禁用（不用停用）'].append((lname, k, en[:60], zh[:60]))
+        if re.match(r'(?:enable|enabling)\b', el) and zh.startswith('开启'):
+            glossary_warns['Enable（功能开关）→启用，不用开启'].append((lname, k, en[:60], zh[:60]))
+        if re.search(r'\band enable\b', el) and '并开启' in zh:
+            glossary_warns['Enable（功能开关）→启用，不用开启'].append((lname, k, en[:60], zh[:60]))
+        if re.match(r'enabled\b', el) and '开启' in zh:
+            glossary_warns['Enable（功能开关）→启用，不用开启'].append((lname, k, en[:60], zh[:60]))
 
 # JS 文字规则只有中文侧，按同一口径查省略号与 Review 用词（2026-11-28 之前不在检查范围内）
 for i, (s, t) in enumerate(load(os.path.join(LANG, 'frontend-hardcoded.json'))):
@@ -144,6 +159,15 @@ for i, (s, t) in enumerate(load(os.path.join(LANG, 'frontend-hardcoded.json'))):
         glossary_warns['Review（PR/代码审查流程）→审查，不用评审'].append(('js', f'#{i}', s[:60], t[:60]))
     if UNIT_NO_SPACE.search(t):
         glossary_warns['数字与中文量词之间留空格（6 个月、365 天）'].append(('js', f'#{i}', s[:60], t[:60]))
+    # 2026-11-28 术语统一 D8 新增
+    if DISABLE_RE.search(s) and '停用' in t:
+        glossary_warns['Disable 一族→禁用（不用停用）'].append(('js', f'#{i}', s[:60], t[:60]))
+    if re.match(r'(?:enable|enabling)\b', s.lower()) and t.startswith('开启'):
+        glossary_warns['Enable（功能开关）→启用，不用开启'].append(('js', f'#{i}', s[:60], t[:60]))
+    if re.search(r'\band enable\b', s.lower()) and '并开启' in t:
+        glossary_warns['Enable（功能开关）→启用，不用开启'].append(('js', f'#{i}', s[:60], t[:60]))
+    if re.match(r'enabled\b', s.lower()) and '开启' in t:
+        glossary_warns['Enable（功能开关）→启用，不用开启'].append(('js', f'#{i}', s[:60], t[:60]))
 
 print(f'[3] 结构校验失败: {len(struct_fails)} 条')
 for x in struct_fails[:10]:
