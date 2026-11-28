@@ -7,7 +7,9 @@
 3. 错别字 / 禁用词 / 括号重复词检查
 4. 锁定术语表一致性检查（Artifact / Skill / Agent / Subagent / Token / Prompt / Effort / Plan / Sandbox / Remote Control / PR / Fork / Stash vs Staged / Thread / Telemetry / Rewind / Accept edits / Side chat 等；
    2026-11-27 术语统一新增：中文省略号只用单个 …、Web search=网页搜索、Review comments=审查评论；
-   2026-11-28：JS 文字规则 frontend-hardcoded.json 的中文侧纳入省略号与 Review 检查，Review 检查扩到 PR/代码审查的固定搭配）
+   2026-11-28：JS 文字规则 frontend-hardcoded.json 的中文侧纳入省略号与 Review 检查，Review 检查扩到 PR/代码审查的固定搭配；
+   2026-11-28 术语统一 D9：直角引号「」、Are you sure 句省略「您」、Reviewer 译「审核人员/评审者」、PR 流程用「评审」、
+   limit increase request 译「限额提升请求」、产品名 Code 译「代码」、数字紧贴中文量词）
 5. 同英文多中文译法统计
 """
 import json, os, re, sys
@@ -47,6 +49,11 @@ glossary_warns = defaultdict(list)
 BAD_TYPOS = ('撤消', '帐单', '帐号', '帐户', '迷您', '您们')
 # PR / 代码审查流程里 Review 根词的固定搭配：一律译「审查」，不得用「审阅」（人阅读文档、合同、草稿的 review 不在此列）
 REVIEW_RE = re.compile(r'\breview comments?\b|\b(?:code|pr) review\b|\breviewed\b|\breviewers?\b|\b(?:pending|ready for) review\b')
+# 英文恰为 Code 但不是产品名的键（文件类型、Artifact 类型、代码块语言、图标与分类名、活动摘要里的小写 code）：
+# 这些仍译「代码」；其余（与 Chat、Cowork 并列的产品名）应保留 Code。同步新版本后如新增此类键，按调用点判断后加进来
+CODE_KIND_KEYS = {('fe', '/GfNmXqa0P'), ('fe', '0Aa0N5O99r'), ('fe', '6DGKcWW2C1'), ('fe', 'G8PgU8iXdR'), ('fe', 'USCMzD6r9q'),
+                  ('fe', 'WXQGP2/7Ta'), ('fe', 'xX14rECk4J'), ('fe', 'xwbvXroWpK'), ('fe', 'yje76+c4Gb')}
+UNIT_NO_SPACE = re.compile(r'\d[年月日天周号位次个条项名份秒]')
 
 for lname, em, zm in layers:
     for k, en in em.items():
@@ -104,6 +111,21 @@ for lname, em, zm in layers:
             glossary_warns['Web search→网络搜索'].append((lname, k, en[:60], zh[:60]))
         if REVIEW_RE.search(el) and '审阅' in zh:
             glossary_warns['Review（PR/代码审查流程）→审查，不用审阅'].append((lname, k, en[:60], zh[:60]))
+        # 2026-11-28 术语统一 D9 新增
+        if '「' in zh or '」' in zh:
+            glossary_warns['引号→使用 “ ”（不用直角引号「」）'].append((lname, k, en[:60], zh[:60]))
+        if re.search(r'\bare you sure\b', el) and re.match(r'^(确定要|确实要)', zh):
+            glossary_warns['Are you sure…→您确定要（不省略您）'].append((lname, k, en[:60], zh[:60]))
+        if re.search(r'\breviewers?\b', el) and ('审核人员' in zh or '评审者' in zh):
+            glossary_warns['Reviewer→审查者/审核者（不用审核人员、评审者）'].append((lname, k, en[:60], zh[:60]))
+        if REVIEW_RE.search(el) and not re.search(r'peer review', el) and '评审' in zh:
+            glossary_warns['Review（PR/代码审查流程）→审查，不用评审'].append((lname, k, en[:60], zh[:60]))
+        if re.search(r'limit increase requests?', el) and '限额提升请求' in zh:
+            glossary_warns['Limit increase request→提高限额请求'].append((lname, k, en[:60], zh[:60]))
+        if el == 'code' and '代码' in zh and (lname, k) not in CODE_KIND_KEYS:
+            glossary_warns['Code（产品名）→保留英文'].append((lname, k, en[:60], zh[:60]))
+        if UNIT_NO_SPACE.search(zh):
+            glossary_warns['数字与中文量词之间留空格（6 个月、365 天）'].append((lname, k, en[:60], zh[:60]))
 
 # JS 文字规则只有中文侧，按同一口径查省略号与 Review 用词（2026-11-28 之前不在检查范围内）
 for i, (s, t) in enumerate(load(os.path.join(LANG, 'frontend-hardcoded.json'))):
@@ -111,6 +133,17 @@ for i, (s, t) in enumerate(load(os.path.join(LANG, 'frontend-hardcoded.json'))):
         glossary_warns['省略号→单个 …（禁 ... 与 ……）'].append(('js', f'#{i}', s[:60], t[:60]))
     if REVIEW_RE.search(s.lower()) and '审阅' in t:
         glossary_warns['Review（PR/代码审查流程）→审查，不用审阅'].append(('js', f'#{i}', s[:60], t[:60]))
+    # 2026-11-28 术语统一 D9 新增（JS 文字规则只有中文侧，查同一批纯中文写法）
+    if '「' in t or '」' in t:
+        glossary_warns['引号→使用 “ ”（不用直角引号「」）'].append(('js', f'#{i}', s[:60], t[:60]))
+    if re.search(r'\bare you sure\b', s.lower()) and re.match(r'^(确定要|确实要)', t):
+        glossary_warns['Are you sure…→您确定要（不省略您）'].append(('js', f'#{i}', s[:60], t[:60]))
+    if re.search(r'\breviewers?\b', s.lower()) and ('审核人员' in t or '评审者' in t):
+        glossary_warns['Reviewer→审查者/审核者（不用审核人员、评审者）'].append(('js', f'#{i}', s[:60], t[:60]))
+    if REVIEW_RE.search(s.lower()) and not re.search(r'peer review', s.lower()) and '评审' in t:
+        glossary_warns['Review（PR/代码审查流程）→审查，不用评审'].append(('js', f'#{i}', s[:60], t[:60]))
+    if UNIT_NO_SPACE.search(t):
+        glossary_warns['数字与中文量词之间留空格（6 个月、365 天）'].append(('js', f'#{i}', s[:60], t[:60]))
 
 print(f'[3] 结构校验失败: {len(struct_fails)} 条')
 for x in struct_fails[:10]:

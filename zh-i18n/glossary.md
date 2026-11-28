@@ -24,7 +24,7 @@
 | `Artifact` / `Artifacts` | 保留 **`Artifact`** / **`Artifacts`** | 禁用「作品」「制品」「工件」「产物」 |
 | `Skill` / `Skills` | 保留 **`Skill`** / **`Skills`** | 仅指 Claude Skill 功能/对象；人类通用技能（如招聘要求、熟练度）仍译「技能」 |
 | `Remote Control` | 保留 **`Remote Control`** | 禁用「远程控制」 |
-| `Cowork` / `Claude Code` / `Code tab` / `Claude Design` / `Claude Tag` | 保留专名（`Code 标签页`、`Code 会话`） | 保持原名不译 |
+| `Cowork` / `Claude Code` / `Code tab` / `Claude Design` / `Claude Tag` | 保留专名（`Code 标签页`、`Code 会话`） | 保持原名不译；与 Chat、Cowork 并列的 `Code`（标签页名、筛选项、来源名）以及 `Enable Code`、`Allow Code`、`Cowork, Chat and Code` 一律保留 **`Code`**；文件类型、Artifact 类型、代码块语言的 `Code` 仍译「代码」 |
 | `Token` | LLM 计量保留 **`Token`**；认证/凭据用 **`令牌`** | 严禁把 LLM 输入/输出/缓存 Token 译作「令牌」「词元」或小写 `token` |
 | `Prompt` | LLM 语境用 **`提示词`**；UI 弹窗/询问用 **`提示`** | `System prompt`=系统提示词、`Prompt cache`=提示词缓存、`Prompt injection`=提示词注入 |
 | `Hook` / `Hooks` | **`钩子`** | 如「工作树钩子」「模型切换钩子」；文章开场白 hook 除外 |
@@ -76,7 +76,12 @@
 | `Ready for review` | **`待审查`** | 禁用「可审查」「可供审阅」 |
 | `Web search` / `Web fetch` | **`网页搜索`** / **`网页抓取`** | 禁用「网络搜索」「网络搜索/获取」；`web search/fetch` 写「网页搜索/抓取」 |
 | `Instructions`（给 Claude 的指令内容） | **`指令`** | 功能名 `Instructions for Claude` = **`给 Claude 的指令`**；面向人的设置、转账、组装、分步说明仍译「说明」 |
-| `Review`（PR / 代码审查流程） | **`审查`** | `Review comments` = **`审查评论`**，`Review instructions` = **`审查指令`**，审查评论的作者 `Reviewer` = **`审查者`**；该语境不用「回顾」「审阅」。人阅读并评判文档、合同、草稿仍译「审阅」；提交给管理员的上架、发布、权限审核用 **`审核`**（`审核者`、`待审核`） |
+| `Review`（PR / 代码审查流程） | **`审查`** | `Review comments` = **`审查评论`**，`Review instructions` = **`审查指令`**；该语境不用「回顾」「审阅」「评审」。`Reviewer` / `Reviewers` 按流程分开：PR 页（审查评论的作者、PR 详情的审查者一栏）= **`审查者`**；上架、连接器、发布请求的审核 = **`审核者`**（`审核者反馈`、`告知审核者原因`），不用「审核人员」「评审者」。提交给管理员的上架、发布、权限审核用 **`审核`**（`待审核`、`提交审核`、`返回审核`；发布请求页待处理时的 `Review request` = **`审核请求`**）。人阅读并评判文档、合同、草稿仍译「审阅」；预设模板标题里 Claude 阅读用户贴来的文档类材料（推介、文案、草稿、设计规格、研究设计、协议）并给反馈，同样译 **`审阅`**（审阅我的设计规格），代码、Diff、数据结构仍译 **`审查`**（审查我的 PR Diff） |
+| `Critique`（设计点评类预设模板标题） | **`评价`** | 评价界面、评价我的设计、评价我的原型；名词 design critique、peer review 仍作「设计评审」「同行评审」 |
+| `Are you sure you want to …?` | **`您确定要…吗？`** | 不省略「您」，不用「确定要…吗？」「确实要…吗？」 |
+| 引号（界面文案里引用按钮、页面、设置项、名称） | **`“ ”`**（U+201C / U+201D） | 不用直角引号「」；英文原文用单引号 ‘…’ 的界面名称同样译作 “…”；引号里再套引号时内层用 ‘ ’；字面字符示例（‘.’、‘-’）保持原样 |
+| `Limit increase request` | **`提高限额请求`** | 禁用「限额提升请求」；动词仍作「申请提高限额」 |
+| `notes` | 记忆建议卡片与未保存的笔记 = **`笔记`**；附加在条目上的备注字段（分诊备注、审核者备注、给管理员的备注、您给 Claude 的备注）= **`备注`** | — |
 | `Listed` / `Unlisted`（市场可见性） | **`已上架`** / **`未上架`** | `ls` 工具的 `Listed files` 仍译「列出了文件」 |
 | `Billing cycle` / `Billing period` / `Billing date` | **`计费周期`** / **`计费周期`** / **`账单日`** | 禁用「结算周期」「账期」「账单周期」「计费日期」「账单日期」 |
 | `Loaded compensation` / `fully-loaded` | **`全成本薪酬`** | 禁用「综合薪酬成本」 |
@@ -87,5 +92,5 @@
 
 1. **零错别字**：统一使用「撤销」（禁「撤消」）、「账单」（禁「帐单」）、「账户」（禁「账号」「帐号」「帐户」）。
 2. **避免常见机翻陷阱**：Canvas LMS（教育平台）保持 `Canvas` 不译「画布」；`background` 后台任务不译「背景」；`active` 生效中不译「主动」；macOS `Option` 键不译「选项」；`egress` 统一「出站」不译「出口」；`brief` 简报不译「简介」；`top` 热门/常用不译「顶级」。
-3. **排版与 ICU 安全**：中英文与数字间保留单空格（标点紧邻处不加空格）；全角中文标点一致；严格通过 `common5x.struct_ok()` 校验。
+3. **排版与 ICU 安全**：中英文与数字间保留单空格（标点紧邻处不加空格），数字与中文量词之间也留空格（6 个月、365 天、1 年、2 月 7 日）；全角中文标点一致；严格通过 `common5x.struct_ok()` 校验。
 4. **省略号**：中文一律用单个 `…`（U+2026），不写 ASCII `...`，也不用双 `……`；被截断的标识符前缀与字面示例内容（如 `GOCSPX-...`、证书样例、`glpat-...`）保持原样；JS 文字规则（`frontend-hardcoded.json`）的中文侧同样适用。
