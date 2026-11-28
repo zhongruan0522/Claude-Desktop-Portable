@@ -6,7 +6,8 @@
 2. ICU MessageFormat 结构校验（common5x.struct_ok）
 3. 错别字 / 禁用词 / 括号重复词检查
 4. 锁定术语表一致性检查（Artifact / Skill / Agent / Subagent / Token / Prompt / Effort / Plan / Sandbox / Remote Control / PR / Fork / Stash vs Staged / Thread / Telemetry / Rewind / Accept edits / Side chat 等；
-   2026-11-27 术语统一新增：中文省略号只用单个 …、Web search=网页搜索、Review comments=审查评论）
+   2026-11-27 术语统一新增：中文省略号只用单个 …、Web search=网页搜索、Review comments=审查评论；
+   2026-11-28：JS 文字规则 frontend-hardcoded.json 的中文侧纳入省略号与 Review 检查，Review 检查扩到 PR/代码审查的固定搭配）
 5. 同英文多中文译法统计
 """
 import json, os, re, sys
@@ -44,6 +45,8 @@ typo_hits = defaultdict(list)
 glossary_warns = defaultdict(list)
 
 BAD_TYPOS = ('撤消', '帐单', '帐号', '帐户', '迷您', '您们')
+# PR / 代码审查流程里 Review 根词的固定搭配：一律译「审查」，不得用「审阅」（人阅读文档、合同、草稿的 review 不在此列）
+REVIEW_RE = re.compile(r'\breview comments?\b|\b(?:code|pr) review\b|\breviewed\b|\breviewers?\b|\b(?:pending|ready for) review\b')
 
 for lname, em, zm in layers:
     for k, en in em.items():
@@ -99,8 +102,15 @@ for lname, em, zm in layers:
             glossary_warns['省略号→单个 …（禁 ... 与 ……）'].append((lname, k, en[:60], zh[:60]))
         if re.search(r'\bweb search', el) and '网络搜索' in zh:
             glossary_warns['Web search→网络搜索'].append((lname, k, en[:60], zh[:60]))
-        if 'review comment' in el and '审阅评论' in zh:
-            glossary_warns['Review comments→审阅评论'].append((lname, k, en[:60], zh[:60]))
+        if REVIEW_RE.search(el) and '审阅' in zh:
+            glossary_warns['Review（PR/代码审查流程）→审查，不用审阅'].append((lname, k, en[:60], zh[:60]))
+
+# JS 文字规则只有中文侧，按同一口径查省略号与 Review 用词（2026-11-28 之前不在检查范围内）
+for i, (s, t) in enumerate(load(os.path.join(LANG, 'frontend-hardcoded.json'))):
+    if re.search(r'[\u4e00-\u9fff]', t) and ('...' in t or '……' in t):
+        glossary_warns['省略号→单个 …（禁 ... 与 ……）'].append(('js', f'#{i}', s[:60], t[:60]))
+    if REVIEW_RE.search(s.lower()) and '审阅' in t:
+        glossary_warns['Review（PR/代码审查流程）→审查，不用审阅'].append(('js', f'#{i}', s[:60], t[:60]))
 
 print(f'[3] 结构校验失败: {len(struct_fails)} 条')
 for x in struct_fails[:10]:
